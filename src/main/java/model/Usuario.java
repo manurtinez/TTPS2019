@@ -1,12 +1,27 @@
 package model;
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "usuarios")
 public class Usuario {
+	@Id
+	@Basic(optional = false)
+	@Column(name="id")
+	private Integer id;
 	private String nombre;
 	private String apellido;
+	@Column(name="user")
 	private String email;
+	@Column(name="pass")
 	private String password;
 	private int telefono;
 	
+	public Usuario() { } //necesario para q sea entidad
 	
 	public Usuario(String nombre, String apellido, String email, String password, int telefono) {
 		super();

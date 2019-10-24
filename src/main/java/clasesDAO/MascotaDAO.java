@@ -1,5 +1,5 @@
 package clasesDAO;
 
-public class MascotaDAO {
-
+public interface MascotaDAO {
+	
 }
