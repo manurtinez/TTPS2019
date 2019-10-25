@@ -1,6 +1,14 @@
 package model;
 
 public class Usuario {
+<<<<<<< Updated upstream
+=======
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id")
+	private Integer id;
+	@Column(name="nombre")
+>>>>>>> Stashed changes
 	private String nombre;
 	private String apellido;
 	private String email;

@@ -9,11 +9,12 @@
 
 		<properties>
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
-			<property name="hibernate.connection.password" value=""/>
-			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/historia_clinica_mascotas"/>
-			<property name="hibernate.connection.username" value="root" />
+			<property name="hibernate.connection.password" value="1234"/>
+			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/historia_clinica_mascotas?serverTimezone=UTC"/>
+			<property name="hibernate.connection.username" value="manu" />
 			<property name="hibernate.default_schema" value="stock" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
+			<property name="hibernate.hbm2ddl.auto" value="update" />
 		</properties>
 	</persistence-unit>
 </persistence>

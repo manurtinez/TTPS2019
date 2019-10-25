@@ -5,20 +5,11 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class MiEntityManager {
-	private static EntityManager manager = null;
-	
-	private static EntityManagerFactory emf = null;
-	
-	static {
-		MiEntityManager.emf = Persistence.createEntityManagerFactory("historia_clinica_mascotas");
-		MiEntityManager.setManager(emf.createEntityManager());
+	private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("historia_clinica_mascotas");
+
+	public static EntityManagerFactory getEmf() {
+		return emf;
 	}
+
 	
-	public static EntityManager getManager() {
-		return manager;
-	}
-	
-	private static void setManager(EntityManager manager) {
-		MiEntityManager.manager = manager;
-	}
 }

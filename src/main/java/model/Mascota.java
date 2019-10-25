@@ -15,8 +15,16 @@ public class Mascota {
 	private Date nacimiento;
 	private Dueno dueno;
 	private BufferedImage[] fotos;
+<<<<<<< Updated upstream
 	private Veterinario veterinario;
 	private ArrayList<Evento> historial;
+=======
+	//private Veterinario veterinario;
+	@OneToMany(mappedBy="mascota")
+	private List<Evento> historial;
+	@OneToOne
+	@JoinColumn(name="config_ficha_id")
+>>>>>>> Stashed changes
 	private ConfigFicha configFicha;
 	
 	public Mascota(String nombre, String especie, String raza, String sexo, String color, String senas,
