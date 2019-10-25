@@ -33,9 +33,11 @@ public class Mascota {
 	@JoinColumn(name="dueno_id") //dudas con esto
 	private Usuario dueno;
 	private BufferedImage[] fotos;
-	private Veterinario veterinario;
+	//private Veterinario veterinario;
 	@OneToMany(mappedBy="mascota")
 	private List<Evento> historial;
+	@OneToOne
+	@JoinColumn(name="config_ficha_id")
 	private ConfigFicha configFicha;
 	
 	public Mascota() { //necesario para que sea entidad

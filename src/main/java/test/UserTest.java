@@ -1,15 +1,14 @@
 package test;
 
-import clasesDAO.Dao;
-import clasesDAO.UsuarioDAO;
+import clasesDAOjpa.UsuarioDAOjpa;
 import model.Usuario;
 
 public class UserTest {
 
-	private static Dao<Usuario> Usuariojpa;
 	public static void main(String[] args) {
-		//save(new Usuario("hola", "chau", "hola@gmail.com", "1234", 1234));
-		System.out.println(Usuariojpa.getAll());
+		UsuarioDAOjpa u = new UsuarioDAOjpa();
+		save(new Usuario("hola", "chau", "hola@gmail.com", "1234", 1234));
+		System.out.println(u.getAll());
 	}
 	
 	/*private static Usuario getUser(int id) {

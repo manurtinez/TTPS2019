@@ -1,6 +1,12 @@
 package model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="config_ficha")
 public class ConfigFicha {
+	@Id
+	private int id;
 	private boolean nombre;
 	private boolean especie;
 	private boolean raza;
@@ -13,7 +19,9 @@ public class ConfigFicha {
 	private boolean fotos;
 	private boolean veterinario;
 	
-	
+	public ConfigFicha() {
+		
+	}
 	
 	public ConfigFicha(boolean nombre, boolean especie, boolean raza, boolean sexo, boolean color, boolean senas,
 			boolean veterinarioAlt, boolean nacimiento, boolean dueno, boolean fotos, boolean veterinario) {

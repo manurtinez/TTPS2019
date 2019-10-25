@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
@@ -13,7 +14,7 @@ import entityManager.MiEntityManager;
 
 public class UsuarioDAOjpa implements Dao<Usuario> {
 	
-	protected EntityManager em = MiEntityManager.getManager();
+	protected EntityManagerFactory emf = MiEntityManager.getEmf();
 
 	/*@Override
 	public List<Usuario> getByName(String name) {
@@ -22,21 +23,27 @@ public class UsuarioDAOjpa implements Dao<Usuario> {
 
 	@Override
 	public Optional<Usuario> getById(int id) {
+		EntityManager em = emf.createEntityManager();
 		return Optional.ofNullable(em.find(Usuario.class, id));
 	}
 
 	@Override
 	public List<Usuario> getAll() {
-		Query query = em.createQuery("SELECT * FROM usuario");
-		return (List<Usuario>)query.getResultList();
+		EntityManager em = emf.createEntityManager();
+		Query query = em.createQuery("FROM Usuario");
+		List<Usuario> lista = query.getResultList();
+		em.close();
+		return lista;
 	}
 
 	@Override
 	public void save(Usuario u) {
+		EntityManager em = emf.createEntityManager();
 		EntityTransaction etx = em.getTransaction();
 		etx.begin();
 		em.persist(u);
 		etx.commit();
+		em.close();
 	}
 
 	@Override
@@ -46,10 +53,12 @@ public class UsuarioDAOjpa implements Dao<Usuario> {
 
 	@Override
 	public void delete(Usuario u) {
+		EntityManager em = emf.createEntityManager();
 		EntityTransaction etx = em.getTransaction();
 		etx.begin();
 		em.remove(u);
 		etx.commit();
+		em.close();
 	}
 
 }
