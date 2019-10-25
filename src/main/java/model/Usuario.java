@@ -7,18 +7,21 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "usuarios")
+@Table(name = "usuario")
 public class Usuario {
 	@Id
 	@Basic(optional = false)
 	@Column(name="id")
 	private Integer id;
+	@Column(name="nombre")
 	private String nombre;
+	@Column(name="apellido")
 	private String apellido;
-	@Column(name="user")
+	@Column(name="email")
 	private String email;
-	@Column(name="pass")
+	@Column(name="password")
 	private String password;
+	@Column(name="telefono")
 	private int telefono;
 	
 	public Usuario() { } //necesario para q sea entidad
