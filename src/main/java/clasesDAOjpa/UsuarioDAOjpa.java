@@ -27,7 +27,7 @@ public class UsuarioDAOjpa implements Dao<Usuario> {
 
 	@Override
 	public List<Usuario> getAll() {
-		Query query = em.createQuery("SELECT * FROM usuarios");
+		Query query = em.createQuery("SELECT * FROM usuario");
 		return (List<Usuario>)query.getResultList();
 	}
 

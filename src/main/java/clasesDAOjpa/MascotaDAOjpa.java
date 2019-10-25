@@ -10,7 +10,6 @@ import javax.persistence.Query;
 import clasesDAO.MascotaDAO;
 import entityManager.MiEntityManager;
 import model.Mascota;
-import model.Usuario;
 
 public class MascotaDAOjpa implements MascotaDAO {
 

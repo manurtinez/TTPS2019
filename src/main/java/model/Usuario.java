@@ -1,11 +1,8 @@
 package model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.List;
 
+import javax.persistence.*;
 @Entity
 @Table(name = "usuario")
 public class Usuario {
@@ -23,6 +20,8 @@ public class Usuario {
 	private String password;
 	@Column(name="telefono")
 	private int telefono;
+	@OneToMany(mappedBy="dueno")
+	private List<Mascota> mascotas;
 	
 	public Usuario() { } //necesario para q sea entidad
 	
