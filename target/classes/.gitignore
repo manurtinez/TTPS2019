@@ -1,3 +1,6 @@
+/clasesDAO/
+/META-INF/
+/clasesDAOjpa/
 /entityManager/
 /model/
-/META-INF/
+/test/

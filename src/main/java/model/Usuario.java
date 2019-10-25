@@ -1,20 +1,29 @@
 package model;
 
+import java.util.List;
+
+import javax.persistence.*;
+@Entity
+@Table(name = "usuario")
 public class Usuario {
-<<<<<<< Updated upstream
-=======
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private Integer id;
 	@Column(name="nombre")
->>>>>>> Stashed changes
 	private String nombre;
+	@Column(name="apellido")
 	private String apellido;
+	@Column(name="email")
 	private String email;
+	@Column(name="password")
 	private String password;
+	@Column(name="telefono")
 	private int telefono;
+	@OneToMany(mappedBy="dueno")
+	private List<Mascota> mascotas;
 	
+	public Usuario() { } //necesario para q sea entidad
 	
 	public Usuario(String nombre, String apellido, String email, String password, int telefono) {
 		super();

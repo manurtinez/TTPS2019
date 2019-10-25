@@ -1,5 +1,10 @@
 package clasesDAO;
 
-public class MascotaDAO {
+import java.util.List;
 
+import model.Mascota;
+
+public interface MascotaDAO extends Dao<Mascota> {
+	List<Mascota> getByDueno_id(int id);
+	List<Mascota> getByVet(int id);
 }

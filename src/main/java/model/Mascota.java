@@ -3,29 +3,46 @@ package model;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="mascota")
 public class Mascota {
+	@Id
+	@Column(name="id")
+	private int id;
+	@Column(name="nombre")
 	private String nombre;
+	@Column(name="especie")
 	private String especie;
+	@Column(name="raza")
 	private String raza;
+	@Column(name="sexo")
 	private String sexo;
+	@Column(name="color")
 	private String color;
+	@Column(name="senas")
 	private String senas;
+	@Column(name="veterinarioAlt")
 	private String veterinarioAlt;
+	@Column(name="nacimiento")
 	private Date nacimiento;
-	private Dueno dueno;
+	@ManyToOne(optional = false)
+	@JoinColumn(name="dueno_id") //dudas con esto
+	private Usuario dueno;
 	private BufferedImage[] fotos;
-<<<<<<< Updated upstream
-	private Veterinario veterinario;
-	private ArrayList<Evento> historial;
-=======
 	//private Veterinario veterinario;
 	@OneToMany(mappedBy="mascota")
 	private List<Evento> historial;
 	@OneToOne
 	@JoinColumn(name="config_ficha_id")
->>>>>>> Stashed changes
 	private ConfigFicha configFicha;
+	
+	public Mascota() { //necesario para que sea entidad
+		
+	}
 	
 	public Mascota(String nombre, String especie, String raza, String sexo, String color, String senas,
 			String veterinarioAlt, Date nacimiento, BufferedImage[] fotos) {
@@ -113,7 +130,7 @@ public class Mascota {
 		this.fotos = fotos;
 	}
 
-	public Dueno getDueno() {
+	public Usuario getDueno() {
 		return dueno;
 	}
 
@@ -127,5 +144,13 @@ public class Mascota {
 
 	public void setConfigFicha(ConfigFicha configFicha) {
 		this.configFicha = configFicha;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

@@ -6,7 +6,6 @@ import javax.persistence.*;
 @Table(name="config_ficha")
 public class ConfigFicha {
 	@Id
-	@Column(name="id")
 	private int id;
 	private boolean nombre;
 	private boolean especie;

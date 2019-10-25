@@ -23,6 +23,7 @@ public class UsuarioDAOjpa implements Dao<Usuario> {
 
 	@Override
 	public Optional<Usuario> getById(int id) {
+		EntityManager em = emf.createEntityManager();
 		return Optional.ofNullable(em.find(Usuario.class, id));
 	}
 
@@ -30,9 +31,9 @@ public class UsuarioDAOjpa implements Dao<Usuario> {
 	public List<Usuario> getAll() {
 		EntityManager em = emf.createEntityManager();
 		Query query = em.createQuery("FROM Usuario");
-		List <Usuario> resultado = (List<Usuario>)query.getResultList();
+		List<Usuario> lista = query.getResultList();
 		em.close();
-		return resultado;
+		return lista;
 	}
 
 	@Override
@@ -52,10 +53,12 @@ public class UsuarioDAOjpa implements Dao<Usuario> {
 
 	@Override
 	public void delete(Usuario u) {
+		EntityManager em = emf.createEntityManager();
 		EntityTransaction etx = em.getTransaction();
 		etx.begin();
 		em.remove(u);
 		etx.commit();
+		em.close();
 	}
 
 }

@@ -10,6 +10,4 @@ public class MiEntityManager {
 	public static EntityManagerFactory getEmf() {
 		return emf;
 	}
-
-	
 }
