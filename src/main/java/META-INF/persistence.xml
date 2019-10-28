@@ -10,6 +10,7 @@
 		<class>model.ConfigFicha</class>
 		<class>model.Evento</class>
 		<class>model.Mascota</class>
+		<class>model.Recordatorio</class>
 		<properties>
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
 			<property name="hibernate.connection.password" value="1234"/>
