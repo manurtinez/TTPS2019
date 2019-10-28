@@ -6,23 +6,44 @@ import javax.persistence.*;
 @Table(name="config_ficha")
 public class ConfigFicha {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id")
 	private int id;
+	
+	@Column(name="nombre", nullable = false)
 	private boolean nombre;
+	
+	@Column(name="especie", nullable = false)
 	private boolean especie;
+	
+	@Column(name="raza", nullable = false)
 	private boolean raza;
+	
+	@Column(name="sexo", nullable = false)
 	private boolean sexo;
+	
+	@Column(name="color", nullable = false)
 	private boolean color;
+	
+	@Column(name="senas", nullable = false)
 	private boolean senas;
+	
+	@Column(name="veterinario_alt", nullable = false)
 	private boolean veterinarioAlt;
+	
+	@Column(name="nacimiento", nullable = false)
 	private boolean nacimiento;
+	
+	@Column(name="dueno", nullable = false)
 	private boolean dueno;
+	
+	@Column(name="fotos", nullable = false)
 	private boolean fotos;
+	
+	@Column(name="veterinario", nullable = false)
 	private boolean veterinario;
 	
-	public ConfigFicha() {
-		
-	}
-	
+	public ConfigFicha() {}
 	public ConfigFicha(boolean nombre, boolean especie, boolean raza, boolean sexo, boolean color, boolean senas,
 			boolean veterinarioAlt, boolean nacimiento, boolean dueno, boolean fotos, boolean veterinario) {
 		super();

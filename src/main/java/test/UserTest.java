@@ -7,7 +7,7 @@ public class UserTest {
 
 	public static void main(String[] args) {
 		UsuarioDAOjpa u = new UsuarioDAOjpa();
-		save(new Usuario("hola", "chau", "hola@gmail.com", "1234", 1234));
+		u.save(new Usuario("hola", "chau", "hola@gmail.com", "1234", 1234));
 		System.out.println(u.getAll());
 	}
 	
@@ -16,8 +16,6 @@ public class UserTest {
 		return user;
 	}*/
 	
-	public static void save(Usuario u) {
-		
-	}
+	
 
 }

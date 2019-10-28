@@ -8,10 +8,13 @@ import javax.persistence.*;
 public class Evento {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
-	@Column(name="fecha")
+	
+	@Column(name="fecha", nullable = false)
 	private Date fecha;
+	
 	@ManyToOne(optional = false)
 	@JoinColumn(name="mascota_id")
 	private Mascota mascota;

@@ -11,38 +11,52 @@ import javax.persistence.*;
 @Table(name="mascota")
 public class Mascota {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
-	@Column(name="nombre")
+	
+	@Column(name="nombre", nullable = false)
 	private String nombre;
-	@Column(name="especie")
+	
+	@Column(name="especie", nullable = false)
 	private String especie;
-	@Column(name="raza")
+	
+	@Column(name="raza", nullable = false)
 	private String raza;
-	@Column(name="sexo")
+	
+	@Column(name="sexo", nullable = false)
 	private String sexo;
-	@Column(name="color")
+	
+	@Column(name="color", nullable = false)
 	private String color;
+	
 	@Column(name="senas")
 	private String senas;
-	@Column(name="veterinarioAlt")
+	
+	@Column(name="veterinario_alt", nullable = false)
 	private String veterinarioAlt;
+	
 	@Column(name="nacimiento")
 	private Date nacimiento;
+	
 	@ManyToOne(optional = false)
 	@JoinColumn(name="dueno_id") //dudas con esto
 	private Usuario dueno;
+	
 	private BufferedImage[] fotos;
+	
 	//private Veterinario veterinario;
+	
 	@OneToMany(mappedBy="mascota")
 	private List<Evento> historial;
+	
 	@OneToOne
-	@JoinColumn(name="config_ficha_id")
+	@JoinColumn(name="config_ficha_id", nullable = false)
 	private ConfigFicha configFicha;
 	
-	public Mascota() { //necesario para que sea entidad
-		
-	}
+	
+	
+	public Mascota() {}
 	
 	public Mascota(String nombre, String especie, String raza, String sexo, String color, String senas,
 			String veterinarioAlt, Date nacimiento, BufferedImage[] fotos) {
@@ -58,7 +72,7 @@ public class Mascota {
 		this.fotos = fotos;
 		this.historial = new ArrayList<Evento>();
 	}
-	
+	/*
 	public Veterinario getVeterinario() {
 		return veterinario;
 	}
@@ -74,7 +88,7 @@ public class Mascota {
 	public void cambiarVeterinario(Veterinario vet) {
 		this.veterinario = vet;
 	}
-	
+	*/
 	public String getNombre() {
 		return nombre;
 	}

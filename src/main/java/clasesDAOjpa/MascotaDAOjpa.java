@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
@@ -13,21 +14,24 @@ import model.Mascota;
 
 public class MascotaDAOjpa implements MascotaDAO {
 
-	EntityManager em = MiEntityManager.getManager();
+	EntityManagerFactory emf = MiEntityManager.getEmf();
 	
 	@Override
 	public Optional<Mascota> getById(int id) {
+		EntityManager em = emf.createEntityManager();
 		return Optional.ofNullable(em.find(Mascota.class, id));
 	}
 
 	@Override
 	public List<Mascota> getAll() {
+		EntityManager em = emf.createEntityManager();
 		Query query = em.createQuery("SELECT * FROM mascota");
 		return (List<Mascota>)query.getResultList();
 	}
 
 	@Override
 	public void save(Mascota m) {
+		EntityManager em = emf.createEntityManager();
 		EntityTransaction etx = em.getTransaction();
 		etx.begin();
 		em.persist(m);
@@ -42,6 +46,7 @@ public class MascotaDAOjpa implements MascotaDAO {
 
 	@Override
 	public void delete(Mascota m) {
+		EntityManager em = emf.createEntityManager();
 		EntityTransaction etx = em.getTransaction();
 		etx.begin();
 		em.remove(m);
@@ -50,11 +55,13 @@ public class MascotaDAOjpa implements MascotaDAO {
 
 	@Override
 	public List<Mascota> getByDueno_id(int id) {
+		EntityManager em = emf.createEntityManager();
 		return (List<Mascota>) em.createQuery("SELECT m FROM mascota m WHERE m.dueno_id=:id").getResultList();
 	}
 
 	@Override
 	public List<Mascota> getByVet(int id) {
+		EntityManager em = emf.createEntityManager();
 		return (List<Mascota>) em.createQuery("SELECT m FROM mascota m WHERE m.veterinario_id=:id").getResultList();
 	}
 	

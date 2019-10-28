@@ -10,16 +10,22 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private Integer id;
-	@Column(name="nombre")
+	
+	@Column(name="nombre", nullable = false)
 	private String nombre;
-	@Column(name="apellido")
+	
+	@Column(name="apellido", nullable = false)
 	private String apellido;
-	@Column(name="email")
+	
+	@Column(name="email", nullable = false)
 	private String email;
-	@Column(name="password")
+	
+	@Column(name="password", nullable = false)
 	private String password;
-	@Column(name="telefono")
+	
+	@Column(name="telefono", nullable = false)
 	private int telefono;
+	
 	@OneToMany(mappedBy="dueno")
 	private List<Mascota> mascotas;
 	
