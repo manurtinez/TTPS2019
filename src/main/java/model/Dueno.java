@@ -28,9 +28,6 @@ public class Dueno extends Usuario {
 	public Image generarChapita() {
 		return new BufferedImage(10, 10, 10);
 	}
-	
-	public void cargarEvento(Evento ev, Mascota mas) {
-		mas.agregarEvento(ev);
-	}
+
 	
 }

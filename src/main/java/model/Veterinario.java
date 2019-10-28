@@ -39,10 +39,7 @@ public class Veterinario extends Usuario {
 		return null;
 	}
 	
-	public void cargarEvento(Evento ev, Mascota mas) {
-		mas.agregarEvento(ev);
-	}
-	
+
 	public String getNomClinica() {
 		return nomClinica;
 	}

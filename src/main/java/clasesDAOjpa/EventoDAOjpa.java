@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
@@ -14,20 +15,23 @@ import model.Evento;
 
 public class EventoDAOjpa implements EventoDAO {
 	
-	EntityManager em = MiEntityManager.getManager();
+	protected EntityManagerFactory emf = MiEntityManager.getEmf();
 	
 	public Optional<Evento> getById(int id) {
+		EntityManager em = emf.createEntityManager();
 		return Optional.ofNullable(em.find(Evento.class, id));
 	}
 
 	@Override
 	public List<Evento> getAll() {
+		EntityManager em = emf.createEntityManager();
 		Query query = em.createQuery("SELECT * FROM evento");
 		return (List<Evento>)query.getResultList();
 	}
 
 	@Override
 	public void save(Evento e) {
+		EntityManager em = emf.createEntityManager();
 		EntityTransaction etx = em.getTransaction();
 		etx.begin();
 		em.persist(e);
@@ -41,6 +45,7 @@ public class EventoDAOjpa implements EventoDAO {
 
 	@Override
 	public void delete(Evento e) {
+		EntityManager em = emf.createEntityManager();
 		EntityTransaction etx = em.getTransaction();
 		etx.begin();
 		em.remove(e);
@@ -49,6 +54,7 @@ public class EventoDAOjpa implements EventoDAO {
 
 	@Override
 	public List<Evento> getByDate(Date d) {
+		EntityManager em = emf.createEntityManager();
 		Query query = em.createQuery("SELECT e FROM evento WHERE e.fecha>=:d");
 		return (List<Evento>)query.getResultList();
 	}
