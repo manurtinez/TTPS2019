@@ -11,6 +11,9 @@ public class Recordatorio {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@Column(nullable = false)
+	private String titulo;
+	
 	@Column(name = "fecha", nullable = false)
 	private Date fecha;
 	

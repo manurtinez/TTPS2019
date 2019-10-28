@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.*;
 @Entity
 @Table(name = "usuario")
+@Inheritance
+@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name = "tipo_usuario")
 public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
