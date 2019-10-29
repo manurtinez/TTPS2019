@@ -54,8 +54,6 @@ public class Mascota {
 	@JoinColumn(name="config_ficha_id", nullable = false)
 	private ConfigFicha configFicha;
 	
-	
-	
 	public Mascota() {}
 	
 	public Mascota(String nombre, String especie, String raza, String sexo, String color, String senas,
@@ -81,13 +79,6 @@ public class Mascota {
 		this.veterinario = veterinario;
 	}
 
-	public void agregarEvento(Evento e) {
-		this.historial.add(e);
-	}
-
-	public void cambiarVeterinario(Veterinario vet) {
-		this.veterinario = vet;
-	}
 	*/
 	public String getNombre() {
 		return nombre;

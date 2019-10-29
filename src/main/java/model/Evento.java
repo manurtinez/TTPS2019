@@ -5,7 +5,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="evento")
-public class Evento {
+@Inheritance
+public abstract class Evento {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +23,13 @@ public class Evento {
 	public Evento() {
 		
 	}
+	
+
+	public Evento(Date fecha, Mascota mascota) {
+		this.fecha = fecha;
+		this.mascota = mascota;
+	}
+
 
 	public Date getFecha() {
 		return fecha;
