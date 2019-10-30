@@ -14,7 +14,11 @@ public class GenericDAOjpa<T> implements Dao<T> {
 	
 	protected EntityManagerFactory emf = MiEntityManager.getEmf();
 	
-	private Class<T> clase;
+	protected Class<T> clase;
+	
+	public GenericDAOjpa(Class<T> clase) {
+		this.clase = clase;
+	}
 
 	/*@Override
 	public List<Usuario> getByName(String name) {
@@ -31,7 +35,7 @@ public class GenericDAOjpa<T> implements Dao<T> {
 	@Override
 	public List<T> getAll() {
 		EntityManager em = emf.createEntityManager();
-		Query query = em.createQuery("from " + clase.getName());
+		Query query = em.createQuery("from " + getClase().getSimpleName());
 		List<T> lista = query.getResultList();
 		em.close();
 		return lista;
@@ -48,8 +52,13 @@ public class GenericDAOjpa<T> implements Dao<T> {
 	}
 
 	@Override
-	public void update(T u, String[] params) {
-		//...
+	public void update(T entity) {
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction etx = em.getTransaction();
+		etx.begin();
+		T t = em.merge(entity);
+		etx.commit();
+		em.close();
 	}
 
 	@Override

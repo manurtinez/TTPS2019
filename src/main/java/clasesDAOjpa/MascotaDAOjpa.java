@@ -1,62 +1,22 @@
 package clasesDAOjpa;
 
 import java.util.List;
-import java.util.Optional;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
-
 import clasesDAO.MascotaDAO;
 import entityManager.MiEntityManager;
 import model.Evento;
 import model.Mascota;
-import model.Usuario;
 
-public class MascotaDAOjpa implements MascotaDAO {
+public class MascotaDAOjpa extends GenericDAOjpa<Mascota>
+implements MascotaDAO{
+
+	public MascotaDAOjpa() {
+		super(Mascota.class);
+		// TODO Auto-generated constructor stub
+	}
 
 	EntityManagerFactory emf = MiEntityManager.getEmf();
-	
-	@Override
-	public Mascota getById(int id) {
-		EntityManager em = emf.createEntityManager();
-		Mascota mascota = em.find(Mascota.class, id);
-        return mascota;
-	}
-
-	@Override
-	public List<Mascota> getAll() {
-		EntityManager em = emf.createEntityManager();
-		Query query = em.createQuery("FROM Mascota", Mascota.class);
-		List<Mascota> lista = query.getResultList();
-		em.close();
-		return lista;
-	}
-
-	@Override
-	public void save(Mascota m) {
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction etx = em.getTransaction();
-		etx.begin();
-		em.persist(m);
-		etx.commit();
-	}
-
-	@Override
-	public void update(Mascota t, String[] params) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void delete(Mascota m) {
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction etx = em.getTransaction();
-		etx.begin();
-		em.remove(m);
-		etx.commit();
-	}
 
 	@Override
 	public List<Mascota> getByDueno_id(int id) {

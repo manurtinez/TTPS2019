@@ -19,7 +19,7 @@ public class TestUser {
 	Veterinario v = new Veterinario("america", "latina", "america@gmail.com", "1234", 1234, "asd", "asd", 12);
 	Admin a = new Admin("alberto", "cristina", "hola@gmail.com", "1234", 1234);
 	Dueno d = new Dueno("seba", "pose", "hola@gmail.com", "1234", 1234);
-	UsuarioDAOjpa usuariojpa = new UsuarioDAOjpa();
+	//Dueno usuariojpa = new UsuarioDAOjpa();
 	
 	@Before
 	public void setUp() throws Exception {

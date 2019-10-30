@@ -1,64 +1,17 @@
 package clasesDAOjpa;
 
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
-
-import clasesDAO.Dao;
-import entityManager.MiEntityManager;
+import clasesDAO.DuenoDAO;
 import model.Dueno;
 
-public class DuenoDAOjpa extends GenericDAOjpa implements Dao<Dueno> {
+public class DuenoDAOjpa extends GenericDAOjpa<Dueno>
+implements DuenoDAO {
 
-	protected EntityManagerFactory emf = MiEntityManager.getEmf();
-
-	/*@Override
-	public List<Usuario> getByName(String name) {
-		return (List<Usuario>) em.createQuery("SELECT u FROM User u WHERE u.")
-	}*/
-
-	@Override
-	public Dueno getById(int id) {
-		EntityManager em = emf.createEntityManager();
-		Dueno user = em.find(Dueno.class, id);
-        return user;
+	public DuenoDAOjpa() {
+		super(Dueno.class);
 	}
-
-	@Override
-	public List<Dueno> getAll() {
-		EntityManager em = emf.createEntityManager();
-		Query query = em.createQuery("FROM Dueno", Dueno.class);
-		List<Dueno> lista = query.getResultList();
-		em.close();
-		return lista;
-	}
-
-	@Override
-	public void save(Dueno u) {
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction etx = em.getTransaction();
-		etx.begin();
-		em.persist(u);
-		etx.commit();
-		em.close();
-	}
-
-	@Override
-	public void update(Dueno u, String[] params) {
-		//...
-	}
-
-	@Override
-	public void delete(Dueno u) {
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction etx = em.getTransaction();
-		etx.begin();
-		em.remove(em.merge(u));
-		etx.commit();
-		em.close();
+	
+	public Dueno getByName(String name) {
+		return new Dueno();
 	}
 	
 }

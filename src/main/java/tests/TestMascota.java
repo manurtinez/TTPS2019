@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import clasesDAOjpa.DuenoDAOjpa;
 import clasesDAOjpa.MascotaDAOjpa;
+import factory.FactoryDAO;
 import model.Desparasitacion;
 import model.Dueno;
 import model.Evento;
@@ -30,12 +31,13 @@ public class TestMascota {
 	Desparasitacion d = new Desparasitacion(new Date(), m, "cualquiera", "todo bien");
 	
 	
-	MascotaDAOjpa mascotajpa = new MascotaDAOjpa();
-	DuenoDAOjpa duenojpa = new DuenoDAOjpa();
+	MascotaDAOjpa mascotajpa = FactoryDAO.getMascotaDAO();
+	DuenoDAOjpa duenojpa = FactoryDAO.getDuenoDAO();
 	
 	@Before
 	public void setUp() throws Exception {
-		//m.setDueno(du);
+		m.setDueno(du);
+		mascotajpa.save(m);
 	}
 
 	@Test
