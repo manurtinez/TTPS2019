@@ -1,57 +1,42 @@
 package model;
 
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
-import javax.persistence.*;
-import org.hibernate.annotations.DiscriminatorOptions;
 @Entity
 @Table(name = "usuario")
-@Inheritance
-@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name = "tipo_usuario")
-@DiscriminatorOptions(force=true)
-public class Usuario {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
-	private Integer id;
-	
-	public Integer getId() {
-		return id;
-	}
+	private int id;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public List<Mascota> getMascotas() {
-		return mascotas;
-	}
-
-	public void setMascotas(List<Mascota> mascotas) {
-		this.mascotas = mascotas;
-	}
-	@Column(name="nombre", nullable = false)
+	@Column(name="nombre", nullable = false, length = 150)
 	private String nombre;
 	
-	@Column(name="apellido", nullable = false)
+	@Column(name="apellido", nullable = false, length = 200)
 	private String apellido;
 	
-	@Column(name="email", nullable = false)
+	@Column(name="email", nullable = false, length = 200)
 	private String email;
 	
-	@Column(name="password", nullable = false)
+	@Column(name="password", nullable = false, length = 50)
 	private String password;
 	
-	@Column(name="telefono", nullable = false)
-	private int telefono;
-	
-	@OneToMany(mappedBy="dueno")
-	private List<Mascota> mascotas;
+	@Column(name="telefono", nullable = false, length = 20)
+	private long telefono;
+
 	
 	public Usuario() { } //necesario para q sea entidad
 	
 	public Usuario(String nombre, String apellido, String email, String password, int telefono) {
-		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.email = email;
@@ -82,10 +67,19 @@ public class Usuario {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getTelefono() {
+	public long getTelefono() {
 		return telefono;
 	}
-	public void setTelefono(int telefono) {
+	public void setTelefono(long telefono) {
 		this.telefono = telefono;
 	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 }

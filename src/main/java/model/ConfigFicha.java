@@ -28,9 +28,6 @@ public class ConfigFicha {
 	@Column(name="senas", nullable = false)
 	private boolean senas;
 	
-	@Column(name="veterinario_alt", nullable = false)
-	private boolean veterinarioAlt;
-	
 	@Column(name="nacimiento", nullable = false)
 	private boolean nacimiento;
 	
@@ -45,7 +42,7 @@ public class ConfigFicha {
 	
 	public ConfigFicha() {}
 	public ConfigFicha(boolean nombre, boolean especie, boolean raza, boolean sexo, boolean color, boolean senas,
-			boolean veterinarioAlt, boolean nacimiento, boolean dueno, boolean fotos, boolean veterinario) {
+			 boolean nacimiento, boolean dueno, boolean fotos, boolean veterinario) {
 		super();
 		this.nombre = nombre;
 		this.especie = especie;
@@ -53,7 +50,6 @@ public class ConfigFicha {
 		this.sexo = sexo;
 		this.color = color;
 		this.senas = senas;
-		this.veterinarioAlt = veterinarioAlt;
 		this.nacimiento = nacimiento;
 		this.dueno = dueno;
 		this.fotos = fotos;
@@ -94,12 +90,6 @@ public class ConfigFicha {
 	}
 	public void setSenas(boolean senas) {
 		this.senas = senas;
-	}
-	public boolean isVeterinarioAlt() {
-		return veterinarioAlt;
-	}
-	public void setVeterinarioAlt(boolean veterinarioAlt) {
-		this.veterinarioAlt = veterinarioAlt;
 	}
 	public boolean isNacimiento() {
 		return nacimiento;

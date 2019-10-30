@@ -19,11 +19,11 @@ import model.Mascota;
 public class TestMascota {
 	
 	Mascota m = new Mascota("fufi", "perro", "caniche", "masculino", "blanco", "ninguna"
-			, LocalDate.now(), new BufferedImage[2]);
+			, new Date(System.currentTimeMillis()) , new BufferedImage[2]);
 
 	
 	Mascota m2 = new Mascota("fufi", "perro", "caniche", "masculino", "blanco", "ninguna",
-			LocalDate.now(), new BufferedImage[2]);
+			new Date(System.currentTimeMillis()), new BufferedImage[2]);
 	
 	Dueno du = new Dueno("seba", "pose", "hola@gmail.com", "1234", 1234);
 	

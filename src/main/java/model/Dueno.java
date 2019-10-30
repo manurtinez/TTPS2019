@@ -1,27 +1,29 @@
 package model;
 
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import javax.persistence.*;
+import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+
 @Entity
-@DiscriminatorValue("Dueno")
+@Table(name = "dueno")
+@PrimaryKeyJoinColumn(name = "dueno_id")
 public class Dueno extends Usuario {
 	
-
-	//private ArrayList<Mascota> mascotas;
+	@OneToMany(mappedBy="dueno")
+	private List<Mascota> mascotas;
 	
 	public Dueno() {}
 	public Dueno(String nombre, String apellido, String email, String password, int telefono) {
 		super(nombre, apellido, email, password, telefono);
-		// TODO Auto-generated constructor stub
 	}
-	
-	
-	
-	public Image generarChapita() {
-		return new BufferedImage(10, 10, 10);
+		
+	public List<Mascota> getMascotas() {
+		return mascotas;
 	}
-
+	public void setMascotas(List<Mascota> mascotas) {
+		this.mascotas = mascotas;
+	}	
 	
 }
