@@ -11,15 +11,17 @@ import javax.persistence.Query;
 import clasesDAO.MascotaDAO;
 import entityManager.MiEntityManager;
 import model.Mascota;
+import model.Usuario;
 
 public class MascotaDAOjpa implements MascotaDAO {
 
 	EntityManagerFactory emf = MiEntityManager.getEmf();
 	
 	@Override
-	public Optional<Mascota> getById(int id) {
+	public Mascota getById(int id) {
 		EntityManager em = emf.createEntityManager();
-		return Optional.ofNullable(em.find(Mascota.class, id));
+		Mascota mascota = em.find(Mascota.class, id);
+        return mascota;
 	}
 
 	@Override

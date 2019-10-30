@@ -12,14 +12,16 @@ import javax.persistence.Query;
 import clasesDAO.EventoDAO;
 import entityManager.MiEntityManager;
 import model.Evento;
+import model.Usuario;
 
 public class EventoDAOjpa implements EventoDAO {
 	
 	protected EntityManagerFactory emf = MiEntityManager.getEmf();
 	
-	public Optional<Evento> getById(int id) {
+	public Evento getById(int id) {
 		EntityManager em = emf.createEntityManager();
-		return Optional.ofNullable(em.find(Evento.class, id));
+		Evento evento = em.find(Evento.class, id);
+        return evento;
 	}
 
 	@Override
