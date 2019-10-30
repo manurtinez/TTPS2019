@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
@@ -22,15 +23,16 @@ public class UsuarioDAOjpa implements Dao<Usuario> {
 	}*/
 
 	@Override
-	public Optional<Usuario> getById(int id) {
+	public Usuario getById(int id) {
 		EntityManager em = emf.createEntityManager();
-		return Optional.ofNullable(em.find(Usuario.class, id));
+		Usuario user = em.find(Usuario.class, id);
+        return user;
 	}
 
 	@Override
 	public List<Usuario> getAll() {
 		EntityManager em = emf.createEntityManager();
-		Query query = em.createQuery("FROM Usuario");
+		Query query = em.createQuery("FROM Usuario", Usuario.class);
 		List<Usuario> lista = query.getResultList();
 		em.close();
 		return lista;
@@ -56,7 +58,7 @@ public class UsuarioDAOjpa implements Dao<Usuario> {
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction etx = em.getTransaction();
 		etx.begin();
-		em.remove(u);
+		em.remove(em.merge(u));
 		etx.commit();
 		em.close();
 	}

@@ -2,11 +2,12 @@ package test;
 
 import java.util.List;
 
+import org.junit.Test;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import clasesDAOjpa.UsuarioDAOjpa;
 import model.Admin;
 import model.Dueno;
 import model.Usuario;

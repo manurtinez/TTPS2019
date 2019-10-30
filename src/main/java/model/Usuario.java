@@ -3,16 +3,33 @@ package model;
 import java.util.List;
 
 import javax.persistence.*;
+import org.hibernate.annotations.DiscriminatorOptions;
 @Entity
 @Table(name = "usuario")
 @Inheritance
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name = "tipo_usuario")
+@DiscriminatorOptions(force=true)
 public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private Integer id;
 	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public List<Mascota> getMascotas() {
+		return mascotas;
+	}
+
+	public void setMascotas(List<Mascota> mascotas) {
+		this.mascotas = mascotas;
+	}
 	@Column(name="nombre", nullable = false)
 	private String nombre;
 	
