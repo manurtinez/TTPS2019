@@ -42,7 +42,7 @@ public class Mascota {
 	
 	private BufferedImage[] fotos;
 	
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	@JoinColumn(name="veterinario_id")
 	private Veterinario veterinario;
 	
