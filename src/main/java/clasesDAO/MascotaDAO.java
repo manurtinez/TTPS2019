@@ -8,5 +8,4 @@ import model.Mascota;
 public interface MascotaDAO extends Dao<Mascota> {
 	List<Mascota> getByDueno_id(int id);
 	List<Mascota> getByVet(int id);
-	void agregarEvento(Evento e);
 }

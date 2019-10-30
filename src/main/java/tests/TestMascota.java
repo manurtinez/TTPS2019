@@ -37,12 +37,12 @@ public class TestMascota {
 	@Before
 	public void setUp() throws Exception {
 		m.setDueno(du);
+		duenojpa.save(du);
 		mascotajpa.save(m);
 	}
 
 	@Test
 	public void test() {
-		duenojpa.save(du);
 		/*List<Mascota> lista = mascotajpa.getAll();
 		Assert.assertEquals(0, lista.size());
 		mascotajpa.save(m);

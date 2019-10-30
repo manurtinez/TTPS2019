@@ -1,6 +1,7 @@
 package factory;
 
 import clasesDAOjpa.DuenoDAOjpa;
+import clasesDAOjpa.EventoDAOjpa;
 import clasesDAOjpa.MascotaDAOjpa;
 
 public class FactoryDAO {
@@ -10,5 +11,9 @@ public class FactoryDAO {
 
 	public static MascotaDAOjpa getMascotaDAO() {
 		return new MascotaDAOjpa();
+	}
+	
+	public static EventoDAOjpa getEventoDAO() {
+		return new EventoDAOjpa();
 	}
 }

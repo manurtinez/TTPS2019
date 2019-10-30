@@ -1,5 +1,10 @@
 package clasesDAOjpa;
 
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
 import clasesDAO.DuenoDAO;
 import model.Dueno;
 
@@ -11,7 +16,8 @@ implements DuenoDAO {
 	}
 	
 	public Dueno getByName(String name) {
-		return new Dueno();
+		EntityManager em = emf.createEntityManager();
+		return (Dueno) em.createQuery("SELECT d FROM Dueno d WHERE d.nombre=:name");
 	}
 	
 }
