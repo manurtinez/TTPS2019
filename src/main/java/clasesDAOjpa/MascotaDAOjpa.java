@@ -29,5 +29,5 @@ implements MascotaDAO{
 		EntityManager em = emf.createEntityManager();
 		return (List<Mascota>) em.createQuery("SELECT m FROM mascota m WHERE m.veterinario_id=:id").getResultList();
 	}
-	
+
 }

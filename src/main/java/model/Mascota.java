@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -46,7 +47,7 @@ public class Mascota {
 	@JoinColumn(name="veterinario_id")
 	private Veterinario veterinario;
 	
-	@OneToMany(mappedBy="mascota")
+	@OneToMany(mappedBy="mascota", fetch = FetchType.EAGER)
 	private List<Evento> historial;
 	
 	@OneToOne
@@ -66,6 +67,24 @@ public class Mascota {
 		this.senas = senas;
 		this.nacimiento = nacimiento;
 		this.fotos = fotos;
+		
+	}
+	public Mascota(String nombre, String especie, String raza, String sexo, String color, String senas,
+			Date nacimiento, BufferedImage[] fotos,Dueno dueno, ConfigFicha config ) {
+		super();
+		this.nombre = nombre;
+		this.especie = especie;
+		this.raza = raza;
+		this.sexo = sexo;
+		this.color = color;
+		this.senas = senas;
+		this.nacimiento = nacimiento;
+		this.fotos = fotos;
+		this.veterinario = null;
+		this.dueno = dueno;
+		this.configFicha = config;
+		this.historial = new ArrayList<Evento>();
+		
 	}
 	public Veterinario getVeterinario() {
 		return veterinario;
@@ -148,4 +167,16 @@ public class Mascota {
 	public void setId(int id) {
 		this.id = id;
 	}
+	public void agregarEvento(Evento e) {
+		this.historial.add(e);
+	}
+
+	public List<Evento> getHistorial() {
+		return historial;
+	}
+
+	public void setHistorial(List<Evento> historial) {
+		this.historial = historial;
+	}
+	
 }

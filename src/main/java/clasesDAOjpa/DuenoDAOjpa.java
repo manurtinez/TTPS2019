@@ -1,10 +1,6 @@
 package clasesDAOjpa;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
-
 import clasesDAO.DuenoDAO;
 import model.Dueno;
 
