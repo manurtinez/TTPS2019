@@ -1,8 +1,8 @@
 package model;
 
 import java.awt.image.BufferedImage;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
@@ -37,7 +37,7 @@ public class Mascota {
 	private String veterinarioAlt;
 	
 	@Column(name="nacimiento")
-	private Date nacimiento;
+	private LocalDate nacimiento;
 	
 	@ManyToOne(optional = false)
 	@JoinColumn(name="dueno_id") //dudas con esto
@@ -50,14 +50,14 @@ public class Mascota {
 	@OneToMany(mappedBy="mascota")
 	private List<Evento> historial;
 	
-	@OneToOne
-	@JoinColumn(name="config_ficha_id", nullable = false)
-	private ConfigFicha configFicha;
+	/*@OneToOne
+	@JoinColumn(name="config_ficha_id")
+	private ConfigFicha configFicha;*/
 	
 	public Mascota() {}
 	
 	public Mascota(String nombre, String especie, String raza, String sexo, String color, String senas,
-			String veterinarioAlt, Date nacimiento, BufferedImage[] fotos) {
+			String veterinarioAlt, LocalDate localDate, BufferedImage[] fotos) {
 		super();
 		this.nombre = nombre;
 		this.especie = especie;
@@ -66,7 +66,7 @@ public class Mascota {
 		this.color = color;
 		this.senas = senas;
 		this.veterinarioAlt = veterinarioAlt;
-		this.nacimiento = nacimiento;
+		this.nacimiento = localDate;
 		this.fotos = fotos;
 		this.historial = new ArrayList<Evento>();
 	}
@@ -122,10 +122,10 @@ public class Mascota {
 	public void setVeterinarioAlt(String veterinarioAlt) {
 		this.veterinarioAlt = veterinarioAlt;
 	}
-	public Date getNacimiento() {
+	public LocalDate getNacimiento() {
 		return nacimiento;
 	}
-	public void setNacimiento(Date nacimiento) {
+	public void setNacimiento(LocalDate nacimiento) {
 		this.nacimiento = nacimiento;
 	}
 	public BufferedImage[] getFotos() {

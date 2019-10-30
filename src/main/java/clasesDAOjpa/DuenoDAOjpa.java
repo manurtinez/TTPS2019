@@ -1,17 +1,18 @@
 package clasesDAOjpa;
 
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import clasesDAO.Dao;
-import model.Usuario;
 import entityManager.MiEntityManager;
+import model.Dueno;
 
-public class UsuarioDAOjpa implements Dao<Usuario> {
-	
+public class DuenoDAOjpa implements Dao<Dueno> {
+
 	protected EntityManagerFactory emf = MiEntityManager.getEmf();
 
 	/*@Override
@@ -20,23 +21,23 @@ public class UsuarioDAOjpa implements Dao<Usuario> {
 	}*/
 
 	@Override
-	public Usuario getById(int id) {
+	public Dueno getById(int id) {
 		EntityManager em = emf.createEntityManager();
-		Usuario user = em.find(Usuario.class, id);
+		Dueno user = em.find(Dueno.class, id);
         return user;
 	}
 
 	@Override
-	public List<Usuario> getAll() {
+	public List<Dueno> getAll() {
 		EntityManager em = emf.createEntityManager();
-		Query query = em.createQuery("FROM Usuario", Usuario.class);
-		List<Usuario> lista = query.getResultList();
+		Query query = em.createQuery("FROM Dueno", Dueno.class);
+		List<Dueno> lista = query.getResultList();
 		em.close();
 		return lista;
 	}
 
 	@Override
-	public void save(Usuario u) {
+	public void save(Dueno u) {
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction etx = em.getTransaction();
 		etx.begin();
@@ -46,12 +47,12 @@ public class UsuarioDAOjpa implements Dao<Usuario> {
 	}
 
 	@Override
-	public void update(Usuario u, String[] params) {
+	public void update(Dueno u, String[] params) {
 		//...
 	}
 
 	@Override
-	public void delete(Usuario u) {
+	public void delete(Dueno u) {
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction etx = em.getTransaction();
 		etx.begin();
@@ -59,5 +60,5 @@ public class UsuarioDAOjpa implements Dao<Usuario> {
 		etx.commit();
 		em.close();
 	}
-
+	
 }

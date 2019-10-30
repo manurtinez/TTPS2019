@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import clasesDAO.MascotaDAO;
 import entityManager.MiEntityManager;
+import model.Evento;
 import model.Mascota;
 import model.Usuario;
 
@@ -27,8 +28,10 @@ public class MascotaDAOjpa implements MascotaDAO {
 	@Override
 	public List<Mascota> getAll() {
 		EntityManager em = emf.createEntityManager();
-		Query query = em.createQuery("SELECT * FROM mascota");
-		return (List<Mascota>)query.getResultList();
+		Query query = em.createQuery("FROM Mascota", Mascota.class);
+		List<Mascota> lista = query.getResultList();
+		em.close();
+		return lista;
 	}
 
 	@Override
@@ -65,6 +68,12 @@ public class MascotaDAOjpa implements MascotaDAO {
 	public List<Mascota> getByVet(int id) {
 		EntityManager em = emf.createEntityManager();
 		return (List<Mascota>) em.createQuery("SELECT m FROM mascota m WHERE m.veterinario_id=:id").getResultList();
+	}
+
+	@Override
+	public void agregarEvento(Evento e) {
+		EntityManager em = emf.createEntityManager();
+		
 	}
 	
 }
