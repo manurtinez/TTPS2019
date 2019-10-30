@@ -7,6 +7,7 @@ import javax.persistence.*;
 @Entity
 @DiscriminatorValue("Dueno")
 public class Dueno extends Usuario {
+	
 
 	//private ArrayList<Mascota> mascotas;
 	

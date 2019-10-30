@@ -33,9 +33,6 @@ public class Mascota {
 	@Column(name="senas")
 	private String senas;
 	
-	@Column(name="veterinario_alt", nullable = false)
-	private String veterinarioAlt;
-	
 	@Column(name="nacimiento")
 	private LocalDate nacimiento;
 	
@@ -56,8 +53,8 @@ public class Mascota {
 	
 	public Mascota() {}
 	
-	public Mascota(String nombre, String especie, String raza, String sexo, String color, String senas,
-			String veterinarioAlt, LocalDate localDate, BufferedImage[] fotos) {
+	public Mascota(String nombre, String especie, String raza, String sexo, String color, String senas
+			, LocalDate localDate, BufferedImage[] fotos) {
 		super();
 		this.nombre = nombre;
 		this.especie = especie;
@@ -65,7 +62,6 @@ public class Mascota {
 		this.sexo = sexo;
 		this.color = color;
 		this.senas = senas;
-		this.veterinarioAlt = veterinarioAlt;
 		this.nacimiento = localDate;
 		this.fotos = fotos;
 		this.historial = new ArrayList<Evento>();
@@ -115,12 +111,6 @@ public class Mascota {
 	}
 	public void setSenas(String senas) {
 		this.senas = senas;
-	}
-	public String getVeterinarioAlt() {
-		return veterinarioAlt;
-	}
-	public void setVeterinarioAlt(String veterinarioAlt) {
-		this.veterinarioAlt = veterinarioAlt;
 	}
 	public LocalDate getNacimiento() {
 		return nacimiento;

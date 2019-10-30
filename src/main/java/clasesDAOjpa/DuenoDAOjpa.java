@@ -11,7 +11,7 @@ import clasesDAO.Dao;
 import entityManager.MiEntityManager;
 import model.Dueno;
 
-public class DuenoDAOjpa implements Dao<Dueno> {
+public class DuenoDAOjpa extends GenericDAOjpa implements Dao<Dueno> {
 
 	protected EntityManagerFactory emf = MiEntityManager.getEmf();
 
