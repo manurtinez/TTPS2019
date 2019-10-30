@@ -1,8 +1,7 @@
 package model;
 
 import java.awt.image.BufferedImage;
-import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
@@ -15,49 +14,49 @@ public class Mascota {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="nombre", nullable = false)
+	@Column(name="nombre", nullable = false, length = 100)
 	private String nombre;
 	
-	@Column(name="especie", nullable = false)
+	@Column(name="especie", nullable = false, length = 100)
 	private String especie;
 	
-	@Column(name="raza", nullable = false)
+	@Column(name="raza", nullable = false, length = 150)
 	private String raza;
 	
-	@Column(name="sexo", nullable = false)
+	@Column(name="sexo", nullable = false, length = 50)
 	private String sexo;
 	
-	@Column(name="color", nullable = false)
+	@Column(name="color", nullable = false, length = 50)
 	private String color;
 	
-	@Column(name="senas")
+	@Column(name="senas", length = 255)
 	private String senas;
 	
-	@Column(name="veterinario_alt", nullable = false)
-	private String veterinarioAlt;
-	
 	@Column(name="nacimiento")
-	private LocalDate nacimiento;
+	@Temporal(TemporalType.DATE)
+	private Date nacimiento;
 	
 	@ManyToOne(optional = false)
-	@JoinColumn(name="dueno_id") //dudas con esto
-	private Usuario dueno;
+	@JoinColumn(name="dueno_id")
+	private Dueno dueno;
 	
 	private BufferedImage[] fotos;
 	
-	//private Veterinario veterinario;
+	@ManyToOne(optional = false)
+	@JoinColumn(name="veterinario_id")
+	private Veterinario veterinario;
 	
 	@OneToMany(mappedBy="mascota")
 	private List<Evento> historial;
 	
-	/*@OneToOne
-	@JoinColumn(name="config_ficha_id")
-	private ConfigFicha configFicha;*/
+	@OneToOne
+	@JoinColumn(name="config_ficha_id", nullable = false)
+	private ConfigFicha configFicha;
 	
 	public Mascota() {}
 	
 	public Mascota(String nombre, String especie, String raza, String sexo, String color, String senas,
-			String veterinarioAlt, LocalDate localDate, BufferedImage[] fotos) {
+			Date nacimiento, BufferedImage[] fotos) {
 		super();
 		this.nombre = nombre;
 		this.especie = especie;
@@ -65,12 +64,9 @@ public class Mascota {
 		this.sexo = sexo;
 		this.color = color;
 		this.senas = senas;
-		this.veterinarioAlt = veterinarioAlt;
-		this.nacimiento = localDate;
+		this.nacimiento = nacimiento;
 		this.fotos = fotos;
-		this.historial = new ArrayList<Evento>();
 	}
-	/*
 	public Veterinario getVeterinario() {
 		return veterinario;
 	}
@@ -79,7 +75,6 @@ public class Mascota {
 		this.veterinario = veterinario;
 	}
 
-	*/
 	public String getNombre() {
 		return nombre;
 	}
@@ -116,16 +111,11 @@ public class Mascota {
 	public void setSenas(String senas) {
 		this.senas = senas;
 	}
-	public String getVeterinarioAlt() {
-		return veterinarioAlt;
-	}
-	public void setVeterinarioAlt(String veterinarioAlt) {
-		this.veterinarioAlt = veterinarioAlt;
-	}
-	public LocalDate getNacimiento() {
+
+	public Date getNacimiento() {
 		return nacimiento;
 	}
-	public void setNacimiento(LocalDate nacimiento) {
+	public void setNacimiento(Date nacimiento) {
 		this.nacimiento = nacimiento;
 	}
 	public BufferedImage[] getFotos() {

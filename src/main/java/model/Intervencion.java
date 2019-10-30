@@ -1,7 +1,9 @@
 package model;
-import java.util.Date;
 
-import javax.persistence.*;
+import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("Intervencion")
