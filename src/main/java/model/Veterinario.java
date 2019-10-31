@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 
@@ -20,7 +21,7 @@ public class Veterinario extends Usuario {
 	@Column(name="habilitado", nullable = false)
 	private boolean habilitado;
 	
-	@OneToMany(mappedBy="veterinario")
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="veterinario")
 	private List<Mascota> mascotas;
 	
 	public Veterinario() {}
@@ -31,6 +32,7 @@ public class Veterinario extends Usuario {
 		this.dirClinica = dirClinica;
 		this.nroMatricula = nroMatricula;
 		this.habilitado = false;
+		this.mascotas = new ArrayList<Mascota>();
 	}
 
 	public String getNomClinica() {
@@ -67,6 +69,10 @@ public class Veterinario extends Usuario {
 
 	public List<Mascota> getMascotas() {
 		return mascotas;
+	}
+	
+	public void agregarMascota(Mascota m) {
+		mascotas.add(m);
 	}
 
 	public void setMascotas(List<Mascota> mascotas) {

@@ -91,6 +91,7 @@ public class Mascota {
 	}
 
 	public void setVeterinario(Veterinario veterinario) {
+		veterinario.agregarMascota(this);
 		this.veterinario = veterinario;
 	}
 
