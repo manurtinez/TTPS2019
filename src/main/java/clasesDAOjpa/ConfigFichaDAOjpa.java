@@ -11,10 +11,4 @@ implements ConfigFichaDAO {
 		super(ConfigFicha.class);
 	}
 
-	@Override
-	public ConfigFicha getById(int id) {
-		EntityManager em = emf.createEntityManager();
-		return (ConfigFicha) em.createQuery("FROM ConfigFicha cf WHERE cf.id = :id");
-	}
-	
 }

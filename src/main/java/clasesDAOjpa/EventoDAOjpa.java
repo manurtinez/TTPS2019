@@ -11,7 +11,6 @@ implements EventoDAO {
 	
 	public EventoDAOjpa() {
 		super(Evento.class);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

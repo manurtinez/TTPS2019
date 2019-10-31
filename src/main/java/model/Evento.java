@@ -61,5 +61,14 @@ public abstract class Evento {
 	public void setId(int id) {
 		this.id = id;
 	}
+    @Override
+    public boolean equals(Object obj)
+    {
+        if ( obj == null ) return false;
+        if ( this == obj ) return true;
+        if ( ! (obj instanceof Evento ) ) return false;
+        Evento e = (Evento) obj;
+        return this.getId() == e.getId();
+    }
 	
 }
