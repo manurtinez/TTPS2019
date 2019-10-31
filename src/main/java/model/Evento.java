@@ -53,4 +53,13 @@ public abstract class Evento {
 	public void setMascota(Mascota mascota) {
 		this.mascota = mascota;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 }

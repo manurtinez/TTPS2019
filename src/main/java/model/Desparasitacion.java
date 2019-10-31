@@ -34,4 +34,13 @@ public class Desparasitacion extends Evento {
 	public void setResultado(String resultado) {
 		this.resultado = resultado;
 	}
+    @Override
+    public boolean equals(Object obj)
+    {
+        if ( obj == null ) return false;
+        if ( this == obj ) return true;
+        if ( ! (obj instanceof Desparasitacion ) ) return false;
+        Desparasitacion d = (Desparasitacion) obj;
+        return this.getId() == d.getId();
+    }
 }
