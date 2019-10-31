@@ -16,7 +16,6 @@ import model.ConfigFicha;
 import model.Desparasitacion;
 import model.Dueno;
 import model.Mascota;
-import model.Visita;
 
 
 public class DesparasitacionTest {
@@ -24,7 +23,7 @@ public class DesparasitacionTest {
 	private static Mascota mascota;
 	private static ConfigFicha config;
 	private static Dueno duenoMascota;
-	private static Desparasitacion eventoD;
+	private static Desparasitacion eventoD1;
 	private static MascotaDAOjpa mascotaJPA = FactoryDAO.getMascotaDAO();
 	private static DuenoDAOjpa duenoJPA = FactoryDAO.getDuenoDAO();
 	private static ConfigFichaDAOjpa configFichaJPA = FactoryDAO.getConfigFichaDAO();
@@ -35,41 +34,45 @@ public class DesparasitacionTest {
 		config = new ConfigFicha(false, false, false, false, false, false, false, false, false, false); 
 		duenoMascota = new Dueno("seba", "pose", "seba@gmail.com", "1234", 22155620);	
 		mascota = new Mascota("fufi", "perro", "caniche", "masculino", "blanco", "ninguna", null , null, duenoMascota, config);
-		eventoD = new Desparasitacion(new Date(), mascota, "fenbendazol", "positivo");
+		eventoD1 = new Desparasitacion(new Date(), mascota, "fenbendazol", "positivo");
 		duenoJPA.save(duenoMascota);
 		configFichaJPA.save(config);
 		mascotaJPA.save(mascota);
-		eventoJPA.save(eventoD);
-		mascota.agregarEvento(eventoD);		
+		eventoJPA.save(eventoD1);	
 	}
 	
 	@Test
 	public void test() {
-		ArrayList<Mascota> mascotas = (ArrayList<Mascota>) mascotaJPA.getAll();
+		ArrayList<Mascota> mascotas; 
+		
+		mascotas = (ArrayList<Mascota>) mascotaJPA.getAll();
 		assertEquals(1,mascotas.size());
 		Mascota m1 = mascotas.get(0);
 		assertEquals(1, m1.getHistorial().size());
 		Desparasitacion e1 = (Desparasitacion) m1.getHistorial().get(0);
-		assertTrue(e1.equals(eventoD));
-		Desparasitacion e2 = new Desparasitacion(new Date(), m1, "praziquantel", "positivo. Qedan dosis pendientes");
-		m1.agregarEvento(e2);
+		assertTrue(e1.equals(eventoD1));
+		
+		Desparasitacion eventoD2 = new Desparasitacion(new Date(), m1, "praziquantel", "positivo. Qedan dosis pendientes");
+		eventoJPA.save(eventoD2);
+		m1.agregarEvento(eventoD2);
 		assertEquals(2, m1.getHistorial().size());
-		m1.borrarEvento(e2);		
+		m1.borrarEvento(eventoD2);	
+		eventoJPA.delete(eventoD2);
 		assertEquals(1, m1.getHistorial().size());
 		
 		e1.setResultado("resultado esperado por todos");
 		eventoJPA.update(e1);
 		mascotas = (ArrayList<Mascota>) mascotaJPA.getAll();
-		e1 = (Desparasitacion) mascotas.get(0).getHistorial().get(0);
-		assertTrue(e1.getResultado().equals("resultado esperado por todos"));
+		Desparasitacion e3 = (Desparasitacion) mascotas.get(0).getHistorial().get(0);
+		assertTrue(e3.getResultado().equals("resultado esperado por todos"));
 		
-		Desparasitacion e3 = (Desparasitacion) eventoJPA.getById(1);
-		assertTrue(e3.equals(eventoD));
+		Desparasitacion e4 = (Desparasitacion) eventoJPA.getById(1);
+		assertTrue(e4.equals(eventoD1));
 	}
 	@AfterClass
 	public static void AfterClass() {
-		mascota.borrarEvento(eventoD);
-		eventoJPA.delete(eventoD);	
+		mascota.borrarEvento(eventoD1);
+		eventoJPA.delete(eventoD1);	
 		mascotaJPA.delete(mascota);	
 		configFichaJPA.delete(config);
 		duenoJPA.delete(duenoMascota);	    
