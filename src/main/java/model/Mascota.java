@@ -173,6 +173,7 @@ public class Mascota {
 	public void borrarEvento(Evento e) {
 		this.historial.remove(e);
 	}
+
 	public List<Evento> getHistorial() {
 		return historial;
 	}
