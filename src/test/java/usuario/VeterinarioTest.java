@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-import org.junit.Before;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -73,6 +73,12 @@ public class VeterinarioTest {
 		//ArrayList<Veterinario> vets = (ArrayList<Veterinario>) veterinariojpa.getAll();
 		Veterinario veterinario = veterinariojpa.getById(vet.getId());
 		assertEquals(2, veterinario.getMascotas().size());
+		List<Mascota> mascotasdeVet = (List<Mascota>) veterinario.getMascotas();
+		assertEquals("chihuahua", mascotasdeVet.get(1).getRaza());
+		mas2.setRaza("chihuahueño");
+		mascotajpa.update(mas2);
+		mascotasdeVet = veterinariojpa.getById(veterinario.getId()).getMascotas();
+		assertEquals("chihuahueño", mascotasdeVet.get(1).getRaza());
 	}
 	@AfterClass
 	public static void AfterClass() {
