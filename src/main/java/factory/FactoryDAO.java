@@ -5,6 +5,7 @@ import clasesDAOjpa.DuenoDAOjpa;
 import clasesDAOjpa.EventoDAOjpa;
 import clasesDAOjpa.MascotaDAOjpa;
 import clasesDAOjpa.RecordatorioDAOjpa;
+import clasesDAOjpa.VeterinarioDAOjpa;
 
 public class FactoryDAO {
 	public static DuenoDAOjpa getDuenoDAO(){
@@ -23,5 +24,8 @@ public class FactoryDAO {
 	}
 	public static RecordatorioDAOjpa getRecordatorioDAO() {
 		return new RecordatorioDAOjpa();
+	}
+	public static VeterinarioDAOjpa getVeterinarioDAO() {
+		return new VeterinarioDAOjpa();
 	}
 }

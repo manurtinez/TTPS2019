@@ -6,5 +6,5 @@ import java.util.List;
 import model.Evento;
 
 public interface EventoDAO extends Dao<Evento> {
-	List<Evento> getByDate(Date d);
+	List<Evento> getByDate(int d);
 }
