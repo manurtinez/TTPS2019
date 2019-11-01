@@ -49,7 +49,7 @@ public class EnfermedadTest {
 		assertEquals("gripe", e1.getDescripcion());
 		
 		Enfermedad eventoD2 = new Enfermedad(LocalDate.now(), m1, "rabia");
-		mascotaJPA.save(mascota);
+		mascotaJPA.save(m1);
 		assertEquals(2, m1.getHistorial().size());
 		m1.borrarEvento(eventoD2);	
 		eventoJPA.delete(eventoD2);
@@ -66,11 +66,10 @@ public class EnfermedadTest {
 	}
 	@AfterClass
 	public static void AfterClass() {
-		/*mascota.borrarEvento(eventoV1);
-		eventoJPA.delete(eventoV1);	
-		mascotaJPA.delete(mascota);	
-		configFichaJPA.delete(config);
-		duenoJPA.delete(duenoMascota);*/ 	    
+		Mascota mascotaa = mascotaJPA.getAll().get(0);
+		mascotaJPA.delete(mascotaa);
+		Dueno duenoo = duenoJPA.getAll().get(0);
+		duenoJPA.delete(duenoo); 	    
 	}
 
 

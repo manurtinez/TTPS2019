@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @PrimaryKeyJoinColumn(name = "dueno_id")
 public class Dueno extends Usuario {
 	
-	@OneToMany(mappedBy="dueno", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@OneToMany(mappedBy="dueno", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
 	private List<Mascota> mascotas;
 	
 	public Dueno() {}

@@ -48,8 +48,8 @@ public class VisitaTest {
 		Visita e1 = (Visita) m1.getHistorial().get(0);
 		assertEquals("pelea en la calle", e1.getMotivo());
 		
-		eventoV2 = new Visita(LocalDate.now(), mascota, 22.2f , "pelea en la calle", "perdida de nariz", "ninguna");
-		mascotaJPA.save(mascota);
+		eventoV2 = new Visita(LocalDate.now(), m1, 22.2f , "pelea en la calle", "perdida de nariz", "ninguna");
+		mascotaJPA.save(m1);
 		assertEquals(2, m1.getHistorial().size());
 		m1.borrarEvento(eventoV2);		;
 		eventoJPA.delete(eventoV2);

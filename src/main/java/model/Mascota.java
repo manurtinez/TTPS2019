@@ -52,7 +52,7 @@ public class Mascota {
 	@OneToMany(mappedBy="mascota", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
 	private List<Evento> historial;
 	
-	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
 	private ConfigFicha configFicha;
 	
 	public Mascota() {}

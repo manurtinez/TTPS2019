@@ -49,7 +49,7 @@ public class IntervencionTest {
 		assertEquals("extraccion de tumor", e1.getDescripcion());
 		
 		Intervencion eventoD2 = new Intervencion(LocalDate.now(), m1, "castracion");
-		mascotaJPA.save(mascota);
+		mascotaJPA.save(m1);
 		assertEquals(2, m1.getHistorial().size());
 		m1.borrarEvento(eventoD2);	
 		eventoJPA.delete(eventoD2);

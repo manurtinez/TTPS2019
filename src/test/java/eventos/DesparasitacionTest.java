@@ -50,7 +50,7 @@ public class DesparasitacionTest {
 		assertEquals("positivo", e1.getResultado());
 		
 		Desparasitacion eventoD2 = new Desparasitacion(LocalDate.now(), m1, "praziquantel", "positivo. Qedan dosis pendientes");
-		mascotaJPA.save(mascota);
+		mascotaJPA.save(m1);
 		assertEquals(2, m1.getHistorial().size());
 		m1.borrarEvento(eventoD2);	
 		eventoJPA.delete(eventoD2);

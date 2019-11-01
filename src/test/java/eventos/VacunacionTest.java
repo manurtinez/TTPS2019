@@ -49,7 +49,7 @@ public class VacunacionTest {
 		assertEquals("sextuple", e1.getDescripcion());
 		
 		Vacunacion eventoD2 = new Vacunacion(LocalDate.now(), m1, "quintuple");
-		mascotaJPA.save(mascota);
+		mascotaJPA.save(m1);
 		assertEquals(2, m1.getHistorial().size());
 		m1.borrarEvento(eventoD2);	
 		eventoJPA.delete(eventoD2);
