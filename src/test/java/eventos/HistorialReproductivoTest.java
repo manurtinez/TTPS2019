@@ -1,6 +1,8 @@
 package eventos;
 
 import static org.junit.Assert.*;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import org.junit.AfterClass;
@@ -33,7 +35,7 @@ public class HistorialReproductivoTest {
 		config = new ConfigFicha(false, false, false, false, false, false, false, false, false, false); 
 		duenoMascota = new Dueno("pepe", "mujica", "elPepe@gmail.com", "1234", 22155620);	
 		mascota = new Mascota("sofia", "perro", "pitbull", "hembra", "blanco", "ninguna", null , null, duenoMascota, config);
-		eventoV1 = new HistorialReproductivo(new Date(), mascota, 7);
+		eventoV1 = new HistorialReproductivo(LocalDate.now(), mascota, 7);
 		duenoJPA.save(duenoMascota);
 		configFichaJPA.save(config);
 		mascotaJPA.save(mascota);
@@ -50,7 +52,7 @@ public class HistorialReproductivoTest {
 		HistorialReproductivo e1 = (HistorialReproductivo) m1.getHistorial().get(0);
 		assertTrue(e1.equals(eventoV1));
 		
-		eventoV2 = new HistorialReproductivo(new Date(), mascota, 6);
+		eventoV2 = new HistorialReproductivo(LocalDate.now(), mascota, 6);
 		eventoJPA.save(eventoV2);
 		m1.agregarEvento(eventoV2);
 		assertEquals(2, m1.getHistorial().size());

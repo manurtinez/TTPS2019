@@ -2,6 +2,7 @@ package usuario;
 
 import static org.junit.Assert.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -49,9 +50,9 @@ public class DuenoTest {
 				null, null, config);
 		mas2 = new Mascota("fufi2", "perro", "chihuahua", "femenino", "negro", "ninguna",
 				null, null, config);
-		evento = new Visita(new Date(), mas, 22.2f , "se escapa seguido", "no sabe volver",
+		evento = new Visita(LocalDate.now(), mas, 22.2f , "se escapa seguido", "no sabe volver",
 				"usar correa");
-		evento2 = new Desparasitacion(new Date(), mas, "nitazoxanida", "volvio a la normalidad");
+		evento2 = new Desparasitacion(LocalDate.now(), mas, "nitazoxanida", "volvio a la normalidad");
 		mas.setDueno(due);
 		mas2.setDueno(due);
 		fichajpa.save(config);

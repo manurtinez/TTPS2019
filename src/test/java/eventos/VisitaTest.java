@@ -2,6 +2,7 @@ package eventos;
 
 import static org.junit.Assert.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import org.junit.AfterClass;
@@ -33,7 +34,7 @@ public class VisitaTest {
 		config = new ConfigFicha(false, false, false, false, false, false, false, false, false, false); 
 		duenoMascota = new Dueno("pepe", "mujica", "elPepe@gmail.com", "1234", 22155620);	
 		mascota = new Mascota("taton", "perro", "pitbull", "macho", "blanco", "ninguna", null , null, duenoMascota, config);
-		eventoV1 = new Visita(new Date(), mascota, 22.2f , "pelea en la calle", "perdida de oreja derecha", "alejar del dueño");
+		eventoV1 = new Visita(LocalDate.now(), mascota, 22.2f , "pelea en la calle", "perdida de oreja derecha", "alejar del dueño");
 		duenoJPA.save(duenoMascota);
 		configFichaJPA.save(config);
 		mascotaJPA.save(mascota);
@@ -50,7 +51,7 @@ public class VisitaTest {
 		Visita e1 = (Visita) m1.getHistorial().get(0);
 		assertTrue(e1.equals(eventoV1));
 		
-		eventoV2 = new Visita(new Date(), mascota, 22.2f , "pelea en la calle", "perdida de nariz", "ninguna");
+		eventoV2 = new Visita(LocalDate.now(), mascota, 22.2f , "pelea en la calle", "perdida de nariz", "ninguna");
 		eventoJPA.save(eventoV2);
 		m1.agregarEvento(eventoV2);
 		assertEquals(2, m1.getHistorial().size());

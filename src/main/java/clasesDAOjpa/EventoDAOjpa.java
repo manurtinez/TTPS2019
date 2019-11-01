@@ -23,6 +23,7 @@ implements EventoDAO {
 		/*Calendar calendar = Calendar.getInstance();
 		calendar.setTime(d);
 		int year = calendar.get(Calendar.YEAR);*/
-		return (List<Evento>) em.createQuery("select e from Evento e where year(e.fecha) = :year").getResultList();
+		return (List<Evento>) em.createQuery("select e from Evento e where year(e.fecha) >= ?1")
+				.setParameter(1, year).getResultList();
 	}
 }

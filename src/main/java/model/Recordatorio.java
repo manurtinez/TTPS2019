@@ -1,5 +1,6 @@
 package model;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import javax.persistence.*;
 
@@ -15,7 +16,7 @@ public class Recordatorio {
 	private String titulo;
 	
 	@Column(name = "fecha", nullable = false)
-	private Date fecha;
+	private LocalDateTime fecha;
 	
 	@Column(nullable = false)
 	private String descripcion;
@@ -25,17 +26,17 @@ public class Recordatorio {
 	private Usuario usuario;
 	
 	public Recordatorio() {}
-	public Recordatorio(String titulo, Date fecha, String descripcion, Usuario usuario) {
+	public Recordatorio(String titulo, LocalDateTime fecha, String descripcion, Usuario usuario) {
 		super();
 		this.titulo = titulo;
 		this.fecha = fecha;
 		this.descripcion = descripcion;
 		this.usuario = usuario;
 	}
-	public Date getFecha() {
+	public LocalDateTime getFecha() {
 		return fecha;
 	}
-	public void setFecha(Date fecha) {
+	public void setFecha(LocalDateTime fecha) {
 		this.fecha = fecha;
 	}
 	public String getDescripcion() {

@@ -1,5 +1,6 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
@@ -16,7 +17,7 @@ public class Desparasitacion extends Evento {
 	
 	public Desparasitacion() {}
 
-	public Desparasitacion(Date fecha, Mascota mascota, String droga, String resultado) {
+	public Desparasitacion(LocalDate fecha, Mascota mascota, String droga, String resultado) {
 		super(fecha, mascota);
 		this.droga = droga;
 		this.resultado = resultado;

@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Date;
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -21,7 +21,7 @@ public class Visita extends Evento {
 	private String indicaciones;
 	
 	public Visita() {}
-	public Visita(Date fecha, Mascota mascota, float peso, String motivo, String descripcion, String indicaciones) {
+	public Visita(LocalDate fecha, Mascota mascota, float peso, String motivo, String descripcion, String indicaciones) {
 		super(fecha, mascota);
 		this.peso = peso;
 		this.motivo = motivo;

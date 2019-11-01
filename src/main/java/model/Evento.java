@@ -1,5 +1,6 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,7 +26,7 @@ public abstract class Evento {
 	private int id;
 	
 	@Column(name="fecha", nullable = false)
-	private Date fecha;
+	private LocalDate fecha;
 	
 	@ManyToOne(optional = false)
 	@JoinColumn(name="mascota_id")
@@ -33,16 +34,16 @@ public abstract class Evento {
 	
 	public Evento() {}
 	
-	public Evento(Date fecha, Mascota mascota) {
+	public Evento(LocalDate fecha, Mascota mascota) {
 		this.fecha = fecha;
 		this.mascota = mascota;
 	}
 
-	public Date getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
 
