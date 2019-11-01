@@ -1,7 +1,6 @@
 package factory;
 
 import clasesDAOjpa.ConfigFichaDAOjpa;
-import clasesDAOjpa.DesparacitacionDAOjpa;
 import clasesDAOjpa.DuenoDAOjpa;
 import clasesDAOjpa.EventoDAOjpa;
 import clasesDAOjpa.MascotaDAOjpa;
