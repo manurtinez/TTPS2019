@@ -21,13 +21,13 @@ implements MascotaDAO{
 	@Override
 	public List<Mascota> getByDueno_id(int id) {
 		EntityManager em = emf.createEntityManager();
-		return (List<Mascota>) em.createQuery("SELECT m FROM Mascota m WHERE m.dueno_id=:id").getResultList();
+		return (List<Mascota>) em.createQuery("SELECT m FROM Mascota m WHERE m.dueno.id= ?1").setParameter(1, id).getResultList();
 	}
 
 	@Override
 	public List<Mascota> getByVet(int id) {
 		EntityManager em = emf.createEntityManager();
-		return (List<Mascota>) em.createQuery("SELECT m FROM Mascota m WHERE m.veterinario_id=:id").getResultList();
+		return (List<Mascota>) em.createQuery("SELECT m FROM Mascota m WHERE m.veterinario.id= ?1").setParameter(1, id).getResultList();
 	}
 
 }

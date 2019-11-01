@@ -11,8 +11,8 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import clasesDAOjpa.DuenoDAOjpa;
-import clasesDAOjpa.RecordatorioDAOjpa;
+import clasesDAO.DuenoDAO;
+import clasesDAO.RecordatorioDAO;
 import factory.FactoryDAO;
 import model.Dueno;
 import model.Recordatorio;
@@ -20,8 +20,8 @@ import model.Recordatorio;
 public class RecordatorioTest {
 	private static Recordatorio r1;
 	private static Dueno dueno;
-	private static DuenoDAOjpa duenoJPA = FactoryDAO.getDuenoDAO();
-	private static RecordatorioDAOjpa recordatorioJPA = FactoryDAO.getRecordatorioDAO();
+	private static DuenoDAO duenoJPA = FactoryDAO.getDuenoDAO();
+	private static RecordatorioDAO recordatorioJPA = FactoryDAO.getRecordatorioDAO();
 	
 	@BeforeClass
 	public static void beforeClass() {

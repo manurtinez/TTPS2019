@@ -8,10 +8,10 @@ import java.util.Date;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import clasesDAOjpa.ConfigFichaDAOjpa;
-import clasesDAOjpa.DuenoDAOjpa;
-import clasesDAOjpa.EventoDAOjpa;
-import clasesDAOjpa.MascotaDAOjpa;
+import clasesDAO.ConfigFichaDAO;
+import clasesDAO.DuenoDAO;
+import clasesDAO.EventoDAO;
+import clasesDAO.MascotaDAO;
 import factory.FactoryDAO;
 import model.ConfigFicha;
 import model.Dueno;
@@ -24,10 +24,10 @@ public class VisitaTest {
 	private static Dueno duenoMascota;
 	private static Visita eventoV1;
 	private Visita eventoV2;
-	private static MascotaDAOjpa mascotaJPA = FactoryDAO.getMascotaDAO();
-	private static DuenoDAOjpa duenoJPA = FactoryDAO.getDuenoDAO();
-	private static ConfigFichaDAOjpa configFichaJPA = FactoryDAO.getConfigFichaDAO();
-	private static EventoDAOjpa eventoJPA = FactoryDAO.getEventoDAO();
+	private static MascotaDAO mascotaJPA = FactoryDAO.getMascotaDAO();
+	private static DuenoDAO duenoJPA = FactoryDAO.getDuenoDAO();
+	private static ConfigFichaDAO configFichaJPA = FactoryDAO.getConfigFichaDAO();
+	private static EventoDAO eventoJPA = FactoryDAO.getEventoDAO();
 	
 	@BeforeClass
 	public static void beforeClass() {

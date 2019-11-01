@@ -11,11 +11,16 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import clasesDAOjpa.ConfigFichaDAOjpa;
-import clasesDAOjpa.DuenoDAOjpa;
-import clasesDAOjpa.EventoDAOjpa;
-import clasesDAOjpa.MascotaDAOjpa;
-import clasesDAOjpa.VeterinarioDAOjpa;
+import clasesDAO.ConfigFichaDAO;
+import clasesDAO.DuenoDAO;
+import clasesDAO.EventoDAO;
+import clasesDAO.MascotaDAO;
+import clasesDAO.VeterinarioDAO;
+import clasesDAO.ConfigFichaDAO;
+import clasesDAO.DuenoDAO;
+import clasesDAO.EventoDAO;
+import clasesDAOjpa.MascotaDAO;
+import clasesDAO.VeterinarioDAO;
 import factory.FactoryDAO;
 import model.ConfigFicha;
 import model.Dueno;
@@ -31,11 +36,11 @@ public class VeterinarioTest {
 	private static Dueno due;
 	private static Veterinario vet;
 	private static Visita evento;
-	private static MascotaDAOjpa mascotajpa = FactoryDAO.getMascotaDAO();
-	private static VeterinarioDAOjpa veterinariojpa = FactoryDAO.getVeterinarioDAO();
-	private static EventoDAOjpa eventojpa = FactoryDAO.getEventoDAO();
-	private static DuenoDAOjpa duenojpa = FactoryDAO.getDuenoDAO();
-	private static ConfigFichaDAOjpa fichajpa = FactoryDAO.getConfigFichaDAO();
+	private static MascotaDAO mascotajpa = FactoryDAO.getMascotaDAO();
+	private static VeterinarioDAO veterinariojpa = FactoryDAO.getVeterinarioDAO();
+	private static EventoDAO eventojpa = FactoryDAO.getEventoDAO();
+	private static DuenoDAO duenojpa = FactoryDAO.getDuenoDAO();
+	private static ConfigFichaDAO fichajpa = FactoryDAO.getConfigFichaDAO();
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -86,9 +91,9 @@ public class VeterinarioTest {
 	public static void AfterClass() {
 		/*mas.borrarEvento(evento);
 		eventojpa.delete(evento);
+		fichajpa.delete(config);
 		mascotajpa.delete(mas);
 		mascotajpa.delete(mas2);
-		fichajpa.delete(config);
 		veterinariojpa.delete(vet);
 		duenojpa.delete(due);*/
 	}

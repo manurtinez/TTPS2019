@@ -11,10 +11,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import clasesDAOjpa.ConfigFichaDAOjpa;
-import clasesDAOjpa.DuenoDAOjpa;
-import clasesDAOjpa.EventoDAOjpa;
-import clasesDAOjpa.MascotaDAOjpa;
+import clasesDAO.ConfigFichaDAO;
+import clasesDAO.DuenoDAO;
+import clasesDAO.EventoDAO;
+import clasesDAO.MascotaDAO;
 import factory.FactoryDAO;
 import model.ConfigFicha;
 import model.Desparasitacion;
@@ -29,10 +29,10 @@ public class EventoTest {
 	private static Mascota mascota;
 	private static ConfigFicha config;
 	private static Dueno due;
-	private static MascotaDAOjpa mascotajpa = FactoryDAO.getMascotaDAO();
-	private static EventoDAOjpa eventojpa = FactoryDAO.getEventoDAO();
-	private static DuenoDAOjpa duenojpa = FactoryDAO.getDuenoDAO();
-	private static ConfigFichaDAOjpa fichajpa = FactoryDAO.getConfigFichaDAO();
+	private static MascotaDAO mascotajpa = FactoryDAO.getMascotaDAO();
+	private static EventoDAO eventojpa = FactoryDAO.getEventoDAO();
+	private static DuenoDAO duenojpa = FactoryDAO.getDuenoDAO();
+	private static ConfigFichaDAO fichajpa = FactoryDAO.getConfigFichaDAO();
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
