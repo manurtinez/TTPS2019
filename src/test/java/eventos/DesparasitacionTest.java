@@ -69,7 +69,7 @@ public class DesparasitacionTest {
 		assertTrue(e4.equals(eventoD1));
 	}
 	@AfterClass
-	public static void AfterClass() {
+	public static void afterClass() {
 		mascota.borrarEvento(eventoD1);
 		eventoJPA.delete(eventoD1);	
 		mascotaJPA.delete(mascota);	

@@ -4,6 +4,7 @@ import clasesDAOjpa.ConfigFichaDAOjpa;
 import clasesDAOjpa.DuenoDAOjpa;
 import clasesDAOjpa.EventoDAOjpa;
 import clasesDAOjpa.MascotaDAOjpa;
+import clasesDAOjpa.RecordatorioDAOjpa;
 
 public class FactoryDAO {
 	public static DuenoDAOjpa getDuenoDAO(){
@@ -19,5 +20,8 @@ public class FactoryDAO {
 	}
 	public static ConfigFichaDAOjpa getConfigFichaDAO() {
 		return new ConfigFichaDAOjpa();
+	}
+	public static RecordatorioDAOjpa getRecordatorioDAO() {
+		return new RecordatorioDAOjpa();
 	}
 }

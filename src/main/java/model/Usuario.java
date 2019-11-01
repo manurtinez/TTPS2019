@@ -1,13 +1,21 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Fetch;
 
 @Entity
 @Table(name = "usuario")
@@ -32,8 +40,26 @@ public abstract class Usuario {
 	
 	@Column(name="telefono", nullable = false, length = 20)
 	private long telefono;
-
 	
+	@OneToMany(mappedBy="usuario", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)//corrige error de EAGER -> MultipleBagFetchException: cannot simultaneously fetch multiple bags
+	private List<Recordatorio> recordatorios;
+	
+	public void agregarRecordatorio(Recordatorio r) {
+		this.getRecordatorios().add(r);
+	}
+	public void borrarRecordatorio(Recordatorio r) {
+		this.getRecordatorios().remove(r);
+	}
+	
+	public List<Recordatorio> getRecordatorios() {
+		return recordatorios;
+	}
+
+	public void setRecordatorios(List<Recordatorio> recordatorios) {
+		this.recordatorios = recordatorios;
+	}
+
 	public Usuario() { } //necesario para q sea entidad
 	
 	public Usuario(String nombre, String apellido, String email, String password, int telefono) {
@@ -42,7 +68,9 @@ public abstract class Usuario {
 		this.email = email;
 		this.password = password;
 		this.telefono = telefono;
+		this.recordatorios = new ArrayList<Recordatorio>();
 	}
+	
 	public String getNombre() {
 		return nombre;
 	}

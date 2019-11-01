@@ -20,11 +20,17 @@ public class Recordatorio {
 	@Column(nullable = false)
 	private String descripcion;
 	
+	@ManyToOne(optional = false)
+	@JoinColumn(name="usuario_id", nullable = false)
+	private Usuario usuario;
+	
 	public Recordatorio() {}
-	public Recordatorio(Date fecha, String descripcion) {
+	public Recordatorio(String titulo, Date fecha, String descripcion, Usuario usuario) {
 		super();
+		this.titulo = titulo;
 		this.fecha = fecha;
 		this.descripcion = descripcion;
+		this.usuario = usuario;
 	}
 	public Date getFecha() {
 		return fecha;
@@ -38,4 +44,32 @@ public class Recordatorio {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getTitulo() {
+		return titulo;
+	}
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+    @Override
+    public boolean equals(Object obj)
+    {
+        if ( obj == null ) return false;
+        if ( this == obj ) return true;
+        if ( ! (obj instanceof Recordatorio ) ) return false;
+        Recordatorio e = (Recordatorio) obj;
+        return this.getId() == e.getId();
+    }
+	
 }

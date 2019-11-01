@@ -6,15 +6,13 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import clasesDAOjpa.UsuarioDAOjpa;
 import model.Admin;
 import model.Dueno;
 import model.Usuario;
 import model.Veterinario;
 
 public class TestUser {
-
+/*
 	//Usuario u = new Usuario("eva", "peron", "evap@gmail.com", "1234", 1234);
 	Veterinario v = new Veterinario("america", "latina", "america@gmail.com", "1234", 1234, "asd", "asd", 12);
 	Admin a = new Admin("alberto", "cristina", "hola@gmail.com", "1234", 1234);
@@ -41,5 +39,5 @@ public class TestUser {
 		//usuariojpa.delete(u);
 		//Assert.assertEquals(usuariojpa.getById(u.getId()), null);
 	}
-
+*/
 }

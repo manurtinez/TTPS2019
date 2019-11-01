@@ -19,6 +19,7 @@
 		<class>model.Veterinario</class>
 		<class>model.Admin</class>
 		<class>model.Dueno</class>
+		<class>model.Recordatorio</class>
 		<properties>
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
 			<property name="hibernate.connection.password" value="1234"/>
