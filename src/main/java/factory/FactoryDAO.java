@@ -26,8 +26,4 @@ public class FactoryDAO {
 	public static VeterinarioDAOjpa getVeterinarioDAO() {
 		return new VeterinarioDAOjpa();
 	}
-	
-	public static DesparacitacionDAOjpa getDesparasitacionDAO() {
-		return new DesparacitacionDAOjpa();
-	}
 }
