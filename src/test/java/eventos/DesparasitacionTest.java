@@ -2,6 +2,7 @@ package eventos;
 
 import static org.junit.Assert.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import org.junit.AfterClass;
@@ -34,7 +35,7 @@ public class DesparasitacionTest {
 		config = new ConfigFicha(false, false, false, false, false, false, false, false, false, false); 
 		duenoMascota = new Dueno("seba", "pose", "seba@gmail.com", "1234", 22155620);	
 		mascota = new Mascota("fufi", "perro", "caniche", "masculino", "blanco", "ninguna", null , null, duenoMascota, config);
-		eventoD1 = new Desparasitacion(new Date(), mascota, "fenbendazol", "positivo");
+		eventoD1 = new Desparasitacion(LocalDate.now(), mascota, "fenbendazol", "positivo");
 		duenoJPA.save(duenoMascota);
 		configFichaJPA.save(config);
 		mascotaJPA.save(mascota);
@@ -51,7 +52,7 @@ public class DesparasitacionTest {
 		Desparasitacion e1 = (Desparasitacion) m1.getHistorial().get(0);
 		assertTrue(e1.equals(eventoD1));
 		
-		Desparasitacion eventoD2 = new Desparasitacion(new Date(), m1, "praziquantel", "positivo. Qedan dosis pendientes");
+		Desparasitacion eventoD2 = new Desparasitacion(LocalDate.now(), m1, "praziquantel", "positivo. Qedan dosis pendientes");
 		eventoJPA.save(eventoD2);
 		m1.agregarEvento(eventoD2);
 		assertEquals(2, m1.getHistorial().size());

@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Date;
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -13,7 +13,7 @@ public class HistorialReproductivo extends Evento {
 
 	public HistorialReproductivo() {}
 
-	public HistorialReproductivo(Date fecha, Mascota mascota, int nroNacidos) {
+	public HistorialReproductivo(LocalDate fecha, Mascota mascota, int nroNacidos) {
 		super(fecha, mascota);
 		this.nroNacidos= nroNacidos;
 	}

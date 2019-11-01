@@ -2,6 +2,8 @@ package Recordatorio;
 
 import static org.junit.Assert.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -24,7 +26,7 @@ public class RecordatorioTest {
 	@BeforeClass
 	public static void beforeClass() {
 		dueno = new Dueno("seba", "pose", "seba@gmail.com", "1234", 22155620);
-		r1 = new Recordatorio("comprar alimento para America", new Date(),"juan no tiene dog chow, conseguir otro numero", dueno);
+		r1 = new Recordatorio("comprar alimento para America", LocalDateTime.now(),"juan no tiene dog chow, conseguir otro numero", dueno);
 		duenoJPA.save(dueno);
 		recordatorioJPA.save(r1);
 	}
@@ -40,7 +42,7 @@ public class RecordatorioTest {
 		Recordatorio r2 = d1.getRecordatorios().get(0);
 		assertTrue(r2.equals(r1));
 		
-		Recordatorio r3 = new Recordatorio("nuevo recordatorio", new Date(), "descripcion del nuevo recordatorio", d1);
+		Recordatorio r3 = new Recordatorio("nuevo recordatorio", LocalDateTime.now(), "descripcion del nuevo recordatorio", d1);
 		recordatorioJPA.save(r3);
 		d1.agregarRecordatorio(r3);
 		assertEquals(2, d1.getRecordatorios().size());

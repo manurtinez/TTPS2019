@@ -31,5 +31,6 @@ public class FactoryDAO {
 	}
 	public static AdminDAOjpa getAdminDAO() {
 		return new AdminDAOjpa();
+
 	}
 }

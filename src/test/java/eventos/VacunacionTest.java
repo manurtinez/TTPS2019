@@ -1,6 +1,8 @@
 package eventos;
 
 import static org.junit.Assert.*;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import org.junit.AfterClass;
@@ -32,7 +34,7 @@ public class VacunacionTest {
 		config = new ConfigFicha(false, false, false, false, false, false, false, false, false, false); 
 		duenoMascota = new Dueno("seba", "pose", "seba@gmail.com", "1234", 22155620);	
 		mascota = new Mascota("america", "perro", "callejero", "macho", "negro", "ninguna", null , null, duenoMascota, config);
-		eventoD1 = new Vacunacion(new Date(), mascota, "sextuple");
+		eventoD1 = new Vacunacion(LocalDate.now(), mascota, "sextuple");
 		duenoJPA.save(duenoMascota);
 		configFichaJPA.save(config);
 		mascotaJPA.save(mascota);
@@ -49,7 +51,7 @@ public class VacunacionTest {
 		Vacunacion e1 = (Vacunacion) m1.getHistorial().get(0);
 		assertTrue(e1.equals(eventoD1));
 		
-		Vacunacion eventoD2 = new Vacunacion(new Date(), m1, "quintuple");
+		Vacunacion eventoD2 = new Vacunacion(LocalDate.now(), m1, "quintuple");
 		eventoJPA.save(eventoD2);
 		m1.agregarEvento(eventoD2);
 		assertEquals(2, m1.getHistorial().size());

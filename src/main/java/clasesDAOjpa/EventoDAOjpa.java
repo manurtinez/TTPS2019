@@ -1,6 +1,7 @@
 package clasesDAOjpa;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.List;
 
@@ -18,11 +19,12 @@ implements EventoDAO {
 	}
 
 	@Override
-	public List<Evento> getByDate(int year) {
+	public List<Evento> getByDate(LocalDate d) {
 		EntityManager em = emf.createEntityManager();
 		/*Calendar calendar = Calendar.getInstance();
 		calendar.setTime(d);
 		int year = calendar.get(Calendar.YEAR);*/
-		return (List<Evento>) em.createQuery("select e from Evento e where year(e.fecha) = :year").getResultList();
+		return (List<Evento>) em.createQuery("select e from Evento e where e.fecha >= ?1")
+				.setParameter(1, d).getResultList();
 	}
 }

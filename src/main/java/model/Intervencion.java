@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Date;
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -14,7 +14,7 @@ public class Intervencion extends Evento {
 	
 	public Intervencion() {}
 	
-	public Intervencion(Date fecha, Mascota mascota, String descripcion) {
+	public Intervencion(LocalDate fecha, Mascota mascota, String descripcion) {
 		super(fecha, mascota);
 		this.descripcion = descripcion;
 	}

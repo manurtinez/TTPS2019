@@ -2,6 +2,7 @@ package usuario;
 
 import static org.junit.Assert.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -46,7 +47,7 @@ public class VeterinarioTest {
 				null, null, due, config);
 		mas2 = new Mascota("fufi2", "perro", "chihuahua", "femenino", "negro", "ninguna",
 				null, null, due, config);
-		evento = new Visita(new Date(), mas, 22.2f , "se escapa seguido", "no sabe volver",
+		evento = new Visita(LocalDate.now(), mas, 22.2f , "se escapa seguido", "no sabe volver",
 				"usar correa");
 		mas.setVeterinario(vet);
 		mas2.setVeterinario(vet);
@@ -75,10 +76,10 @@ public class VeterinarioTest {
 		assertEquals(2, veterinario.getMascotas().size());
 		List<Mascota> mascotasdeVet = (List<Mascota>) veterinario.getMascotas();
 		assertEquals("chihuahua", mascotasdeVet.get(1).getRaza());
-		mas2.setRaza("chihuahueño");
+		mas2.setRaza("chihuahueï¿½o");
 		mascotajpa.update(mas2);
 		mascotasdeVet = veterinariojpa.getById(veterinario.getId()).getMascotas();
-		assertEquals("chihuahueño", mascotasdeVet.get(1).getRaza());
+		assertEquals("chihuahueï¿½o", mascotasdeVet.get(1).getRaza());
 	}
 	@AfterClass
 	public static void AfterClass() {
