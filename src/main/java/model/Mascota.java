@@ -67,7 +67,7 @@ public class Mascota {
 		this.senas = senas;
 		this.nacimiento = nacimiento;
 		this.fotos = fotos;
-		
+		this.historial = new ArrayList<Evento>();
 	}
 	public Mascota(String nombre, String especie, String raza, String sexo, String color, String senas,
 			Date nacimiento, BufferedImage[] fotos,Dueno dueno, ConfigFicha config ) {
@@ -81,7 +81,7 @@ public class Mascota {
 		this.nacimiento = nacimiento;
 		this.fotos = fotos;
 		this.veterinario = null;
-		this.dueno = dueno;
+		setDueno(dueno);
 		this.configFicha = config;
 		this.historial = new ArrayList<Evento>();
 		
@@ -150,6 +150,7 @@ public class Mascota {
 	}
 
 	public void setDueno(Dueno dueno) {
+		dueno.agregarMascota(this);
 		this.dueno = dueno;
 	}
 
@@ -181,6 +182,21 @@ public class Mascota {
 
 	public void setHistorial(List<Evento> historial) {
 		this.historial = historial;
+	}
+	
+	public Mascota(String nombre, String especie, String raza, String sexo, String color, String senas,
+			Date nacimiento, BufferedImage[] fotos, ConfigFicha config) {
+		super();
+		this.nombre = nombre;
+		this.especie = especie;
+		this.raza = raza;
+		this.sexo = sexo;
+		this.color = color;
+		this.senas = senas;
+		this.nacimiento = nacimiento;
+		this.fotos = fotos;
+		this.configFicha = config;
+		this.historial = new ArrayList<Evento>();
 	}
 	
 }

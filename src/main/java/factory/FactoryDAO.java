@@ -1,6 +1,7 @@
 package factory;
 
 import clasesDAOjpa.ConfigFichaDAOjpa;
+import clasesDAOjpa.DesparacitacionDAOjpa;
 import clasesDAOjpa.DuenoDAOjpa;
 import clasesDAOjpa.EventoDAOjpa;
 import clasesDAOjpa.MascotaDAOjpa;
@@ -24,5 +25,9 @@ public class FactoryDAO {
 	
 	public static VeterinarioDAOjpa getVeterinarioDAO() {
 		return new VeterinarioDAOjpa();
+	}
+	
+	public static DesparacitacionDAOjpa getDesparasitacionDAO() {
+		return new DesparacitacionDAOjpa();
 	}
 }
