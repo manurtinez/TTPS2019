@@ -53,11 +53,9 @@ public class EventoTest {
 	@Test
 	public void test() {
 		LocalDate da = LocalDate.of(2000, 2, 2);
-		int d = da.getYear();
-		System.out.println(d);
 		Evento ev = eventojpa.getAll().get(0);
-		System.out.println(ev.getFecha().getYear());
-		List<Evento> prueba =(List<Evento>) eventojpa.getByDate(d);
+		System.out.println(ev.getFecha());
+		List<Evento> prueba =(List<Evento>) eventojpa.getByDate(da);
 		assertEquals(2, prueba.size());
 	}
 
