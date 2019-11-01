@@ -49,13 +49,14 @@ public class VeterinarioTest {
 				null, null, due, config);
 		evento = new Visita(LocalDate.now(), mas, 22.2f , "se escapa seguido", "no sabe volver",
 				"usar correa");
+
+		fichajpa.save(config);
+		veterinariojpa.save(vet);
 		mas.setVeterinario(vet);
 		mas2.setVeterinario(vet);
 		duenojpa.save(due);
-		fichajpa.save(config);
 		/*mascotajpa.save(mas);
 		mascotajpa.save(mas2);*/
-		veterinariojpa.save(vet);
 		eventojpa.save(evento);
 	}
 
@@ -76,20 +77,20 @@ public class VeterinarioTest {
 		assertEquals(2, veterinario.getMascotas().size());
 		List<Mascota> mascotasdeVet = (List<Mascota>) veterinario.getMascotas();
 		assertEquals("chihuahua", mascotasdeVet.get(1).getRaza());
-		mas2.setRaza("chihuahue�o");
+		mas2.setRaza("chihuahuenio");
 		mascotajpa.update(mas2);
 		mascotasdeVet = veterinariojpa.getById(veterinario.getId()).getMascotas();
-		assertEquals("chihuahue�o", mascotasdeVet.get(1).getRaza());
+		assertEquals("chihuahuenio", mascotasdeVet.get(1).getRaza());
 	}
 	@AfterClass
 	public static void AfterClass() {
-		mas.borrarEvento(evento);
+		/*mas.borrarEvento(evento);
 		eventojpa.delete(evento);
 		mascotajpa.delete(mas);
 		mascotajpa.delete(mas2);
 		fichajpa.delete(config);
 		veterinariojpa.delete(vet);
-		duenojpa.delete(due);
+		duenojpa.delete(due);*/
 	}
 
 }
