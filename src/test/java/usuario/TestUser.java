@@ -1,4 +1,4 @@
-package tests;
+package usuario;
 
 
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
 import model.Admin;
 import model.Dueno;
 import model.Usuario;

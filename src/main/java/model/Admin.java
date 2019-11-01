@@ -14,5 +14,8 @@ public class Admin extends Usuario {
 		super(nombre, apellido, email, password, telefono);
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	public void habilitarVeterinario(Veterinario v) {
+		v.setHabilitado(true);
+	}
 }
