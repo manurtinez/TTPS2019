@@ -2,6 +2,8 @@ package model;
 
 import java.time.LocalDate;
 import java.util.Date;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,7 +38,7 @@ public abstract class Evento {
 	
 	public Evento(LocalDate fecha, Mascota mascota) {
 		this.fecha = fecha;
-		this.mascota = mascota;
+		setMascota(mascota);
 	}
 
 	public LocalDate getFecha() {
@@ -52,6 +54,7 @@ public abstract class Evento {
 	}
 
 	public void setMascota(Mascota mascota) {
+		mascota.agregarEvento(this);
 		this.mascota = mascota;
 	}
 

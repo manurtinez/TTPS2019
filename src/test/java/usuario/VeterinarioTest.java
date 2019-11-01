@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.junit.AfterClass;
@@ -15,11 +14,6 @@ import clasesDAO.ConfigFichaDAO;
 import clasesDAO.DuenoDAO;
 import clasesDAO.EventoDAO;
 import clasesDAO.MascotaDAO;
-import clasesDAO.VeterinarioDAO;
-import clasesDAO.ConfigFichaDAO;
-import clasesDAO.DuenoDAO;
-import clasesDAO.EventoDAO;
-import clasesDAOjpa.MascotaDAO;
 import clasesDAO.VeterinarioDAO;
 import factory.FactoryDAO;
 import model.ConfigFicha;
@@ -54,15 +48,11 @@ public class VeterinarioTest {
 				null, null, due, config);
 		evento = new Visita(LocalDate.now(), mas, 22.2f , "se escapa seguido", "no sabe volver",
 				"usar correa");
-
-		fichajpa.save(config);
-		veterinariojpa.save(vet);
 		mas.setVeterinario(vet);
 		mas2.setVeterinario(vet);
 		duenojpa.save(due);
 		/*mascotajpa.save(mas);
 		mascotajpa.save(mas2);*/
-		eventojpa.save(evento);
 	}
 
 	@Test
@@ -71,21 +61,21 @@ public class VeterinarioTest {
 		
 		mascotas = (ArrayList<Mascota>) mascotajpa.getAll();
 		assertEquals(2,mascotas.size());
-		Mascota mas = mascotas.get(0);
+		Mascota mas = mascotas.get(1);
 		assertEquals(1, mas.getHistorial().size());
-		Visita e1 = (Visita) mas.getHistorial().get(0);
-		assertTrue(e1.equals(evento));
+		
 		
 		assertEquals(1, veterinariojpa.getAll().size());
 		//ArrayList<Veterinario> vets = (ArrayList<Veterinario>) veterinariojpa.getAll();
-		Veterinario veterinario = veterinariojpa.getById(vet.getId());
+		Veterinario veterinario = veterinariojpa.getById(2);
 		assertEquals(2, veterinario.getMascotas().size());
 		List<Mascota> mascotasdeVet = (List<Mascota>) veterinario.getMascotas();
-		assertEquals("chihuahua", mascotasdeVet.get(1).getRaza());
-		mas2.setRaza("chihuahuenio");
-		mascotajpa.update(mas2);
+		Mascota mascotita = mascotasdeVet.get(0);
+		assertEquals("chihuahua", mascotita.getRaza());
+		mascotita.setRaza("chihuahuenio");
+		mascotajpa.update(mascotita);
 		mascotasdeVet = veterinariojpa.getById(veterinario.getId()).getMascotas();
-		assertEquals("chihuahuenio", mascotasdeVet.get(1).getRaza());
+		assertEquals("chihuahuenio", mascotasdeVet.get(0).getRaza());
 	}
 	@AfterClass
 	public static void AfterClass() {

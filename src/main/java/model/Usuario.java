@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -41,7 +42,7 @@ public abstract class Usuario {
 	@Column(name="telefono", nullable = false, length = 20)
 	private long telefono;
 	
-	@OneToMany(mappedBy="usuario", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="usuario", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
 	@Fetch(value = FetchMode.SUBSELECT)//corrige error de EAGER -> MultipleBagFetchException: cannot simultaneously fetch multiple bags
 	private List<Recordatorio> recordatorios;
 	

@@ -36,10 +36,7 @@ public class DesparasitacionTest {
 		duenoMascota = new Dueno("seba", "pose", "seba@gmail.com", "1234", 22155620);	
 		mascota = new Mascota("fufi", "perro", "caniche", "masculino", "blanco", "ninguna", null , null, duenoMascota, config);
 		eventoD1 = new Desparasitacion(LocalDate.now(), mascota, "fenbendazol", "positivo");
-		duenoJPA.save(duenoMascota);
-		configFichaJPA.save(config);
 		mascotaJPA.save(mascota);
-		eventoJPA.save(eventoD1);	
 	}
 	@Test
 	public void test() {
@@ -50,11 +47,10 @@ public class DesparasitacionTest {
 		Mascota m1 = mascotas.get(0);
 		assertEquals(1, m1.getHistorial().size());
 		Desparasitacion e1 = (Desparasitacion) m1.getHistorial().get(0);
-		assertTrue(e1.equals(eventoD1));
+		assertEquals("positivo", e1.getResultado());
 		
 		Desparasitacion eventoD2 = new Desparasitacion(LocalDate.now(), m1, "praziquantel", "positivo. Qedan dosis pendientes");
-		eventoJPA.save(eventoD2);
-		m1.agregarEvento(eventoD2);
+		mascotaJPA.save(mascota);
 		assertEquals(2, m1.getHistorial().size());
 		m1.borrarEvento(eventoD2);	
 		eventoJPA.delete(eventoD2);
@@ -67,15 +63,15 @@ public class DesparasitacionTest {
 		assertTrue(e3.getResultado().equals("resultado esperado por todos"));
 		
 		Desparasitacion e4 = (Desparasitacion) eventoJPA.getById(1);
-		assertTrue(e4.equals(eventoD1));
+		assertEquals("fenbendazol",e4.getDroga());
 	}
 	@AfterClass
 	public static void afterClass() {
-		mascota.borrarEvento(eventoD1);
+		/*mascota.borrarEvento(eventoD1);
 		eventoJPA.delete(eventoD1);	
 		mascotaJPA.delete(mascota);	
 		configFichaJPA.delete(config);
-		duenoJPA.delete(duenoMascota);	    
+		duenoJPA.delete(duenoMascota);*/    
 	}
 
 

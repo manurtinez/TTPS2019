@@ -34,11 +34,8 @@ public class VisitaTest {
 		config = new ConfigFicha(false, false, false, false, false, false, false, false, false, false); 
 		duenoMascota = new Dueno("pepe", "mujica", "elPepe@gmail.com", "1234", 22155620);	
 		mascota = new Mascota("taton", "perro", "pitbull", "macho", "blanco", "ninguna", null , null, duenoMascota, config);
-		eventoV1 = new Visita(LocalDate.now(), mascota, 22.2f , "pelea en la calle", "perdida de oreja derecha", "alejar del dueño");
-		duenoJPA.save(duenoMascota);
-		configFichaJPA.save(config);
+		eventoV1 = new Visita(LocalDate.now(), mascota, 22.2f , "pelea en la calle", "perdida de oreja derecha", "alejar del duenio");
 		mascotaJPA.save(mascota);
-		eventoJPA.save(eventoV1);
 	}
 	@Test
 	public void test() {
@@ -49,11 +46,10 @@ public class VisitaTest {
 		Mascota m1 = mascotas.get(0);
 		assertEquals(1, m1.getHistorial().size());
 		Visita e1 = (Visita) m1.getHistorial().get(0);
-		assertTrue(e1.equals(eventoV1));
+		assertEquals("pelea en la calle", e1.getMotivo());
 		
 		eventoV2 = new Visita(LocalDate.now(), mascota, 22.2f , "pelea en la calle", "perdida de nariz", "ninguna");
-		eventoJPA.save(eventoV2);
-		m1.agregarEvento(eventoV2);
+		mascotaJPA.save(mascota);
 		assertEquals(2, m1.getHistorial().size());
 		m1.borrarEvento(eventoV2);		;
 		eventoJPA.delete(eventoV2);
@@ -66,15 +62,15 @@ public class VisitaTest {
 		assertTrue(e3.getMotivo().equals("otro motivo"));
 		
 		Visita e4 = (Visita) eventoJPA.getById(1);
-		assertTrue(e4.equals(eventoV1));
+		assertEquals("otro motivo", e1.getMotivo());
 		
 	}
 	@AfterClass
 	public static void AfterClass() {
-		mascota.borrarEvento(eventoV1);
+		/*mascota.borrarEvento(eventoV1);
 		eventoJPA.delete(eventoV1);	
 		mascotaJPA.delete(mascota);	
 		configFichaJPA.delete(config);
-		duenoJPA.delete(duenoMascota);	    
+		duenoJPA.delete(duenoMascota);*/    
 	}
 }

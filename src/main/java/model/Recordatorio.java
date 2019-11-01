@@ -31,7 +31,7 @@ public class Recordatorio {
 		this.titulo = titulo;
 		this.fecha = fecha;
 		this.descripcion = descripcion;
-		this.usuario = usuario;
+		setUsuario(usuario);
 	}
 	public LocalDateTime getFecha() {
 		return fecha;
@@ -61,6 +61,7 @@ public class Recordatorio {
 		return usuario;
 	}
 	public void setUsuario(Usuario usuario) {
+		usuario.agregarRecordatorio(this);
 		this.usuario = usuario;
 	}
     @Override

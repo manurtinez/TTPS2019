@@ -21,7 +21,7 @@ public class Veterinario extends Usuario {
 	@Column(name="habilitado", nullable = false)
 	private boolean habilitado;
 	
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="veterinario")
+	@OneToMany(cascade= {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy="veterinario")
 	private List<Mascota> mascotas;
 	
 	public Veterinario() {}

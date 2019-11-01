@@ -38,8 +38,9 @@ public class AdminTest {
 		assertEquals(2, veterinarios.size());
 		
 		Admin adminTest = admins.get(0);
-		adminTest.habilitarVeterinario(vet1);
-		vetD.update(vet1);
+		Veterinario vett = veterinarios.get(0);
+		adminTest.habilitarVeterinario(vett);
+		vetD.update(vett);
 		veterinarios =(ArrayList<Veterinario>) adminD.getAllVeterinarioInhabilitados();
 		assertEquals(1, veterinarios.size());
 		

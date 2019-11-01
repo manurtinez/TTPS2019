@@ -35,10 +35,7 @@ public class VacunacionTest {
 		duenoMascota = new Dueno("seba", "pose", "seba@gmail.com", "1234", 22155620);	
 		mascota = new Mascota("america", "perro", "callejero", "macho", "negro", "ninguna", null , null, duenoMascota, config);
 		eventoD1 = new Vacunacion(LocalDate.now(), mascota, "sextuple");
-		duenoJPA.save(duenoMascota);
-		configFichaJPA.save(config);
 		mascotaJPA.save(mascota);
-		eventoJPA.save(eventoD1);	
 	}
 	@Test
 	public void test() {
@@ -49,11 +46,10 @@ public class VacunacionTest {
 		Mascota m1 = mascotas.get(0);
 		assertEquals(1, m1.getHistorial().size());
 		Vacunacion e1 = (Vacunacion) m1.getHistorial().get(0);
-		assertTrue(e1.equals(eventoD1));
+		assertEquals("sextuple", e1.getDescripcion());
 		
 		Vacunacion eventoD2 = new Vacunacion(LocalDate.now(), m1, "quintuple");
-		eventoJPA.save(eventoD2);
-		m1.agregarEvento(eventoD2);
+		mascotaJPA.save(mascota);
 		assertEquals(2, m1.getHistorial().size());
 		m1.borrarEvento(eventoD2);	
 		eventoJPA.delete(eventoD2);
@@ -66,15 +62,15 @@ public class VacunacionTest {
 		assertTrue(e3.getDescripcion().equals("hepatitis"));
 		
 		Vacunacion e4 = (Vacunacion) eventoJPA.getById(1);
-		assertTrue(e4.equals(eventoD1));
+		assertEquals("hepatitis", e4.getDescripcion());
 	}
 	@AfterClass
 	public static void AfterClass() {
-		mascota.borrarEvento(eventoD1);
-		eventoJPA.delete(eventoD1);	
+		/*mascota.borrarEvento(eventoV1);
+		eventoJPA.delete(eventoV1);	
 		mascotaJPA.delete(mascota);	
 		configFichaJPA.delete(config);
-		duenoJPA.delete(duenoMascota);	    
+		duenoJPA.delete(duenoMascota);*/     
 	}
 
 }

@@ -47,8 +47,6 @@ public class TestMascota {
 	
 	@Before
 	public void setUpBeforeClass() throws Exception {
-		fichajpa.save(config);
-		veterinariojpa.save(vet);
 		m.setVeterinario(vet);
 		duenojpa.save(du);
 	}
@@ -57,12 +55,12 @@ public class TestMascota {
 	public void test() {
 		List<Mascota> lista = mascotajpa.getAll();
 		assertEquals(2, lista.size());
-		Dueno due = duenojpa.getById(du.getId());
+		Dueno due = duenojpa.getById(1);
 		List<Mascota> listaDue = mascotajpa.getByDueno_id(due.getId());
 		Assert.assertEquals(2, listaDue.size());
-		List<Mascota> listaVet = mascotajpa.getByVet(vet.getId());
+		List<Mascota> listaVet = mascotajpa.getByVet(2);
 		assertEquals(1, listaVet.size());
-		mascotajpa.delete(m2);
+		mascotajpa.delete(listaVet.get(0));
 		lista = mascotajpa.getAll();
 		//listaDue = mascotajpa.getByDueno_id(due.getId());
 		//Assert.assertEquals(1, listaDue.size());

@@ -36,10 +36,7 @@ public class HistorialReproductivoTest {
 		duenoMascota = new Dueno("pepe", "mujica", "elPepe@gmail.com", "1234", 22155620);	
 		mascota = new Mascota("sofia", "perro", "pitbull", "hembra", "blanco", "ninguna", null , null, duenoMascota, config);
 		eventoV1 = new HistorialReproductivo(LocalDate.now(), mascota, 7);
-		duenoJPA.save(duenoMascota);
-		configFichaJPA.save(config);
 		mascotaJPA.save(mascota);
-		eventoJPA.save(eventoV1);
 	}
 	@Test
 	public void test() {
@@ -50,11 +47,10 @@ public class HistorialReproductivoTest {
 		Mascota m1 = mascotas.get(0);
 		assertEquals(1, m1.getHistorial().size());
 		HistorialReproductivo e1 = (HistorialReproductivo) m1.getHistorial().get(0);
-		assertTrue(e1.equals(eventoV1));
+		assertEquals(7, e1.getNroNacidos());
 		
 		eventoV2 = new HistorialReproductivo(LocalDate.now(), mascota, 6);
-		eventoJPA.save(eventoV2);
-		m1.agregarEvento(eventoV2);
+		mascotaJPA.save(mascota);
 		assertEquals(2, m1.getHistorial().size());
 		m1.borrarEvento(eventoV2);		;
 		eventoJPA.delete(eventoV2);
@@ -67,15 +63,15 @@ public class HistorialReproductivoTest {
 		assertTrue(e3.getNroNacidos() == 3);
 		
 		HistorialReproductivo e4 = (HistorialReproductivo) eventoJPA.getById(1);
-		assertTrue(e4.equals(eventoV1));
+		assertEquals(3, e4.getNroNacidos());
 		
 	}
 	@AfterClass
 	public static void AfterClass() {
-		mascota.borrarEvento(eventoV1);
+		/*mascota.borrarEvento(eventoV1);
 		eventoJPA.delete(eventoV1);	
 		mascotaJPA.delete(mascota);	
 		configFichaJPA.delete(config);
-		duenoJPA.delete(duenoMascota);	    
+		duenoJPA.delete(duenoMascota);*/     
 	}
 }

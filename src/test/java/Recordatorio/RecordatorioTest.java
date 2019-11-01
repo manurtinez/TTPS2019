@@ -28,7 +28,6 @@ public class RecordatorioTest {
 		dueno = new Dueno("seba", "pose", "seba@gmail.com", "1234", 22155620);
 		r1 = new Recordatorio("comprar alimento para America", LocalDateTime.now(),"juan no tiene dog chow, conseguir otro numero", dueno);
 		duenoJPA.save(dueno);
-		recordatorioJPA.save(r1);
 	}
 	
 	@Test
@@ -40,14 +39,13 @@ public class RecordatorioTest {
 		Dueno d1 = duenos.get(0);
 		assertEquals(1, d1.getRecordatorios().size());
 		Recordatorio r2 = d1.getRecordatorios().get(0);
-		assertTrue(r2.equals(r1));
+		assertEquals("comprar alimento para America", r2.getTitulo());
 		
 		Recordatorio r3 = new Recordatorio("nuevo recordatorio", LocalDateTime.now(), "descripcion del nuevo recordatorio", d1);
-		recordatorioJPA.save(r3);
-		d1.agregarRecordatorio(r3);
+		duenoJPA.save(d1);
 		assertEquals(2, d1.getRecordatorios().size());
 		d1.borrarRecordatorio(r3);
-		recordatorioJPA.delete(r3);
+		duenoJPA.save(d1);
 		assertEquals(1, d1.getRecordatorios().size());
 		
 		r2.setDescripcion("una descripcion nueva");
@@ -57,12 +55,12 @@ public class RecordatorioTest {
 		assertTrue(r4.getDescripcion().equals("una descripcion nueva"));
 		
 		Recordatorio r5 = (Recordatorio) recordatorioJPA.getById(1);
-		assertTrue(r5.equals(r1));
+		assertEquals("una descripcion nueva", r5.getDescripcion());
 	}
 	@AfterClass
 	public static void afterClass() {
-		dueno.borrarRecordatorio(r1);
+		/*dueno.borrarRecordatorio(r1);
 		recordatorioJPA.delete(r1);
-		duenoJPA.delete(dueno);
+		duenoJPA.delete(dueno);*/
 	}
 }

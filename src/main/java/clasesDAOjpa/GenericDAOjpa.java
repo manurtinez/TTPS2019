@@ -46,7 +46,7 @@ public class GenericDAOjpa<T> implements Dao<T> {
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction etx = em.getTransaction();
 		etx.begin();
-		em.persist(t);
+		em.merge(t);
 		etx.commit();
 		em.close();
 	}

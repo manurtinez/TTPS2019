@@ -8,7 +8,7 @@ public class ConfigFicha {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
-	private int id;
+	private Long id;
 	
 	@Column(name="nombre", nullable = false)
 	private boolean nombre;

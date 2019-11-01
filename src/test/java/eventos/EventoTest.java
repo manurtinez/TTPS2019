@@ -37,16 +37,12 @@ public class EventoTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		config = new ConfigFicha(false, false, false, false, false, false, false, false, false, false);
+		due = new Dueno("pepe", "mujica", "elPepe@gmail.com", "1234", 22155620);
 		mascota = new Mascota("fufi", "perro", "caniche", "masculino", "blanco", "ninguna",
-				null, null, config);
+				null, null, due, config);
 		evento = new Desparasitacion(LocalDate.of(2000, 6, 7), mascota, "droga", "bien");
 		evento2 = new Desparasitacion(LocalDate.of(2004, 6, 7), mascota, "droga", "bien");
-		due = new Dueno("pepe", "mujica", "elPepe@gmail.com", "1234", 22155620);
-		fichajpa.save(config);
-		mascota.setDueno(due);
 		duenojpa.save(due);
-		eventojpa.save(evento);
-		eventojpa.save(evento2);
 	}
 
 

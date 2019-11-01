@@ -39,21 +39,20 @@ public class Mascota {
 	@Temporal(TemporalType.DATE)
 	private Date nacimiento;
 	
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = false, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name="dueno_id")
 	private Dueno dueno;
 	
 	private BufferedImage[] fotos;
 	
-	@ManyToOne(optional = true)
+	@ManyToOne(optional = true, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name="veterinario_id")
 	private Veterinario veterinario;
 	
-	@OneToMany(mappedBy="mascota", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="mascota", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
 	private List<Evento> historial;
 	
-	@OneToOne
-	@JoinColumn(name="config_ficha_id", nullable = false)
+	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	private ConfigFicha configFicha;
 	
 	public Mascota() {}
