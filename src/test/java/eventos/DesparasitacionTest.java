@@ -36,7 +36,7 @@ public class DesparasitacionTest {
 		duenoMascota = new Dueno("seba", "pose", "seba@gmail.com", "1234", 22155620);	
 		mascota = new Mascota("fufi", "perro", "caniche", "masculino", "blanco", "ninguna", null , null, duenoMascota, config);
 		eventoD1 = new Desparasitacion(LocalDate.now(), mascota, "fenbendazol", "positivo");
-		mascotaJPA.save(mascota);
+		duenoJPA.save(duenoMascota);
 	}
 	@Test
 	public void test() {
@@ -51,9 +51,12 @@ public class DesparasitacionTest {
 		
 		Desparasitacion eventoD2 = new Desparasitacion(LocalDate.now(), m1, "praziquantel", "positivo. Qedan dosis pendientes");
 		mascotaJPA.save(m1);
+		m1 = mascotaJPA.getAll().get(0);
 		assertEquals(2, m1.getHistorial().size());
+		eventoD2 = (Desparasitacion) m1.getHistorial().get(1);
 		m1.borrarEvento(eventoD2);	
-		eventoJPA.delete(eventoD2);
+		mascotaJPA.save(m1);
+		m1 = mascotaJPA.getAll().get(0);
 		assertEquals(1, m1.getHistorial().size());
 		
 		e1.setResultado("resultado esperado por todos");
@@ -67,11 +70,8 @@ public class DesparasitacionTest {
 	}
 	@AfterClass
 	public static void afterClass() {
-		/*mascota.borrarEvento(eventoD1);
-		eventoJPA.delete(eventoD1);	
-		mascotaJPA.delete(mascota);	
-		configFichaJPA.delete(config);
-		duenoJPA.delete(duenoMascota);*/    
+		duenoMascota = duenoJPA.getAll().get(0);
+		duenoJPA.delete(duenoMascota);   
 	}
 
 

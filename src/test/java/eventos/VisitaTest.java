@@ -15,6 +15,7 @@ import clasesDAO.MascotaDAO;
 import factory.FactoryDAO;
 import model.ConfigFicha;
 import model.Dueno;
+import model.HistorialReproductivo;
 import model.Mascota;
 import model.Visita;
 
@@ -35,7 +36,7 @@ public class VisitaTest {
 		duenoMascota = new Dueno("pepe", "mujica", "elPepe@gmail.com", "1234", 22155620);	
 		mascota = new Mascota("taton", "perro", "pitbull", "macho", "blanco", "ninguna", null , null, duenoMascota, config);
 		eventoV1 = new Visita(LocalDate.now(), mascota, 22.2f , "pelea en la calle", "perdida de oreja derecha", "alejar del duenio");
-		mascotaJPA.save(mascota);
+		duenoJPA.save(duenoMascota);
 	}
 	@Test
 	public void test() {
@@ -50,9 +51,12 @@ public class VisitaTest {
 		
 		eventoV2 = new Visita(LocalDate.now(), m1, 22.2f , "pelea en la calle", "perdida de nariz", "ninguna");
 		mascotaJPA.save(m1);
+		m1 = mascotaJPA.getAll().get(0);
 		assertEquals(2, m1.getHistorial().size());
-		m1.borrarEvento(eventoV2);		;
-		eventoJPA.delete(eventoV2);
+		eventoV2 = (Visita) m1.getHistorial().get(1);
+		m1.borrarEvento(eventoV2);	
+		mascotaJPA.save(m1);
+		m1 = mascotaJPA.getAll().get(0);
 		assertEquals(1, m1.getHistorial().size());
 		
 		e1.setMotivo("otro motivo");
@@ -62,15 +66,12 @@ public class VisitaTest {
 		assertTrue(e3.getMotivo().equals("otro motivo"));
 		
 		Visita e4 = (Visita) eventoJPA.getById(1);
-		assertEquals("otro motivo", e1.getMotivo());
+		assertEquals("otro motivo", e4.getMotivo());
 		
 	}
 	@AfterClass
 	public static void AfterClass() {
-		/*mascota.borrarEvento(eventoV1);
-		eventoJPA.delete(eventoV1);	
-		mascotaJPA.delete(mascota);	
-		configFichaJPA.delete(config);
-		duenoJPA.delete(duenoMascota);*/    
+		duenoMascota = duenoJPA.getAll().get(0);
+		duenoJPA.delete(duenoMascota);
 	}
 }

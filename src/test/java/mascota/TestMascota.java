@@ -55,16 +55,30 @@ public class TestMascota {
 	public void test() {
 		List<Mascota> lista = mascotajpa.getAll();
 		assertEquals(2, lista.size());
+		assertEquals(1, lista.get(0).getHistorial().size());
+		
 		Dueno due = duenojpa.getById(1);
 		List<Mascota> listaDue = mascotajpa.getByDueno_id(due.getId());
-		Assert.assertEquals(2, listaDue.size());
-		List<Mascota> listaVet = mascotajpa.getByVet(2);
+		assertEquals(2, listaDue.size());
+		
+		Veterinario v = veterinariojpa.getAll().get(0);
+		List<Mascota> listaVet = mascotajpa.getByVet(v.getId());
 		assertEquals(1, listaVet.size());
-		mascotajpa.delete(listaVet.get(0));
+		
+		Mascota mas = mascotajpa.getAll().get(0);
+		mascotajpa.delete(mas);
+		
 		lista = mascotajpa.getAll();
-		//listaDue = mascotajpa.getByDueno_id(due.getId());
-		//Assert.assertEquals(1, listaDue.size());
 		assertEquals(1, lista.size());
+		listaDue = mascotajpa.getByDueno_id(due.getId());
+		listaVet = mascotajpa.getByVet(v.getId());
+		assertEquals(1, listaDue.size());
+		assertEquals(0, listaVet.size());
+	}
+	
+	public void AfterClass() {
+		du = duenojpa.getAll().get(0);
+		duenojpa.delete(du);
 	}
 
 }

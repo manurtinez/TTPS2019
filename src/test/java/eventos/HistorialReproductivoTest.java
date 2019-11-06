@@ -14,6 +14,7 @@ import clasesDAO.EventoDAO;
 import clasesDAO.MascotaDAO;
 import factory.FactoryDAO;
 import model.ConfigFicha;
+import model.Desparasitacion;
 import model.Dueno;
 import model.Enfermedad;
 import model.Mascota;
@@ -36,7 +37,7 @@ public class HistorialReproductivoTest {
 		duenoMascota = new Dueno("seba", "pose", "seba@gmail.com", "1234", 22155620);	
 		mascota = new Mascota("america", "perro", "callejero", "macho", "negro", "ninguna", null , null, duenoMascota, config);
 		eventoD1 = new HistorialReproductivo(LocalDate.now(), mascota, 6);
-		mascotaJPA.save(mascota);
+		duenoJPA.save(duenoMascota);
 	}
 	@Test
 	public void test() {
@@ -51,9 +52,12 @@ public class HistorialReproductivoTest {
 		
 		HistorialReproductivo eventoD2 = new HistorialReproductivo(LocalDate.now(), m1, 7);
 		mascotaJPA.save(m1);
+		m1 = mascotaJPA.getAll().get(0);
 		assertEquals(2, m1.getHistorial().size());
+		eventoD2 = (HistorialReproductivo) m1.getHistorial().get(1);
 		m1.borrarEvento(eventoD2);	
 		mascotaJPA.save(m1);
+		m1 = mascotaJPA.getAll().get(0);
 		assertEquals(1, m1.getHistorial().size());
 		
 		e1.setNroNacidos(5);
@@ -62,15 +66,12 @@ public class HistorialReproductivoTest {
 		HistorialReproductivo e3 = (HistorialReproductivo) mascotas.get(0).getHistorial().get(0);
 		assertTrue(e3.getNroNacidos() == 5);
 		
-		HistorialReproductivo e4 = (HistorialReproductivo) eventoJPA.getById(0);
+		HistorialReproductivo e4 = (HistorialReproductivo) eventoJPA.getById(1);
 		assertEquals(5, e4.getNroNacidos());
 	}
 	@AfterClass
 	public static void AfterClass() {
-		/*mascota.borrarEvento(eventoV1);
-		eventoJPA.delete(eventoV1);	
-		mascotaJPA.delete(mascota);	
-		configFichaJPA.delete(config);
-		duenoJPA.delete(duenoMascota);*/ 	    
+		duenoMascota = duenoJPA.getAll().get(0);
+		duenoJPA.delete(duenoMascota);
 	}
 }

@@ -16,6 +16,7 @@ import factory.FactoryDAO;
 import model.ConfigFicha;
 import model.Vacunacion;
 import model.Dueno;
+import model.HistorialReproductivo;
 import model.Mascota;
 
 public class VacunacionTest {
@@ -35,7 +36,7 @@ public class VacunacionTest {
 		duenoMascota = new Dueno("seba", "pose", "seba@gmail.com", "1234", 22155620);	
 		mascota = new Mascota("america", "perro", "callejero", "macho", "negro", "ninguna", null , null, duenoMascota, config);
 		eventoD1 = new Vacunacion(LocalDate.now(), mascota, "sextuple");
-		mascotaJPA.save(mascota);
+		duenoJPA.save(duenoMascota);
 	}
 	@Test
 	public void test() {
@@ -50,9 +51,12 @@ public class VacunacionTest {
 		
 		Vacunacion eventoD2 = new Vacunacion(LocalDate.now(), m1, "quintuple");
 		mascotaJPA.save(m1);
+		m1 = mascotaJPA.getAll().get(0);
 		assertEquals(2, m1.getHistorial().size());
+		eventoD2 = (Vacunacion) m1.getHistorial().get(1);
 		m1.borrarEvento(eventoD2);	
-		eventoJPA.delete(eventoD2);
+		mascotaJPA.save(m1);
+		m1 = mascotaJPA.getAll().get(0);
 		assertEquals(1, m1.getHistorial().size());
 		
 		e1.setDescripcion("hepatitis");
@@ -66,11 +70,8 @@ public class VacunacionTest {
 	}
 	@AfterClass
 	public static void AfterClass() {
-		/*mascota.borrarEvento(eventoV1);
-		eventoJPA.delete(eventoV1);	
-		mascotaJPA.delete(mascota);	
-		configFichaJPA.delete(config);
-		duenoJPA.delete(duenoMascota);*/     
+		duenoMascota = duenoJPA.getAll().get(0);
+		duenoJPA.delete(duenoMascota);
 	}
 
 }
