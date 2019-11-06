@@ -45,5 +45,11 @@ public class AdminTest {
 		assertEquals(1, veterinarios.size());
 		
 	}
+	
+	public void AfterClass() {
+		vetD.delete(vetD.getById(1));
+		vetD.delete(vetD.getById(2));
+		adminD.delete(adminD.getById(1));
+	}
 
 }

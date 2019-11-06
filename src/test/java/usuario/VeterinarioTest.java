@@ -58,12 +58,11 @@ public class VeterinarioTest {
 	@Test
 	public void test() {
 		ArrayList<Mascota> mascotas;
-		
 		mascotas = (ArrayList<Mascota>) mascotajpa.getAll();
 		assertEquals(2,mascotas.size());
+		
 		Mascota mas = mascotas.get(1);
 		assertEquals(1, mas.getHistorial().size());
-		
 		
 		assertEquals(1, veterinariojpa.getAll().size());
 		//ArrayList<Veterinario> vets = (ArrayList<Veterinario>) veterinariojpa.getAll();
@@ -79,13 +78,8 @@ public class VeterinarioTest {
 	}
 	@AfterClass
 	public static void AfterClass() {
-		/*mas.borrarEvento(evento);
-		eventojpa.delete(evento);
-		fichajpa.delete(config);
-		mascotajpa.delete(mas);
-		mascotajpa.delete(mas2);
-		veterinariojpa.delete(vet);
-		duenojpa.delete(due);*/
+		duenojpa.delete(duenojpa.getById(1));
+		veterinariojpa.delete(veterinariojpa.getById(2));
 	}
 
 }

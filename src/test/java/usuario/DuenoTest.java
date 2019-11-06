@@ -60,10 +60,9 @@ public class DuenoTest {
 	
 	@Test
 	public void test() {
-		ArrayList<Mascota> mascotas;
-		
 		assertEquals(1, duenojpa.getAll().size());
 		Dueno dueno = duenojpa.getById(1);
+		
 		assertEquals(2, dueno.getMascotas().size());
 		assertEquals(2, dueno.getMascotas().size());
 		List<Mascota> mascotasdeDue = (List<Mascota>) dueno.getMascotas();
@@ -76,6 +75,10 @@ public class DuenoTest {
 		mascotasdeDue = duenojpa.getById(dueno.getId()).getMascotas();
 		vis = (Visita) mascotasdeDue.get(0).getHistorial().get(0);
 		assertEquals("hola", vis.getDescripcion());
+	}
+	
+	public void AfterClass() {
+		duenojpa.delete(duenojpa.getById(1));
 	}
 
 }
