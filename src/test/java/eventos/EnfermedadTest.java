@@ -15,6 +15,7 @@ import clasesDAO.MascotaDAO;
 import factory.FactoryDAO;
 import model.ConfigFicha;
 import model.Enfermedad;
+import model.Evento;
 import model.Dueno;
 import model.Mascota;
 
@@ -35,7 +36,7 @@ public class EnfermedadTest {
 		duenoMascota = new Dueno("seba", "pose", "seba@gmail.com", "1234", 22155620);	
 		mascota = new Mascota("america", "perro", "callejero", "macho", "negro", "ninguna", null , null, duenoMascota, config);
 		eventoD1 = new Enfermedad(LocalDate.now(), mascota, "gripe");
-		mascotaJPA.save(mascota);
+		duenoJPA.save(duenoMascota);
 	}
 	@Test
 	public void test() {
@@ -50,11 +51,15 @@ public class EnfermedadTest {
 		
 		Enfermedad eventoD2 = new Enfermedad(LocalDate.now(), m1, "rabia");
 		mascotaJPA.save(m1);
+		m1 = mascotaJPA.getAll().get(0);
 		assertEquals(2, m1.getHistorial().size());
-		m1.borrarEvento(eventoD2);	
-		eventoJPA.delete(eventoD2);
-		assertEquals(1, m1.getHistorial().size());
+		Enfermedad e = (Enfermedad) eventoJPA.getById(2);
+		m1.borrarEvento(e);
+		mascotaJPA.save(m1);
+		m1 = mascotaJPA.getAll().get(0);
+		assertEquals(1, m1.getHistorial().size());	
 		
+		e1 = (Enfermedad) eventoJPA.getAll().get(0);
 		e1.setDescripcion("gangrena");
 		eventoJPA.update(e1);
 		mascotas = (ArrayList<Mascota>) mascotaJPA.getAll();
@@ -66,10 +71,8 @@ public class EnfermedadTest {
 	}
 	@AfterClass
 	public static void AfterClass() {
-		Mascota mascotaa = mascotaJPA.getAll().get(0);
-		mascotaJPA.delete(mascotaa);
 		Dueno duenoo = duenoJPA.getAll().get(0);
-		duenoJPA.delete(duenoo); 	    
+		duenoJPA.delete(duenoo);
 	}
 
 

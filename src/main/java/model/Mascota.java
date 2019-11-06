@@ -39,7 +39,7 @@ public class Mascota {
 	@Temporal(TemporalType.DATE)
 	private Date nacimiento;
 	
-	@ManyToOne(optional = false, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToOne(optional = false)
 	@JoinColumn(name="dueno_id")
 	private Dueno dueno;
 	
@@ -49,7 +49,7 @@ public class Mascota {
 	@JoinColumn(name="veterinario_id")
 	private Veterinario veterinario;
 	
-	@OneToMany(mappedBy="mascota", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+	@OneToMany(mappedBy="mascota", orphanRemoval = true, fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
 	private List<Evento> historial;
 	
 	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
