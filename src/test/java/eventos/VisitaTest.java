@@ -65,7 +65,7 @@ public class VisitaTest {
 		Visita e3 = (Visita) mascotas.get(0).getHistorial().get(0);
 		assertTrue(e3.getMotivo().equals("otro motivo"));
 		
-		Visita e4 = (Visita) eventoJPA.getById(1);
+		Visita e4 = (Visita) eventoJPA.getAll().get(0);
 		assertEquals("otro motivo", e4.getMotivo());
 		
 	}

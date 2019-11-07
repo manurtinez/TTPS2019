@@ -53,7 +53,7 @@ public class EnfermedadTest {
 		mascotaJPA.save(m1);
 		m1 = mascotaJPA.getAll().get(0);
 		assertEquals(2, m1.getHistorial().size());
-		Enfermedad e = (Enfermedad) eventoJPA.getById(2);
+		Enfermedad e = (Enfermedad) eventoJPA.getAll().get(1);
 		m1.borrarEvento(e);
 		mascotaJPA.save(m1);
 		m1 = mascotaJPA.getAll().get(0);
@@ -66,7 +66,7 @@ public class EnfermedadTest {
 		Enfermedad e3 = (Enfermedad) mascotas.get(0).getHistorial().get(0);
 		assertTrue(e3.getDescripcion().equals("gangrena"));
 		
-		Enfermedad e4 = (Enfermedad) eventoJPA.getById(1);
+		Enfermedad e4 = (Enfermedad) eventoJPA.getAll().get(0);
 		assertEquals("gangrena", e4.getDescripcion());
 	}
 	@AfterClass

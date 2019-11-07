@@ -57,7 +57,7 @@ public class TestMascota {
 		assertEquals(2, lista.size());
 		assertEquals(1, lista.get(0).getHistorial().size());
 		
-		Dueno due = duenojpa.getById(1);
+		Dueno due = duenojpa.getAll().get(0);
 		List<Mascota> listaDue = mascotajpa.getByDueno_id(due.getId());
 		assertEquals(2, listaDue.size());
 		

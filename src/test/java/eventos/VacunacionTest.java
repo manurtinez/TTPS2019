@@ -65,7 +65,7 @@ public class VacunacionTest {
 		Vacunacion e3 = (Vacunacion) mascotas.get(0).getHistorial().get(0);
 		assertTrue(e3.getDescripcion().equals("hepatitis"));
 		
-		Vacunacion e4 = (Vacunacion) eventoJPA.getById(1);
+		Vacunacion e4 = (Vacunacion) eventoJPA.getAll().get(0);
 		assertEquals("hepatitis", e4.getDescripcion());
 	}
 	@AfterClass

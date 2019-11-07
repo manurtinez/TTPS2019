@@ -52,7 +52,7 @@ public class Mascota {
 	@OneToMany(mappedBy="mascota", orphanRemoval = true, fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
 	private List<Evento> historial;
 	
-	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
 	private ConfigFicha configFicha;
 	
 	public Mascota() {}
@@ -94,6 +94,10 @@ public class Mascota {
 	public void setVeterinario(Veterinario veterinario) {
 		veterinario.agregarMascota(this);
 		this.veterinario = veterinario;
+	}
+	public void nullVeterinario(Veterinario veterinario) {
+		veterinario.borrarMascota(this);
+		this.veterinario = null;
 	}
 
 	public String getNombre() {

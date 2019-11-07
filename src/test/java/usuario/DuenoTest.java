@@ -10,6 +10,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.AfterClass;
 
 import clasesDAO.ConfigFichaDAO;
 import clasesDAO.DuenoDAO;
@@ -61,7 +62,7 @@ public class DuenoTest {
 	@Test
 	public void test() {
 		assertEquals(1, duenojpa.getAll().size());
-		Dueno dueno = duenojpa.getById(1);
+		Dueno dueno = duenojpa.getAll().get(0);
 		
 		assertEquals(2, dueno.getMascotas().size());
 		assertEquals(2, dueno.getMascotas().size());
@@ -76,9 +77,10 @@ public class DuenoTest {
 		vis = (Visita) mascotasdeDue.get(0).getHistorial().get(0);
 		assertEquals("hola", vis.getDescripcion());
 	}
-	
-	public void AfterClass() {
-		duenojpa.delete(duenojpa.getById(1));
+	@AfterClass
+	public static void AfterClass() {
+		duenojpa.delete(duenojpa.getAll().get(0));
+		//veterinariojpa.delete(veterinariojpa.getAll().get(0));
 	}
 
 }

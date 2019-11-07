@@ -36,24 +36,24 @@ public class RecordatorioTest {
 		
 		Recordatorio r2= new Recordatorio("nuevo recordatorio", LocalDateTime.now(), "descripcion del nuevo recordatorio", d1);
 		duenoJPA.save(d1);
-		d1 = duenoJPA.getById(1);
+		d1 = duenoJPA.getAll().get(0);
 		assertEquals(2, d1.getRecordatorios().size());
-		r2 = (Recordatorio) recordatorioJPA.getById(2);
-		d1 = duenoJPA.getById(1);
+		r2 = (Recordatorio) recordatorioJPA.getAll().get(0);
+		d1 = duenoJPA.getAll().get(0);
 		d1.borrarRecordatorio(r2);
 		duenoJPA.save(d1);
-		d1 = duenoJPA.getById(1);
+		d1 = duenoJPA.getAll().get(0);
 		assertEquals(1, d1.getRecordatorios().size());
 		
-		r2 = (Recordatorio)recordatorioJPA.getById(1);
+		r2 = (Recordatorio)recordatorioJPA.getAll().get(0);
 		r2.setDescripcion("una descripcion nueva");
 		recordatorioJPA.update(r2);
-		Recordatorio r4 = (Recordatorio)recordatorioJPA.getById(1);
+		Recordatorio r4 = (Recordatorio)recordatorioJPA.getAll().get(0);
 		assertTrue(r4.getDescripcion().equals(r2.getDescripcion()));
 	}
 	@AfterClass
 	public static void afterClass() {
-		Dueno duenoDel = duenoJPA.getById(1);
+		Dueno duenoDel = duenoJPA.getAll().get(0);
 		duenoJPA.delete(duenoDel);
 	}
 }

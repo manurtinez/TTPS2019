@@ -65,7 +65,7 @@ public class IntervencionTest {
 		Intervencion e3 = (Intervencion) mascotas.get(0).getHistorial().get(0);
 		assertTrue(e3.getDescripcion().equals("obstruccion intestinal"));
 		
-		Intervencion e4 = (Intervencion) eventoJPA.getById(1);
+		Intervencion e4 = (Intervencion) eventoJPA.getAll().get(0);
 		assertEquals("obstruccion intestinal", e4.getDescripcion());
 	}
 	@AfterClass

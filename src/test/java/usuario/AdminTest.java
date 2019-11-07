@@ -3,7 +3,7 @@ package usuario;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
-
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -45,11 +45,12 @@ public class AdminTest {
 		assertEquals(1, veterinarios.size());
 		
 	}
-	
-	public void AfterClass() {
-		vetD.delete(vetD.getById(1));
-		vetD.delete(vetD.getById(2));
-		adminD.delete(adminD.getById(1));
+	@AfterClass
+	public static void AfterClass() {
+		ArrayList<Veterinario> veterinariosBorrado =(ArrayList<Veterinario>) vetD.getAll();
+		vetD.delete(veterinariosBorrado.get(0));
+		vetD.delete(veterinariosBorrado.get(1));
+		adminD.delete(adminD.getAll().get(0));
 	}
 
 }

@@ -65,7 +65,7 @@ public class DesparasitacionTest {
 		Desparasitacion e3 = (Desparasitacion) mascotas.get(0).getHistorial().get(0);
 		assertTrue(e3.getResultado().equals("resultado esperado por todos"));
 		
-		Desparasitacion e4 = (Desparasitacion) eventoJPA.getById(1);
+		Desparasitacion e4 = (Desparasitacion) eventoJPA.getAll().get(0);
 		assertEquals("fenbendazol",e4.getDroga());
 	}
 	@AfterClass

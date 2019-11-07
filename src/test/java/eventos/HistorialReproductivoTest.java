@@ -66,7 +66,7 @@ public class HistorialReproductivoTest {
 		HistorialReproductivo e3 = (HistorialReproductivo) mascotas.get(0).getHistorial().get(0);
 		assertTrue(e3.getNroNacidos() == 5);
 		
-		HistorialReproductivo e4 = (HistorialReproductivo) eventoJPA.getById(1);
+		HistorialReproductivo e4 = (HistorialReproductivo) eventoJPA.getAll().get(0);
 		assertEquals(5, e4.getNroNacidos());
 	}
 	@AfterClass

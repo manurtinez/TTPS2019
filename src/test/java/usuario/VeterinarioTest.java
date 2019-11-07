@@ -66,7 +66,7 @@ public class VeterinarioTest {
 		
 		assertEquals(1, veterinariojpa.getAll().size());
 		//ArrayList<Veterinario> vets = (ArrayList<Veterinario>) veterinariojpa.getAll();
-		Veterinario veterinario = veterinariojpa.getById(2);
+		Veterinario veterinario = veterinariojpa.getAll().get(0);
 		assertEquals(2, veterinario.getMascotas().size());
 		List<Mascota> mascotasdeVet = (List<Mascota>) veterinario.getMascotas();
 		Mascota mascotita = mascotasdeVet.get(0);
@@ -74,12 +74,24 @@ public class VeterinarioTest {
 		mascotita.setRaza("chihuahuenio");
 		mascotajpa.update(mascotita);
 		mascotasdeVet = veterinariojpa.getById(veterinario.getId()).getMascotas();
-		assertEquals("chihuahuenio", mascotasdeVet.get(0).getRaza());
+		assertEquals("chihuahuenio", mascotasdeVet.get(1).getRaza());
+				
 	}
 	@AfterClass
 	public static void AfterClass() {
-		duenojpa.delete(duenojpa.getById(1));
-		veterinariojpa.delete(veterinariojpa.getById(2));
+		vet = veterinariojpa.getAll().get(0);
+		
+		Mascota masBorrado = vet.getMascotas().get(0);
+		Mascota mas2Borrado = vet.getMascotas().get(1);
+		masBorrado.nullVeterinario(vet);
+		mas2Borrado.nullVeterinario(vet);
+		mascotajpa.save(masBorrado);
+		mascotajpa.save(mas2Borrado);
+		
+		duenojpa.delete(duenojpa.getAll().get(0));
+
+		vet = veterinariojpa.getAll().get(0);
+		veterinariojpa.delete(vet);
 	}
 
 }

@@ -21,7 +21,7 @@ public class Veterinario extends Usuario {
 	@Column(name="habilitado", nullable = false)
 	private boolean habilitado;
 	
-	@OneToMany(cascade= {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy="veterinario")
+	@OneToMany(cascade= {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy="veterinario", fetch = FetchType.EAGER)
 	private List<Mascota> mascotas;
 	
 	public Veterinario() {}
@@ -73,6 +73,9 @@ public class Veterinario extends Usuario {
 	
 	public void agregarMascota(Mascota m) {
 		mascotas.add(m);
+	}
+	public void borrarMascota(Mascota m) {
+		mascotas.remove(m);
 	}
 
 	public void setMascotas(List<Mascota> mascotas) {

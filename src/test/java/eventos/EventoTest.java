@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.hibernate.type.descriptor.java.LocalDateJavaDescriptor;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -29,10 +30,8 @@ public class EventoTest {
 	private static Mascota mascota;
 	private static ConfigFicha config;
 	private static Dueno due;
-	private static MascotaDAO mascotajpa = FactoryDAO.getMascotaDAO();
 	private static EventoDAO eventojpa = FactoryDAO.getEventoDAO();
 	private static DuenoDAO duenojpa = FactoryDAO.getDuenoDAO();
-	private static ConfigFichaDAO fichajpa = FactoryDAO.getConfigFichaDAO();
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -50,9 +49,12 @@ public class EventoTest {
 	public void test() {
 		LocalDate da = LocalDate.of(2000, 2, 2);
 		Evento ev = eventojpa.getAll().get(0);
-		System.out.println(ev.getFecha());
 		List<Evento> prueba =(List<Evento>) eventojpa.getByDate(da);
 		assertEquals(2, prueba.size());
+	}
+	@AfterClass
+	public static void afterClass() {
+		duenojpa.delete(duenojpa.getAll().get(0));
 	}
 
 }
