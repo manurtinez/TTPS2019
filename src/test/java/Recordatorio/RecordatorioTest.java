@@ -1,16 +1,11 @@
 package Recordatorio;
 
 import static org.junit.Assert.*;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
 import clasesDAO.DuenoDAO;
 import clasesDAO.RecordatorioDAO;
 import factory.FactoryDAO;
@@ -38,29 +33,27 @@ public class RecordatorioTest {
 		assertEquals(1, duenos.size());
 		Dueno d1 = duenos.get(0);
 		assertEquals(1, d1.getRecordatorios().size());
-		Recordatorio r2 = d1.getRecordatorios().get(0);
-		assertEquals("comprar alimento para America", r2.getTitulo());
 		
-		Recordatorio r3 = new Recordatorio("nuevo recordatorio", LocalDateTime.now(), "descripcion del nuevo recordatorio", d1);
+		Recordatorio r2= new Recordatorio("nuevo recordatorio", LocalDateTime.now(), "descripcion del nuevo recordatorio", d1);
 		duenoJPA.save(d1);
+		d1 = duenoJPA.getById(1);
 		assertEquals(2, d1.getRecordatorios().size());
-		d1.borrarRecordatorio(r3);
+		r2 = (Recordatorio) recordatorioJPA.getById(2);
+		d1 = duenoJPA.getById(1);
+		d1.borrarRecordatorio(r2);
 		duenoJPA.save(d1);
+		d1 = duenoJPA.getById(1);
 		assertEquals(1, d1.getRecordatorios().size());
 		
+		r2 = (Recordatorio)recordatorioJPA.getById(1);
 		r2.setDescripcion("una descripcion nueva");
 		recordatorioJPA.update(r2);
-		duenos = (ArrayList<Dueno>) duenoJPA.getAll();
-		Recordatorio r4 = (Recordatorio) duenos.get(0).getRecordatorios().get(0);
-		assertTrue(r4.getDescripcion().equals("una descripcion nueva"));
-		
-		Recordatorio r5 = (Recordatorio) recordatorioJPA.getById(1);
-		assertEquals("una descripcion nueva", r5.getDescripcion());
+		Recordatorio r4 = (Recordatorio)recordatorioJPA.getById(1);
+		assertTrue(r4.getDescripcion().equals(r2.getDescripcion()));
 	}
 	@AfterClass
 	public static void afterClass() {
-		/*dueno.borrarRecordatorio(r1);
-		recordatorioJPA.delete(r1);
-		duenoJPA.delete(dueno);*/
+		Dueno duenoDel = duenoJPA.getById(1);
+		duenoJPA.delete(duenoDel);
 	}
 }

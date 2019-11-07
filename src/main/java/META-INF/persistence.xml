@@ -26,7 +26,7 @@
 			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/historia_clinica_mascotas?serverTimezone=UTC"/>
 			<property name="hibernate.connection.username" value="manu" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
-			<property name="hibernate.hbm2ddl.auto" value="create-drop"></property>
+			<property name="hibernate.hbm2ddl.auto" value="update"></property>
 		</properties>
 	</persistence-unit>
 </persistence>

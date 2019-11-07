@@ -67,11 +67,18 @@ public class Recordatorio {
     @Override
     public boolean equals(Object obj)
     {
-        if ( obj == null ) return false;
-        if ( this == obj ) return true;
-        if ( ! (obj instanceof Recordatorio ) ) return false;
-        Recordatorio e = (Recordatorio) obj;
-        return this.getId() == e.getId();
+    	if(this == obj) 
+            return true; 
+    	if(obj == null || obj.getClass()!= this.getClass()) 
+            return false; 
+    	Recordatorio r = (Recordatorio) obj;
+    	return (r.getTitulo().equals(this.titulo) && r.getId()==this.getId());
+    }
+    
+    @Override
+    public int hashCode() 
+    { 
+    	return this.getId(); 
     }
 	
 }

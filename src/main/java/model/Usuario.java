@@ -1,7 +1,7 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,8 +15,6 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.Fetch;
 
 @Entity
 @Table(name = "usuario")
@@ -42,22 +40,21 @@ public abstract class Usuario {
 	@Column(name="telefono", nullable = false, length = 20)
 	private long telefono;
 	
-	@OneToMany(mappedBy="usuario", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-	@Fetch(value = FetchMode.SUBSELECT)//corrige error de EAGER -> MultipleBagFetchException: cannot simultaneously fetch multiple bags
-	private List<Recordatorio> recordatorios;
+	@OneToMany(mappedBy="usuario",orphanRemoval = true, fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+	private Set<Recordatorio> recordatorios;
 	
 	public void agregarRecordatorio(Recordatorio r) {
-		this.getRecordatorios().add(r);
+		this.recordatorios.add(r);
 	}
 	public void borrarRecordatorio(Recordatorio r) {
-		this.getRecordatorios().remove(r);
+		this.recordatorios.remove(r);
 	}
 	
-	public List<Recordatorio> getRecordatorios() {
+	public Set<Recordatorio> getRecordatorios() {
 		return recordatorios;
 	}
 
-	public void setRecordatorios(List<Recordatorio> recordatorios) {
+	public void setRecordatorios(HashSet<Recordatorio> recordatorios) {
 		this.recordatorios = recordatorios;
 	}
 
@@ -69,7 +66,7 @@ public abstract class Usuario {
 		this.email = email;
 		this.password = password;
 		this.telefono = telefono;
-		this.recordatorios = new ArrayList<Recordatorio>();
+		this.recordatorios = new HashSet<Recordatorio>();
 	}
 	
 	public String getNombre() {
