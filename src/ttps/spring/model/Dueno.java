@@ -24,9 +24,9 @@ public class Dueno extends Usuario {
 		this.mascotas = new ArrayList<Mascota>();
 	}
 		
-	public List<Mascota> getMascotas() {
-		return mascotas;
-	}
+	//public List<Mascota> getMascotas() {
+		//return mascotas;
+	//}
 	public void setMascotas(List<Mascota> mascotas) {
 		this.mascotas = mascotas;
 	}

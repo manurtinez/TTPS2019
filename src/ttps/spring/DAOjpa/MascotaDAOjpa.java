@@ -2,9 +2,12 @@ package ttps.spring.DAOjpa;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+
+import org.springframework.stereotype.Repository;
+
 import ttps.spring.DAO.MascotaDAO;
 import ttps.spring.model.Mascota;
-
+@Repository
 public class MascotaDAOjpa extends GenericDAOjpa<Mascota>
 implements MascotaDAO{
 

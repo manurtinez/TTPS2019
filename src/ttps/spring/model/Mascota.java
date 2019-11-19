@@ -87,10 +87,12 @@ public class Mascota {
 		this.historial = new ArrayList<Evento>();
 		
 	}
-	public Veterinario getVeterinario() {
-		return veterinario;
+	public Dueno getDueno() {
+		return this.dueno;
 	}
-
+	public Veterinario getVeterinario() {
+		return this.veterinario;
+	}
 	public void setVeterinario(Veterinario veterinario) {
 		veterinario.agregarMascota(this);
 		this.veterinario = veterinario;
@@ -148,10 +150,6 @@ public class Mascota {
 	}
 	public void setFotos(BufferedImage[] fotos) {
 		this.fotos = fotos;
-	}
-
-	public Usuario getDueno() {
-		return dueno;
 	}
 
 	public void setDueno(Dueno dueno) {

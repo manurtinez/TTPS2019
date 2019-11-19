@@ -49,10 +49,6 @@ public abstract class Evento {
 		this.fecha = fecha;
 	}
 
-	public Mascota getMascota() {
-		return mascota;
-	}
-
 	public void setMascota(Mascota mascota) {
 		mascota.agregarEvento(this);
 		this.mascota = mascota;

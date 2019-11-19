@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import ttps.spring.DAO.DuenoDAO;
 import ttps.spring.model.Dueno;
+import ttps.spring.model.Mascota;
 
 @Service
 public class DuenoService {
@@ -16,5 +17,9 @@ public class DuenoService {
 	
 	public List<Dueno> getAll() {
 		return duenoDAO.getAll();
+	}
+	
+	public List<Mascota> getAllMascotas(int id) {
+		return duenoDAO.getAllMascotas(id);
 	}
 }

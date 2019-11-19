@@ -67,9 +67,9 @@ public class Veterinario extends Usuario {
 		this.habilitado = habilitado;
 	}
 
-	public List<Mascota> getMascotas() {
-		return mascotas;
-	}
+	//public List<Mascota> getMascotas() {
+		//return mascotas;
+	//}
 	
 	public void agregarMascota(Mascota m) {
 		mascotas.add(m);
