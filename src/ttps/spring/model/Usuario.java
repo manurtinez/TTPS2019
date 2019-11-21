@@ -34,6 +34,16 @@ public abstract class Usuario {
 	@Column(name="email", nullable = false, length = 200)
 	private String email;
 	
+	@Column(name="token", nullable= true, length=200)
+	private String token;
+	
+	public String getToken() {
+		return token;
+	}
+	public void setToken(String token) {
+		this.token = token;
+	}
+
 	@Column(name="password", nullable = false, length = 50)
 	private String password;
 	

@@ -29,8 +29,7 @@ public class MascotaService {
 	
 	public boolean altaMascota(MascotaDTO mascota, String token){
 		try {
-			int idToken = this.tokenValidator.validateTokenAndGetId(token);
-			Dueno dueno = duenodao.getById(idToken);
+			Dueno dueno = (Dueno) this.tokenValidator.validateTokenAndGetUser(token);
 			Mascota mascotaSave = new Mascota(mascota.getNombre(), mascota.getEspecie(), mascota.getRaza()
 					, mascota.getSexo(), mascota.getColor(), mascota.getSenas(), mascota.getNacimiento()
 					, mascota.getFotos(), dueno, mascota.getConfigFicha());
