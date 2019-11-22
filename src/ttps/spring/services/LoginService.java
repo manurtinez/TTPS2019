@@ -20,7 +20,7 @@ public class LoginService {
 			Usuario user = usuariodao.getByEmail(email);
             if (user.getPassword().equals(password)) {
     			HttpHeaders headers = new HttpHeaders();
-    			String token = new String(Integer.toString(user.getId()) + generateToken());
+    			String token = new String(Integer.toString(user.getId()) + "x" + generateToken());
     			user.setToken(token);
     			usuariodao.update(user);
                 headers.add("Authorization",token);

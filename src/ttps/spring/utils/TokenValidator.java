@@ -13,8 +13,10 @@ public class TokenValidator {
 	private UsuarioDAO usuariodao;
 	
 	public Usuario validateTokenAndGetUser(String token) throws InvalidTokenException {
-		Character c = token.charAt(0);
-    	int id = Character.getNumericValue(c);
+		int x = token.indexOf("x");
+		String substring = token.substring(0, x);
+    	int id = Integer.parseInt(substring);
+    	System.out.println(id);
 		try {
             Usuario user = usuariodao.getById(id);
             String tokenuser = user.getToken();
