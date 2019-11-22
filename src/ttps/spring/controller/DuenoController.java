@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,9 +24,10 @@ public class DuenoController {
 	
 	//recupero todas las mascotas de un dueno
 	@GetMapping("/dueno/mascota/{id}")
-	public ResponseEntity<List<Mascota>> todasLasMascotasDeUnDueno (@PathVariable("id") int id) {
+	public ResponseEntity<List<Mascota>> todasLasMascotasDeUnDueno (@PathVariable("id") int id,
+			@RequestHeader("Authorization") String token) throws Exception {
 		//System.out.println(id);
-		List<Mascota> lista = duenoservice.getAllMascotas(id);
+		List<Mascota> lista = duenoservice.getAllMascotas(id, token);
 		if(lista.isEmpty()) {
 			return new ResponseEntity<List<Mascota>>(HttpStatus.NO_CONTENT);
 		}
