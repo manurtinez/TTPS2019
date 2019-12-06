@@ -1,33 +1,50 @@
 package ttps.spring.utils;
 
-import javax.persistence.NoResultException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ttps.spring.DAO.UsuarioDAO;
-import ttps.spring.exception.InvalidTokenException;
-import ttps.spring.model.Usuario;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
+import java.security.Key;
+import java.util.Calendar;
+import java.util.Date;
 
 @Component
 public class TokenValidator {
-	@Autowired
-	private UsuarioDAO usuariodao;
+	final static Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 	
-	public Usuario validateTokenAndGetUser(String token) throws InvalidTokenException {
-		int x = token.indexOf("x");
-		String substring = token.substring(0, x);
-    	int id = Integer.parseInt(substring);
-    	System.out.println(id);
-		try {
-            Usuario user = usuariodao.getById(id);
-            String tokenuser = user.getToken();
-            if(tokenuser.equals(token)){
-                return user;
-            }
-        }
-        catch (NoResultException e){
-            throw new NoResultException();
-        }
-        throw new InvalidTokenException();
+    public String generateToken(String username, int segundos) {
+        Date exp = getExpiration(new Date(), segundos);
+        return Jwts.builder().setSubject(username).signWith(key).setExpiration(exp).compact();
     }
 
+    private Date getExpiration(Date date, int segundos) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date); // Configuramos la fecha que se recibe
+        calendar.add(Calendar.SECOND, segundos);
+        return calendar.getTime();
+    }
+
+    public static Claims validateToken(String token) {
+        String prefix = "Bearer";
+        try {
+            if (token.startsWith(prefix)) {
+                token = token.substring(prefix.length()).trim();
+            }
+            Claims claims = Jwts.parser().setSigningKey(key).parseClaimsJws(token).getBody();//payload
+  
+            return claims;
+            
+        } catch (ExpiredJwtException exp) {
+        	return null;
+        } catch (JwtException e) {
+            // Algo salio mal en la verificacion
+        	//reportar este tipo de errores
+            System.out.println("Error: " + e.getMessage());
+            return null;
+        }
+    }
 }
