@@ -41,7 +41,7 @@ public class JWTAuthenticationFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 
         // El login del usuarios es publico
-        if ("/historiaClinicaMascotas/autenticacion".equals(req.getRequestURI()) ||
+        if ("/HistoriaClinicaMascotas/autenticacion".equals(req.getRequestURI()) ||
                 HttpMethod.OPTIONS.matches(req.getMethod())) {
 
             chain.doFilter(request, response);
