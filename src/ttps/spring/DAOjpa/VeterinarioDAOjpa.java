@@ -3,11 +3,15 @@ package ttps.spring.DAOjpa;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+
+import org.springframework.stereotype.Repository;
 
 import ttps.spring.DAO.VeterinarioDAO;
 import ttps.spring.model.Mascota;
+import ttps.spring.model.Usuario;
 import ttps.spring.model.Veterinario;
-
+@Repository
 public class VeterinarioDAOjpa extends GenericDAOjpa<Veterinario> implements VeterinarioDAO {
 
 	public VeterinarioDAOjpa() {
@@ -18,6 +22,17 @@ public class VeterinarioDAOjpa extends GenericDAOjpa<Veterinario> implements Vet
 	public List<Mascota> getMascotas(Veterinario vet) {
 		EntityManager em = getEntityManager();
 		return (List<Mascota>) em.createQuery("SELECT m FROM Mascota m WHERE m.veterinario_id=:vet.veterinario_id").getResultList();
+	}
+
+	@Override
+	public Veterinario getByIdEmail(String email) {
+		try {
+			EntityManager em = getEntityManager();
+			return (Veterinario) em.createQuery("SELECT m FROM Veterinario m WHERE m.email= :email")
+					.setParameter("email",email).getSingleResult();
+		}catch(NoResultException e) {
+			return null;
+		}
 	}
 
 }

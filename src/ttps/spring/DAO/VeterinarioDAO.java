@@ -7,4 +7,6 @@ import ttps.spring.model.Veterinario;
 
 public interface VeterinarioDAO extends Dao<Veterinario> {
 	public List<Mascota> getMascotas(Veterinario vet);
+
+	public Veterinario getByIdEmail(String email);
 }

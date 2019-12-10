@@ -87,9 +87,7 @@ public class Mascota {
 		this.historial = new ArrayList<Evento>();
 		
 	}
-	public Dueno getDueno() {
-		return this.dueno;
-	}
+	
 	public Veterinario getVeterinario() {
 		return this.veterinario;
 	}
