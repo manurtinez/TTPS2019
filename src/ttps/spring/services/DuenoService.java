@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import ttps.spring.DAO.DuenoDAO;
 import ttps.spring.model.Dueno;
 import ttps.spring.model.Mascota;
+import ttps.spring.utils.TokenValidator;
 
 @Service
 public class DuenoService {
@@ -22,4 +23,5 @@ public class DuenoService {
 	public List<Mascota> getAllMascotas(int id) {
 		return duenoDAO.getAllMascotas(id);
 	}
+	
 }
