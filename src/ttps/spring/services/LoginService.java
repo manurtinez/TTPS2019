@@ -17,12 +17,12 @@ public class LoginService {
 	@Autowired
 	private TokenValidator tokenvalidator;
 	
-	public boolean isLoginSuccess(String email, String password) {
+	public Usuario isLoginSuccess(String email, String password) {
         // recupero el usuario de la base de usuarios
         Usuario u = usuariodao.getByEmailAndPass(email, password);
-
+        return u;
         // chequeo que el usuario exista y el password sea correcto
-        return (u != null && u.getPassword().equals(password));
+        //return (u != null && u.getPassword().equals(password));
     }
 
 	public String generateToken(String usuario, int sec) {

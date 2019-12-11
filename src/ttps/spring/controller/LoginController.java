@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ttps.spring.DTO.Credentials;
 import ttps.spring.DTO.LoginDTO;
+import ttps.spring.model.Usuario;
 import ttps.spring.services.LoginService;
 
 @RestController
@@ -23,9 +24,12 @@ public class LoginController {
 	  
 	@PostMapping("/autenticacion")
 	public ResponseEntity<?> autenticateUser(@RequestBody LoginDTO login){
-		if (loginservice.isLoginSuccess(login.getUsuario(), login.getPassword())) {
+		Usuario u = loginservice.isLoginSuccess(login.getUsuario(), login.getPassword());
+		if (u != null) {
 		    String token = loginservice.generateToken(login.getUsuario(), EXPIRATION_IN_SEC);
-            return ResponseEntity.ok(new Credentials(token, EXPIRATION_IN_SEC, login.getUsuario()));
+		    Credentials c = new Credentials(token, EXPIRATION_IN_SEC, login.getUsuario(), u.getId());
+		    System.out.println(c.getId());
+            return ResponseEntity.ok(c);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuario o password incorrecto");
 		}

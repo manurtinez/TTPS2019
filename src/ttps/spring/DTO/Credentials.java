@@ -4,6 +4,7 @@ public class Credentials {
 	private String token;
     private int exp;
     private String usuario;
+    private int id;
 
     public Credentials() { }
 
@@ -31,9 +32,18 @@ public class Credentials {
 		this.usuario = usuario;
 	}
 
-	public Credentials(String token, int exp, String usuario) {
+	public Credentials(String token, int exp, String usuario, int id) {
 		this.token = token;
 		this.exp = exp;
 		this.usuario = usuario;
+		this.id = id;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}   
 }
