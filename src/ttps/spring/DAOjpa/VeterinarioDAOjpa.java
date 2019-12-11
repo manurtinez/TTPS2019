@@ -4,10 +4,12 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import org.springframework.stereotype.Repository;
+
 import ttps.spring.DAO.VeterinarioDAO;
 import ttps.spring.model.Mascota;
 import ttps.spring.model.Veterinario;
-
+@Repository
 public class VeterinarioDAOjpa extends GenericDAOjpa<Veterinario> implements VeterinarioDAO {
 
 	public VeterinarioDAOjpa() {
