@@ -27,15 +27,20 @@ public class MascotaService {
 	}
 	public MascotaService() {}
 	
-	public boolean altaMascota(MascotaDTO mascota, String token){
+	public boolean altaMascota(MascotaDTO mascota, int id/*String token*/){
 		try {
-			Dueno dueno = (Dueno) this.tokenValidator.validateToken(token);
+			//Dueno dueno = (Dueno) this.tokenValidator.validateToken(token);
+			Dueno dueno = duenodao.getById(id);
+			System.out.println("traje dueno" + dueno);
 			Mascota mascotaSave = new Mascota(mascota.getNombre(), mascota.getEspecie(), mascota.getRaza()
 					, mascota.getSexo(), mascota.getColor(), mascota.getSenas(), mascota.getNacimiento()
 					, mascota.getFotos(), dueno, mascota.getConfigFicha());
+			System.out.println("cree mascota " + mascotaSave);
 			mascotaDAO.save(mascotaSave);
+			System.out.println("guarde mascota " + mascotaSave);
 			return true;
 		}catch (Exception e) {
+			System.out.println("excepcion");
 			return false;
 		}
 	}
