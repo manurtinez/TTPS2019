@@ -7,9 +7,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ttps.spring.DTO.DuenoDTO;
 import ttps.spring.model.Dueno;
 import ttps.spring.model.Mascota;
 import ttps.spring.services.DuenoService;
@@ -39,5 +42,16 @@ public class DuenoController {
 			return new ResponseEntity<List<Dueno>>(lista, HttpStatus.OK);
 		}
 		return new ResponseEntity<List<Dueno>>(HttpStatus.NO_CONTENT);
+	}
+	@PostMapping("/create/dueno")
+	public ResponseEntity<?> nuevoDueno(@RequestBody DuenoDTO dueno){
+		if (!duenoservice.existeDueno(dueno.getEmail())) {
+			if (duenoservice.crearDueno(dueno)) {
+				return  ResponseEntity.status(HttpStatus.CREATED).body("dueno creado correctamente");
+			}else {
+				return ResponseEntity.status(HttpStatus.CONFLICT).body("error en la creacion");
+			}
+		}
+		return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("usuario existente");
 	}
 }
