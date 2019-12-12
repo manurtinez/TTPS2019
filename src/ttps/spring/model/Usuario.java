@@ -70,8 +70,7 @@ public abstract class Usuario {
 	}
 	
 	public String getClassString() {
-		Class<?> enclosingClass = getClass().getEnclosingClass();
-		return enclosingClass.getName();
+		return this.getClass().getName();
 	}
 	
 	public String getNombre() {

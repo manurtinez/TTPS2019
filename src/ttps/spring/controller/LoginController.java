@@ -27,7 +27,8 @@ public class LoginController {
 		Usuario u = loginservice.isLoginSuccess(login.getUsuario(), login.getPassword());
 		if (u != null) {
 		    String token = loginservice.generateToken(login.getUsuario(), EXPIRATION_IN_SEC);
-		    Credentials c = new Credentials(token, EXPIRATION_IN_SEC, login.getUsuario(), u.getId(), u.getClassString());
+		    Credentials c = new Credentials(token, EXPIRATION_IN_SEC, login.getUsuario(), u.getId(), u.getClassString(),
+		    		u.getNombre(), u.getApellido(),u.getTelefono(), u.getEmail());
 		    System.out.println(c.getId());
             return ResponseEntity.ok(c);
         } else {
