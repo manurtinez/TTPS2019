@@ -5,8 +5,17 @@ public class Credentials {
     private int exp;
     private String usuario;
     private int id;
+    private String rol;
 
-    public Credentials() { }
+    public String getRol() {
+		return rol;
+	}
+
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
+
+	public Credentials() { }
 
 	public String getToken() {
 		return token;
@@ -32,11 +41,12 @@ public class Credentials {
 		this.usuario = usuario;
 	}
 
-	public Credentials(String token, int exp, String usuario, int id) {
+	public Credentials(String token, int exp, String usuario, int id, String rol) {
 		this.token = token;
 		this.exp = exp;
 		this.usuario = usuario;
 		this.id = id;
+		this.rol = rol;
 	}
 
 	public int getId() {

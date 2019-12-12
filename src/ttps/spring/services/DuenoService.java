@@ -33,6 +33,22 @@ public class DuenoService {
 		Usuario u = usuariodao.getByEmail(email);
 		return (u != null);
 	}
+	
+	public boolean editarDueno(int id, DuenoDTO dueno) {
+		try {
+			Dueno d = duenoDAO.getById(id);
+			d.setApellido(dueno.getApellido());
+			d.setEmail(dueno.getEmail());
+			d.setNombre(dueno.getNombre());
+			d.setPassword(dueno.getPassword());
+			d.setTelefono(dueno.getTelefono());
+			duenoDAO.update(d);
+			return true;
+		}
+		catch (Exception e) {
+			return false;
+		}
+	}
 
 	public boolean crearDueno(DuenoDTO dueno) {
 		try {
