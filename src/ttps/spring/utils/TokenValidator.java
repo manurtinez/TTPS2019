@@ -20,7 +20,7 @@ public class TokenValidator {
         Date exp = getExpiration(new Date(), segundos);
         String jwts = Jwts.builder().setSubject(username).signWith(key).setExpiration(exp).compact();
         try {
-        	assert Jwts.parser().setSigningKey(key).parseClaimsJws(jwts).getBody().getSubject().equals(username);
+        	//assert Jwts.parser().setSigningKey(key).parseClaimsJws(jwts).getBody().getSubject().equals(username);
         	System.out.println("token generado: " + jwts);
         	return jwts;
         } catch (JwtException e) {

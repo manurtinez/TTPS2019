@@ -47,14 +47,29 @@ public class JWTAuthenticationFilter implements Filter {
             chain.doFilter(request, response);
             return;
         }
+        //crear dueno mascota es publico
+        if ("/HistoriaClinicaMascotas/create/dueno/".equals(req.getRequestURI()) ||
+                HttpMethod.OPTIONS.matches(req.getMethod())) {
+
+            chain.doFilter(request, response);
+            return;
+        }
+        //crear veterinario es publico
+        if ("/HistoriaClinicaMascotas/create/veterinario/".equals(req.getRequestURI()) ||
+                HttpMethod.OPTIONS.matches(req.getMethod())) {
+
+            chain.doFilter(request, response);
+            return;
+        }
 
         String token = req.getHeader(HttpHeaders.AUTHORIZATION);
-
-        /*if ( (token == null) || (TokenValidator.validateToken(token)!=null) ) {
+        System.out.println("filtro token: "+token);
+        if ( (token == null) || (TokenValidator.validateToken(token)==null) ) {
+        	System.out.println("entro al if del filtro");
             HttpServletResponse res = (HttpServletResponse) response;
             res.setStatus(HttpStatus.FORBIDDEN.value());
             return;
-        }*/
+        }
 
         chain.doFilter(request, response);
 	}
