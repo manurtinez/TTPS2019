@@ -40,7 +40,6 @@ public class DuenoService {
 			d.setApellido(dueno.getApellido());
 			d.setEmail(dueno.getEmail());
 			d.setNombre(dueno.getNombre());
-			d.setPassword(dueno.getPassword());
 			d.setTelefono(dueno.getTelefono());
 			duenoDAO.update(d);
 			return true;

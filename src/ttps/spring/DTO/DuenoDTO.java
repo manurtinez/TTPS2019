@@ -15,6 +15,12 @@ public class DuenoDTO {
 		this.password = password;
 		this.telefono = telefono;
 	}
+	public DuenoDTO(String nombre, String apellido, String email, int telefono) {
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = email;
+		this.telefono = telefono;
+	}
 	public String getNombre() {
 		return nombre;
 	}
