@@ -69,10 +69,6 @@ public abstract class Usuario {
 		this.recordatorios = new HashSet<Recordatorio>();
 	}
 	
-	public String getClassString() {
-		return this.getClass().getName();
-	}
-	
 	public String getNombre() {
 		return nombre;
 	}

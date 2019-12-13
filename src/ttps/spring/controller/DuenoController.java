@@ -14,12 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ttps.spring.DTO.DuenoDTO;
+import ttps.spring.DTO.StringResponse;
 import ttps.spring.model.Dueno;
 import ttps.spring.model.Mascota;
 import ttps.spring.services.DuenoService;
+import org.springframework.http.MediaType;
 
 @RestController
-@RequestMapping
+@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 @CrossOrigin
 public class DuenoController {
 	
@@ -46,23 +48,28 @@ public class DuenoController {
 		return new ResponseEntity<List<Dueno>>(HttpStatus.NO_CONTENT);
 	}
 	@PostMapping("/create/dueno")
-	public ResponseEntity<?> nuevoDueno(@RequestBody DuenoDTO dueno){
+	public ResponseEntity<StringResponse> nuevoDueno(@RequestBody DuenoDTO dueno){
 		if (!duenoservice.existeDueno(dueno.getEmail())) {
 			if (duenoservice.crearDueno(dueno)) {
-				return  ResponseEntity.status(HttpStatus.CREATED).body("dueno creado correctamente");
+				StringResponse sr = new StringResponse("el dueño se creo correctamente");
+				return new ResponseEntity<StringResponse>(sr, HttpStatus.OK);
 			}else {
-				return ResponseEntity.status(HttpStatus.CONFLICT).body("error en la creacion");
+				StringResponse sr = new StringResponse("error en la creacion");
+				return new ResponseEntity<StringResponse>(sr, HttpStatus.CONFLICT);
 			}
 		}
-		return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("usuario existente");
+		StringResponse sr = new StringResponse("usuario existente");
+		return new ResponseEntity<StringResponse>(sr, HttpStatus.NOT_ACCEPTABLE);
 	}
 	
 	@PostMapping("/editDueno/{id}")
 	public ResponseEntity<?> editarDueno (@PathVariable("id") int id, @RequestBody DuenoDTO dueno) {
 		if (duenoservice.editarDueno(id, dueno)) {
-			return  ResponseEntity.status(HttpStatus.CREATED).body("dueno editado correctamente");
+			StringResponse sr = new StringResponse("dueno editado correctamente");
+			return new ResponseEntity<StringResponse>(sr, HttpStatus.OK);
 		}else {
-			return ResponseEntity.status(HttpStatus.CONFLICT).body("error en la edicion");
+			StringResponse sr = new StringResponse("error en la edicion");
+			return new ResponseEntity<StringResponse>(sr, HttpStatus.CONFLICT);
 		}
 	}
 }
