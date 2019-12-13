@@ -22,7 +22,7 @@ public class LoginController {
 	@Autowired
 	private LoginService loginservice;
 	
-	private final int EXPIRATION_IN_SEC = 10;
+	private final int EXPIRATION_IN_SEC = 1800;
 	  
 	@PostMapping("/autenticacion")
 	public ResponseEntity<?> autenticateUser(@RequestBody LoginDTO login){
