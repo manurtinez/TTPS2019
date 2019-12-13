@@ -20,7 +20,7 @@ public class VeterinarioController {
 	private VeterinarioService vetservice;
 	
 	@PostMapping("/create/veterinario")
-	public ResponseEntity<?> nuevoDueno(@RequestBody VeterinarioDTO vet){
+	public ResponseEntity<?> nuevoVeterinario(@RequestBody VeterinarioDTO vet){
 		if (!vetservice.existeVet(vet.getEmail())) {
 			if (vetservice.crearVet(vet)) {
 				return  ResponseEntity.status(HttpStatus.CREATED).body("veterinario creado correctamente");
