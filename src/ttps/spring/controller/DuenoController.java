@@ -56,4 +56,13 @@ public class DuenoController {
 		}
 		return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("usuario existente");
 	}
+	
+	@PostMapping("/editDueno/{id}")
+	public ResponseEntity<?> editarDueno (@PathVariable("id") int id, @RequestBody DuenoDTO dueno) {
+		if (duenoservice.editarDueno(id, dueno)) {
+			return  ResponseEntity.status(HttpStatus.CREATED).body("dueno editado correctamente");
+		}else {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body("error en la edicion");
+		}
+	}
 }
