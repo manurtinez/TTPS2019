@@ -16,20 +16,17 @@ public class MascotaService {
 	
 	private MascotaDAO mascotaDAO;
 	private DuenoDAO duenodao;
-	private TokenValidator tokenValidator;
 	
 	@Autowired
-	public MascotaService(MascotaDAO mascotaDAO, DuenoDAO duenodao, ConfigFichaDAO configdao, TokenValidator tokenValidator) {
+	public MascotaService(MascotaDAO mascotaDAO, DuenoDAO duenodao, ConfigFichaDAO configdao) {
 		super();
 		this.mascotaDAO = mascotaDAO;
 		this.duenodao = duenodao;
-		this.tokenValidator = tokenValidator;
 	}
 	public MascotaService() {}
 	
-	public boolean altaMascota(MascotaDTO mascota, int id/*String token*/){
+	public boolean altaMascota(MascotaDTO mascota, int id){
 		try {
-			//Dueno dueno = (Dueno) this.tokenValidator.validateToken(token);
 			Dueno dueno = duenodao.getById(id);
 			System.out.println("traje dueno" + dueno);
 			Mascota mascotaSave = new Mascota(mascota.getNombre(), mascota.getEspecie(), mascota.getRaza()

@@ -29,10 +29,10 @@ public class MascotaController {
 	public MascotaController() {}
 
 	@PostMapping("/dueno/{id}/nuevaMascota")
-	public ResponseEntity<?> altaMascota (/*@RequestHeader("Authorization") String token,*/@PathVariable("id") int id,
+	public ResponseEntity<?> altaMascota (@PathVariable("id") int id,
 												@RequestBody MascotaDTO mascota ) {
 		System.out.println(id);
-		if(mascotaService.altaMascota(mascota, id/*, token*/)) {
+		if(mascotaService.altaMascota(mascota, id)) {
 			return new ResponseEntity<String>("mascota creada correctamente", HttpStatus.CREATED);
 		}
 		return new ResponseEntity<>(HttpStatus.FORBIDDEN);
