@@ -63,9 +63,7 @@ public class JWTAuthenticationFilter implements Filter {
         }
 
         String token = req.getHeader(HttpHeaders.AUTHORIZATION);
-        System.out.println("filtro token: "+token);
         if ( (token == null) || (TokenValidator.validateToken(token)==null) ) {
-        	System.out.println("entro al if del filtro");
             HttpServletResponse res = (HttpServletResponse) response;
             res.setStatus(HttpStatus.FORBIDDEN.value());
             return;

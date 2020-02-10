@@ -17,12 +17,14 @@ implements MascotaDAO{
 	}
 
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<Mascota> getByDueno_id(int id) {
+	public List<Mascota> getByDuenoId(int id) {
 		EntityManager em = getEntityManager();
 		return (List<Mascota>) em.createQuery("SELECT m FROM Mascota m WHERE m.dueno.id= ?1").setParameter(1, id).getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Mascota> getByVet(int id) {
 		EntityManager em = getEntityManager();

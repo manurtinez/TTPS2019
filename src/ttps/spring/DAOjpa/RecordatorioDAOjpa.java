@@ -14,6 +14,7 @@ implements RecordatorioDAO{
 		super(Recordatorio.class);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Recordatorio> getAllByUsuarioId(int id) {
 		EntityManager em = getEntityManager();

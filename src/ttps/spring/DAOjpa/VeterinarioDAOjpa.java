@@ -16,6 +16,7 @@ public class VeterinarioDAOjpa extends GenericDAOjpa<Veterinario> implements Vet
 		super(Veterinario.class);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Mascota> getMascotas(Veterinario vet) {
 		EntityManager em = getEntityManager();

@@ -5,10 +5,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
 
-import ttps.spring.DAO.Dao;
+import ttps.spring.DAO.GenericDAO;
 
 @Transactional
-public class GenericDAOjpa<T> implements Dao<T> {
+public class GenericDAOjpa<T> implements GenericDAO<T> {
 	
 	private EntityManager entityManager;
 	
@@ -27,16 +27,12 @@ public class GenericDAOjpa<T> implements Dao<T> {
 		return entityManager;
 	}
 
-	/*@Override
-	public List<Usuario> getByName(String name) {
-		return (List<Usuario>) em.createQuery("SELECT u FROM User u WHERE u.")
-	}*/
-
 	@Override
 	public T getById(int id) {
 		return this.entityManager.find(clase, id);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> getAll() {
 		return this.entityManager.createQuery("from " + getClase().getSimpleName()).getResultList();

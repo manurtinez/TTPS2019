@@ -15,6 +15,7 @@ public class AdminDAOjpa extends GenericDAOjpa<Admin> implements AdminDAO{
 		// TODO Auto-generated constructor stub
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Veterinario> getAllVeterinarioInhabilitados() {
 		EntityManager em = getEntityManager();

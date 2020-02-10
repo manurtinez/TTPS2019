@@ -4,6 +4,6 @@ import ttps.spring.model.Admin;
 import ttps.spring.model.Veterinario;
 import java.util.List;
 
-public interface AdminDAO extends Dao<Admin>{
+public interface AdminDAO extends GenericDAO<Admin>{
 	public List<Veterinario> getAllVeterinarioInhabilitados();
 }

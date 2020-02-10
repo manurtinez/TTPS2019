@@ -2,7 +2,6 @@ package ttps.spring.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,15 +23,11 @@ public class Dueno extends Usuario {
 		this.mascotas = new ArrayList<Mascota>();
 	}
 		
-	//public List<Mascota> getMascotas() {
-		//return mascotas;
-	//}
 	public void setMascotas(List<Mascota> mascotas) {
 		this.mascotas = mascotas;
 	}
 	public void agregarMascota(Mascota mascota) {
 		mascotas.add(mascota);
-		
 	}	
 	
 }

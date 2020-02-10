@@ -24,6 +24,7 @@ implements DuenoDAO {
 		return (Dueno) em.createQuery("SELECT d FROM Dueno d WHERE d.nombre=:name");
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Mascota> getAllMascotas(int id) {
 		EntityManager em = getEntityManager();

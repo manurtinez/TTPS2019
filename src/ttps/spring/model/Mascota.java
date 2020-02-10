@@ -3,11 +3,21 @@ package ttps.spring.model;
 import java.util.Date;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.time.LocalDate;
 import java.util.List;
-
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="mascota")
@@ -57,19 +67,6 @@ public class Mascota {
 	
 	public Mascota() {}
 	
-	public Mascota(String nombre, String especie, String raza, String sexo, String color, String senas,
-			Date nacimiento, BufferedImage[] fotos) {
-		super();
-		this.nombre = nombre;
-		this.especie = especie;
-		this.raza = raza;
-		this.sexo = sexo;
-		this.color = color;
-		this.senas = senas;
-		this.nacimiento = nacimiento;
-		this.fotos = fotos;
-		this.historial = new ArrayList<Evento>();
-	}
 	public Mascota(String nombre, String especie, String raza, String sexo, String color, String senas,
 			Date nacimiento, BufferedImage[] fotos,Dueno dueno, ConfigFicha config ) {
 		super();
@@ -183,21 +180,6 @@ public class Mascota {
 
 	public void setHistorial(List<Evento> historial) {
 		this.historial = historial;
-	}
-	
-	public Mascota(String nombre, String especie, String raza, String sexo, String color, String senas,
-			Date nacimiento, BufferedImage[] fotos, ConfigFicha config) {
-		super();
-		this.nombre = nombre;
-		this.especie = especie;
-		this.raza = raza;
-		this.sexo = sexo;
-		this.color = color;
-		this.senas = senas;
-		this.nacimiento = nacimiento;
-		this.fotos = fotos;
-		this.configFicha = config;
-		this.historial = new ArrayList<Evento>();
 	}
 	
 }

@@ -2,7 +2,13 @@ package ttps.spring.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="veterinario")
@@ -66,10 +72,6 @@ public class Veterinario extends Usuario {
 	public void setHabilitado(boolean habilitado) {
 		this.habilitado = habilitado;
 	}
-
-	//public List<Mascota> getMascotas() {
-		//return mascotas;
-	//}
 	
 	public void agregarMascota(Mascota m) {
 		mascotas.add(m);
