@@ -48,14 +48,14 @@ public class JWTAuthenticationFilter implements Filter {
             return;
         }
         //crear dueno mascota es publico
-        if ("/HistoriaClinicaMascotas/create/dueno/".equals(req.getRequestURI()) ||
+        if ("/HistoriaClinicaMascotas/create/dueno".equals(req.getRequestURI()) ||
                 HttpMethod.OPTIONS.matches(req.getMethod())) {
 
             chain.doFilter(request, response);
             return;
         }
         //crear veterinario es publico
-        if ("/HistoriaClinicaMascotas/create/veterinario/".equals(req.getRequestURI()) ||
+        if ("/HistoriaClinicaMascotas/create/veterinario".equals(req.getRequestURI()) ||
                 HttpMethod.OPTIONS.matches(req.getMethod())) {
 
             chain.doFilter(request, response);

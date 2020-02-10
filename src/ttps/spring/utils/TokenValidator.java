@@ -17,11 +17,9 @@ public class TokenValidator {
 	final static Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 	
     public String generateToken(String username, int segundos) {
-        Date exp = getExpiration(new Date(), segundos);
-        String jwts = Jwts.builder().setSubject(username).signWith(key).setExpiration(exp).compact();
-        try {
-        	//assert Jwts.parser().setSigningKey(key).parseClaimsJws(jwts).getBody().getSubject().equals(username);
-        	System.out.println("token generado: " + jwts);
+    	try {
+	    	Date exp = getExpiration(new Date(), segundos);
+	        String jwts = Jwts.builder().setSubject(username).signWith(key).setExpiration(exp).compact();
         	return jwts;
         } catch (JwtException e) {
         	System.out.println("excepcion " + e.getMessage());
@@ -37,13 +35,11 @@ public class TokenValidator {
     }
 
     public static Claims validateToken(String token) {
-    	System.out.println("llega token " + token);
         String prefix = "Bearer";
         try {
             if (token.startsWith(prefix)) {
                 token = token.substring(prefix.length()).trim();
             }
-            System.out.println("token sin bearer: " + token);
             Claims claims = Jwts.parser().setSigningKey(key).parseClaimsJws(token).getBody();//payload
   
             return claims;
