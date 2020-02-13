@@ -181,5 +181,13 @@ public class Mascota {
 	public void setHistorial(List<Evento> historial) {
 		this.historial = historial;
 	}
-	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+	    if (obj == null || getClass() != obj.getClass()) return false;
+
+	    Mascota m = (Mascota) obj;
+
+	    return getId() == m.getId();
+	}
 }

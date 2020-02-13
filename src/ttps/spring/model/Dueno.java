@@ -29,5 +29,8 @@ public class Dueno extends Usuario {
 	public void agregarMascota(Mascota mascota) {
 		mascotas.add(mascota);
 	}	
+	public void borrarrMascota(Mascota mascota) {
+		mascotas.remove(mascota);
+	}
 	
 }
