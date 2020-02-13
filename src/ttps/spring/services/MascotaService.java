@@ -2,7 +2,6 @@ package ttps.spring.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ttps.spring.DAO.ConfigFichaDAO;
 import ttps.spring.DAO.DuenoDAO;
 import ttps.spring.DAO.MascotaDAO;
 import ttps.spring.DTO.MascotaDTO;
@@ -16,10 +15,10 @@ public class MascotaService {
 	private DuenoDAO duenoDAO;
 	
 	@Autowired
-	public MascotaService(MascotaDAO mascotaDAO, DuenoDAO duenodao, ConfigFichaDAO configdao) {
+	public MascotaService(MascotaDAO mascotaDAO, DuenoDAO duenoDAO) {
 		super();
 		this.mascotaDAO = mascotaDAO;
-		this.duenoDAO = duenodao;
+		this.duenoDAO = duenoDAO;
 	}
 	public MascotaService() {}
 	
@@ -71,4 +70,27 @@ public class MascotaService {
 			return false;
 		}
 	}
+	
+	public MascotaDTO unaMascota (int id) {
+		try {
+			Mascota mascota = mascotaDAO.getById(id);
+			MascotaDTO mascotaDTO = new MascotaDTO();
+			
+			mascotaDTO.setColor(mascota.getColor());
+			mascotaDTO.setConfigFichaId(mascota.getConfigFicha());
+			mascotaDTO.setEspecie(mascota.getEspecie());
+			mascotaDTO.setFotos(mascota.getFotos());
+			mascotaDTO.setNombre(mascota.getNombre());
+			mascotaDTO.setRaza(mascota.getRaza());
+			mascotaDTO.setSexo(mascota.getSexo());
+			mascotaDTO.setSenas(mascota.getSenas());
+			mascotaDTO.setNacimiento(mascota.getNacimiento());
+			
+			return mascotaDTO;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+	
 }

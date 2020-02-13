@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -58,5 +59,14 @@ public class MascotaController {
 			return new ResponseEntity<StringResponse>(sr, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+	}
+	
+	@GetMapping("mascota/{mascota_id}")
+	public ResponseEntity<MascotaDTO> unaMascota (@PathVariable("mascota_id") int mascotaId){
+		MascotaDTO mascotaDTO = mascotaService.unaMascota(mascotaId);
+		if( mascotaDTO != null) {
+			return new ResponseEntity<MascotaDTO>(mascotaDTO, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 }
