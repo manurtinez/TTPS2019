@@ -5,14 +5,14 @@ public class VeterinarioDTO {
 	private String apellido;
 	private String email;
 	private String password;
-	private int telefono;
+	private long telefono;
 	private String nomClinica;
 	private String dirClinica;
 	private int nroMatricula;
 	
 	public VeterinarioDTO() {}
 	
-	public VeterinarioDTO(String nombre, String apellido, String email, String password, int telefono,
+	public VeterinarioDTO(String nombre, String apellido, String email, String password, long telefono,
 			String nomClinica, String dirClinica, int nroMatricula) {
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -48,10 +48,10 @@ public class VeterinarioDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getTelefono() {
+	public long getTelefono() {
 		return telefono;
 	}
-	public void setTelefono(int telefono) {
+	public void setTelefono(long telefono) {
 		this.telefono = telefono;
 	}
 	public String getNomClinica() {

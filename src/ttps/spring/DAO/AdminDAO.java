@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface AdminDAO extends GenericDAO<Admin>{
 	public List<Veterinario> getAllVeterinarioInhabilitados();
+	public Veterinario habilitarVeterinario(Veterinario vet);
 }

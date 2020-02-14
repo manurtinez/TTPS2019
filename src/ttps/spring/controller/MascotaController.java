@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ttps.spring.DTO.EliminarRequest;
+import ttps.spring.DTO.IdRequest;
 import ttps.spring.DTO.MascotaConDueno;
 import ttps.spring.DTO.MascotaDTO;
 import ttps.spring.DTO.StringResponse;
@@ -54,7 +54,7 @@ public class MascotaController {
 	
 	@PostMapping("/dueno/{dueno_id}/borrarMascota")
 	public ResponseEntity<StringResponse> borrarMascota (@PathVariable("dueno_id") int duenoId,
-														@RequestBody EliminarRequest eliminar) {
+														@RequestBody IdRequest eliminar) {
 		if(mascotaService.borrarMascota(eliminar.getId(), duenoId)) {
 			StringResponse sr = new StringResponse("mascota borrada correctamente");
 			return new ResponseEntity<StringResponse>(sr, HttpStatus.OK);

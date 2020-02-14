@@ -32,7 +32,7 @@ public class Veterinario extends Usuario {
 	
 	public Veterinario() {}
 
-	public Veterinario(String nombre, String apellido, String email, String password, int telefono, String nomClinica, String dirClinica, int nroMatricula) {
+	public Veterinario(String nombre, String apellido, String email, String password, long telefono, String nomClinica, String dirClinica, int nroMatricula) {
 		super(nombre, apellido, email, password, telefono);
 		this.nomClinica = nomClinica;
 		this.dirClinica = dirClinica;
