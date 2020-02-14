@@ -1,11 +1,11 @@
 package ttps.spring.DTO;
 
-public class EliminarDTO {
+public class EliminarRequest {
 	private int id;
 
-	public EliminarDTO() {}
+	public EliminarRequest() {}
 	
-	public EliminarDTO(int id) {
+	public EliminarRequest(int id) {
 		this.id = id;
 	}
 

@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ttps.spring.DTO.EliminarDTO;
+import ttps.spring.DTO.EliminarRequest;
+import ttps.spring.DTO.MascotaConDueno;
 import ttps.spring.DTO.MascotaDTO;
 import ttps.spring.DTO.StringResponse;
 import ttps.spring.services.MascotaService;
@@ -53,7 +54,7 @@ public class MascotaController {
 	
 	@PostMapping("/dueno/{dueno_id}/borrarMascota")
 	public ResponseEntity<StringResponse> borrarMascota (@PathVariable("dueno_id") int duenoId,
-														@RequestBody EliminarDTO eliminar) {
+														@RequestBody EliminarRequest eliminar) {
 		if(mascotaService.borrarMascota(eliminar.getId(), duenoId)) {
 			StringResponse sr = new StringResponse("mascota borrada correctamente");
 			return new ResponseEntity<StringResponse>(sr, HttpStatus.OK);
@@ -61,11 +62,20 @@ public class MascotaController {
 		return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
 	}
 	
-	@GetMapping("mascota/{mascota_id}")
+	@GetMapping("mascota_sola/{mascota_id}")
 	public ResponseEntity<MascotaDTO> unaMascota (@PathVariable("mascota_id") int mascotaId){
 		MascotaDTO mascotaDTO = mascotaService.unaMascota(mascotaId);
 		if( mascotaDTO != null) {
 			return new ResponseEntity<MascotaDTO>(mascotaDTO, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+	
+	@GetMapping("mascota_con_dueno/{mascota_id}")
+	public ResponseEntity<MascotaConDueno> unaMascotaConDueno (@PathVariable("mascota_id") int mascotaId){
+		MascotaConDueno MascotaConDueno = mascotaService.unaMascotaConDueno(mascotaId);
+		if( MascotaConDueno != null) {
+			return new ResponseEntity<MascotaConDueno>(MascotaConDueno, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}

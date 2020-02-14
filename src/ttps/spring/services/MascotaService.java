@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ttps.spring.DAO.DuenoDAO;
 import ttps.spring.DAO.MascotaDAO;
+import ttps.spring.DTO.DuenoDTO;
+import ttps.spring.DTO.MascotaConDueno;
 import ttps.spring.DTO.MascotaDTO;
 import ttps.spring.model.Dueno;
 import ttps.spring.model.Mascota;
@@ -92,5 +94,34 @@ public class MascotaService {
 			return null;
 		}
 	}
+	public MascotaConDueno unaMascotaConDueno(int mascotaId) {
+		try {
+			Mascota mascota = mascotaDAO.getById(mascotaId);
+			MascotaConDueno mascotaConDueno = new MascotaConDueno();
+			DuenoDTO duenoDTO = new DuenoDTO();
+			
+			duenoDTO.setApellido(mascota.getDueno().getApellido());
+			duenoDTO.setEmail(mascota.getDueno().getEmail());
+			duenoDTO.setNombre(mascota.getDueno().getNombre());
+			duenoDTO.setTelefono(mascota.getDueno().getTelefono());;
+			
+			mascotaConDueno.setDueno(duenoDTO);
+			mascotaConDueno.setColor(mascota.getColor());
+			mascotaConDueno.setConfigFichaId(mascota.getConfigFicha());
+			mascotaConDueno.setEspecie(mascota.getEspecie());
+			mascotaConDueno.setFotos(mascota.getFotos());
+			mascotaConDueno.setNombre(mascota.getNombre());
+			mascotaConDueno.setRaza(mascota.getRaza());
+			mascotaConDueno.setSexo(mascota.getSexo());
+			mascotaConDueno.setSenas(mascota.getSenas());
+			mascotaConDueno.setNacimiento(mascota.getNacimiento());
+			
+			return mascotaConDueno;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+
 	
 }

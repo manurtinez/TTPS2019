@@ -181,6 +181,9 @@ public class Mascota {
 	public void setHistorial(List<Evento> historial) {
 		this.historial = historial;
 	}
+	public Dueno getDueno() {
+		return this.dueno;
+	}
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) return true;

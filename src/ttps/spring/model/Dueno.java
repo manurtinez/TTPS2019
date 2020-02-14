@@ -18,7 +18,7 @@ public class Dueno extends Usuario {
 	private List<Mascota> mascotas;
 	
 	public Dueno() {}
-	public Dueno(String nombre, String apellido, String email, String password, int telefono) {
+	public Dueno(String nombre, String apellido, String email, String password, long telefono) {
 		super(nombre, apellido, email, password, telefono);
 		this.mascotas = new ArrayList<Mascota>();
 	}

@@ -59,7 +59,7 @@ public abstract class Usuario {
 
 	public Usuario() { } //necesario para q sea entidad
 	
-	public Usuario(String nombre, String apellido, String email, String password, int telefono) {
+	public Usuario(String nombre, String apellido, String email, String password, long telefono) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.email = email;

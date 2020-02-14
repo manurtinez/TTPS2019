@@ -5,10 +5,10 @@ public class DuenoDTO {
 	private String apellido;
 	private String email;
 	private String password;
-	private int telefono;
+	private long telefono;
 	
 	public DuenoDTO() {}
-	public DuenoDTO(String nombre, String apellido, String email, String password, int telefono) {
+	public DuenoDTO(String nombre, String apellido, String email, String password, long telefono) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.email = email;
@@ -45,10 +45,10 @@ public class DuenoDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getTelefono() {
+	public long getTelefono() {
 		return telefono;
 	}
-	public void setTelefono(int telefono) {
+	public void setTelefono(long telefono) {
 		this.telefono = telefono;
 	}
 	
