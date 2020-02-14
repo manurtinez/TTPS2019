@@ -62,7 +62,7 @@ public class MascotaController {
 		return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
 	}
 	
-	@GetMapping("mascota_sola/{mascota_id}")
+	@GetMapping("mascotaSola/{mascota_id}")
 	public ResponseEntity<MascotaDTO> unaMascota (@PathVariable("mascota_id") int mascotaId){
 		MascotaDTO mascotaDTO = mascotaService.unaMascota(mascotaId);
 		if( mascotaDTO != null) {
@@ -71,7 +71,7 @@ public class MascotaController {
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
-	@GetMapping("mascota_con_dueno/{mascota_id}")
+	@GetMapping("mascotaConDueno/{mascota_id}")
 	public ResponseEntity<MascotaConDueno> unaMascotaConDueno (@PathVariable("mascota_id") int mascotaId){
 		MascotaConDueno MascotaConDueno = mascotaService.unaMascotaConDueno(mascotaId);
 		if( MascotaConDueno != null) {
