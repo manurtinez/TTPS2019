@@ -4,10 +4,12 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import org.springframework.stereotype.Repository;
+
 import ttps.spring.DAO.AdminDAO;
 import ttps.spring.model.Admin;
 import ttps.spring.model.Veterinario;
-
+@Repository
 public class AdminDAOjpa extends GenericDAOjpa<Admin> implements AdminDAO{
 
 	public AdminDAOjpa() {
