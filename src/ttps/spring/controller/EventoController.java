@@ -22,10 +22,21 @@ public class EventoController {
 	@Autowired
 	private EventoService eventoservice;
 	
-	@GetMapping("/dueno/{id}/mascotas/eventos/{fecha}")
-	public ResponseEntity<List<EventoDTO>> TodosLosEventosDeTodasLasMascotasDeUnDueno (@PathVariable("fecha") String fecha ,
+	//retorna eventos posteriores a la fecha (inclusive) enviada como parametro
+	@GetMapping("/dueno/{id}/mascotas/eventos-posteriores/{fecha}")
+	public ResponseEntity<List<EventoDTO>> TodosLosEventosDeTodasLasMascotasDeUnDuenoPostFecha (@PathVariable("fecha") String fecha ,
 																					@PathVariable("id") int id) {
-		List<EventoDTO> lista = eventoservice.getAllEventosDeDueno(id, fecha);
+		List<EventoDTO> lista = eventoservice.getAllEventosFuturos(id, fecha);
+		if(lista.isEmpty()) {
+			return new ResponseEntity<List<EventoDTO>>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<EventoDTO>>(lista, HttpStatus.OK); 
+	}
+	//retorna eventos anteriores a la fecha enviada como parametro. (Historial)
+	@GetMapping("/dueno/{id}/mascotas/eventos-anteriores/{fecha}")
+	public ResponseEntity<List<EventoDTO>> TodosLosEventosDeTodasLasMascotasDeUnDuenoAntesFecha (@PathVariable("fecha") String fecha ,
+																					@PathVariable("id") int id) {
+		List<EventoDTO> lista = eventoservice.getAllEventosPasados(id, fecha);
 		if(lista.isEmpty()) {
 			return new ResponseEntity<List<EventoDTO>>(HttpStatus.NO_CONTENT);
 		}

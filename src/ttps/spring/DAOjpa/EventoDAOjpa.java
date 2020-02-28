@@ -18,9 +18,17 @@ implements EventoDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Evento> getByDate(LocalDate d, int id) {
+	public List<Evento> getAfterDate(LocalDate d, int id) {
 		EntityManager em = getEntityManager();
 		return (List<Evento>) em.createQuery("select e from Evento e where e.fecha >= ?1 AND e.mascota.id = ?2")
+				.setParameter(1, d).setParameter(2, id).getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Evento> getBeforeDate(LocalDate d, int id) {
+		EntityManager em = getEntityManager();
+		return (List<Evento>) em.createQuery("select e from Evento e where e.fecha < ?1 AND e.mascota.id = ?2")
 				.setParameter(1, d).setParameter(2, id).getResultList();
 	}
 }

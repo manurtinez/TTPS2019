@@ -6,5 +6,6 @@ import java.util.List;
 import ttps.spring.model.Evento;
 
 public interface EventoDAO extends GenericDAO<Evento> {
-	List<Evento> getByDate(LocalDate d, int id);
+	List<Evento> getAfterDate(LocalDate d, int id);
+	List<Evento> getBeforeDate(LocalDate d, int id);
 }
