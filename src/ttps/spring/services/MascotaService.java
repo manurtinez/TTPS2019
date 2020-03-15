@@ -1,5 +1,7 @@
 package ttps.spring.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ttps.spring.DAO.DuenoDAO;
@@ -49,6 +51,10 @@ public class MascotaService {
 			System.out.println(e.getMessage());
 			return false;
 		}
+	}
+	
+	public List<Mascota> ultimasMascotas(){
+		return mascotaDAO.ultimasMascotas();
 	}
 	
 	public boolean editarMascota(MascotaDTO mascota, int id) {

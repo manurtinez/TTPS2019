@@ -1,5 +1,7 @@
 package ttps.spring.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,6 +18,7 @@ import ttps.spring.DTO.IdRequest;
 import ttps.spring.DTO.MascotaConDueno;
 import ttps.spring.DTO.MascotaDTO;
 import ttps.spring.DTO.StringResponse;
+import ttps.spring.model.Mascota;
 import ttps.spring.services.MascotaService;
 
 @RestController
@@ -78,5 +81,15 @@ public class MascotaController {
 			return new ResponseEntity<MascotaConDueno>(MascotaConDueno, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+	
+	@GetMapping("ultimasMascotas")
+	public ResponseEntity<List<Mascota>> ultimasMascotas() {
+		// System.out.println(id);
+		List<Mascota> lista = mascotaService.ultimasMascotas();
+		if (lista.isEmpty()) {
+			return new ResponseEntity<List<Mascota>>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<Mascota>>(lista, HttpStatus.OK);
 	}
 }
