@@ -54,8 +54,8 @@ public class MascotaController {
 	
 	@PostMapping("/dueno/{dueno_id}/borrarMascota")
 	public ResponseEntity<StringResponse> borrarMascota (@PathVariable("dueno_id") int duenoId,
-														@RequestBody IdRequest eliminar) {
-		if(mascotaService.borrarMascota(eliminar.getId(), duenoId)) {
+														@RequestBody int idMascota) {
+		if(mascotaService.borrarMascota(idMascota, duenoId)) {
 			StringResponse sr = new StringResponse("mascota borrada correctamente");
 			return new ResponseEntity<StringResponse>(sr, HttpStatus.OK);
 		}
