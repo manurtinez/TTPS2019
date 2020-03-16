@@ -13,8 +13,7 @@ import ttps.spring.DAO.MascotaDAO;
 import ttps.spring.DTO.EventoDTO;
 import ttps.spring.model.Evento;
 import ttps.spring.model.Mascota;
-import ttps.spring.model.Visita;
-import ttps.spring.utils.EventoDTOListGenerator;
+import ttps.spring.utils.EventoGenerator;
 
 @Service
 public class EventoService {
@@ -22,26 +21,25 @@ public class EventoService {
 	private MascotaDAO mascotaDAO;
 	private DuenoDAO duenoDAO;
 	private EventoDAO eventoDAO;
-	private EventoDTOListGenerator eventoDTOListGenerator;
+	private EventoGenerator eventoGenerator;
 	
 	public EventoService () {}
 	
 	@Autowired
-	public EventoService (MascotaDAO mascotaDAO, DuenoDAO duenoDAO, EventoDAO eventoDAO, EventoDTOListGenerator eventoDTOListGenerator) {
+	public EventoService (MascotaDAO mascotaDAO, DuenoDAO duenoDAO, EventoDAO eventoDAO, EventoGenerator eventoGenerator) {
 		this.duenoDAO = duenoDAO;
 		this.eventoDAO = eventoDAO;
-		this.eventoDTOListGenerator = eventoDTOListGenerator;
+		this.eventoGenerator = eventoGenerator;
 		this.mascotaDAO = mascotaDAO;
 	}
-	public boolean altaVisita (String fecha, EventoDTO eventoDTO, int id){
+
+	public boolean altaEvento (String fecha, EventoDTO eventoDTO, int id){
 		try {
 			LocalDate f = LocalDate.parse(fecha);
 			Mascota mascota = mascotaDAO.getById(id);
-			Visita visita = new Visita(f, mascota, eventoDTO.getPeso(), eventoDTO.getMotivo(),
-							eventoDTO.getDescripcion(), eventoDTO.getIndicaciones());
-			eventoDAO.save(visita);
+			eventoDAO.save(eventoGenerator.nuevoEvento(f, eventoDTO, mascota));
 			return true;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
@@ -91,6 +89,6 @@ public class EventoService {
 	}
 	
 	public List<EventoDTO> listGenerator(List<Evento> lista){
-		return eventoDTOListGenerator.listGenerator(lista);
+		return eventoGenerator.listGenerator(lista);
 	}
 }

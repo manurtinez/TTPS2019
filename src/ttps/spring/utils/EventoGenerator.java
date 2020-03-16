@@ -1,5 +1,6 @@
 package ttps.spring.utils;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,12 +12,37 @@ import ttps.spring.model.Enfermedad;
 import ttps.spring.model.Evento;
 import ttps.spring.model.HistorialReproductivo;
 import ttps.spring.model.Intervencion;
+import ttps.spring.model.Mascota;
 import ttps.spring.model.Vacunacion;
 import ttps.spring.model.Visita;
 
 @Component
-public class EventoDTOListGenerator {
+public class EventoGenerator {
 
+	public Evento nuevoEvento (LocalDate fecha, EventoDTO eventoDTO, Mascota mascota) {
+		Evento ev = null;
+		switch (eventoDTO.getTipo_evento()) {
+		case "Desparasitacion": 
+			ev = new Desparasitacion(fecha, mascota, eventoDTO.getDroga(), eventoDTO.getResultado());
+			break;
+		case "Enfermedad":
+			ev = new Enfermedad(fecha, mascota, eventoDTO.getDescripcion());
+			break;		
+		case "HistorialReproductivo":
+			ev = new HistorialReproductivo(fecha, mascota, eventoDTO.getNro_nacidos());
+			break;
+		case "Intervencion":
+			ev = new Intervencion(fecha, mascota, eventoDTO.getDescripcion());
+			break;
+		case "Vacunacion":
+			ev = new Vacunacion(fecha, mascota, eventoDTO.getDescripcion());
+			break;
+		case "Visita":
+			ev = new Visita(fecha, mascota, eventoDTO.getPeso(), eventoDTO.getMotivo(), eventoDTO.getDescripcion(), eventoDTO.getIndicaciones());
+			break;
+		}
+		return ev;
+	}
 	public List<EventoDTO> listGenerator (List<Evento> lista){
 		List<EventoDTO> resultado =  new ArrayList<>();
 		for (Evento e : lista) {
