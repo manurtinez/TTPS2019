@@ -47,6 +47,19 @@ public class EventoService {
 		}
 	}
 	
+	public boolean borrarEvento (int idMascota, int idEvento){
+		try {
+			Mascota mascota = mascotaDAO.getById(idMascota);
+			Evento evento = eventoDAO.getById(idEvento);
+			mascota.borrarEvento(evento);
+			mascotaDAO.update(mascota);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	public List<EventoDTO> getAllEventosPasados(int id, String fecha){
 		try {
 			LocalDate f = LocalDate.parse(fecha);

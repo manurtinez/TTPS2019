@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ttps.spring.DTO.EventoDTO;
+import ttps.spring.DTO.IdRequest;
 import ttps.spring.DTO.StringResponse;
 import ttps.spring.services.EventoService;
 
@@ -54,6 +55,17 @@ public class EventoController {
 		if(eventoservice.altaVisita(fecha, eventoDTO, idMascota)) {
 			StringResponse sr = new StringResponse("Visita creada correctamente");
 			return new ResponseEntity<StringResponse>(sr, HttpStatus.CREATED);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+	}
+	
+	@PostMapping("/dueno/mascota/{idMascota}/borrar-evento")
+	public ResponseEntity<StringResponse> altaMascota (@PathVariable("idMascota") int idMascota,
+												@RequestBody IdRequest idrequest ) {
+		
+		if(eventoservice.borrarEvento(idMascota, idrequest.getId())) {
+			StringResponse sr = new StringResponse("Evento borrado correctamente");
+			return new ResponseEntity<StringResponse>(sr, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
 	}
