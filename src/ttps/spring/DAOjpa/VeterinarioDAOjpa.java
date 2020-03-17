@@ -23,4 +23,11 @@ public class VeterinarioDAOjpa extends GenericDAOjpa<Veterinario> implements Vet
 		return (List<Mascota>) em.createQuery("SELECT m FROM Mascota m WHERE m.veterinario_id=:vet.veterinario_id").getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Veterinario> getAllVet() {
+		EntityManager em = getEntityManager();
+		return (List<Veterinario>) em.createQuery("SELECT v FROM Veterinario v").getResultList();
+	}
+
 }

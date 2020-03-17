@@ -1,5 +1,8 @@
 package ttps.spring.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,11 +30,26 @@ public class VeterinarioService {
 			vetdao.save(v);
 			return true;
 		}catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return false;
 		}
 	}
 
-
+	public List<VeterinarioDTO> todosLosVeterinarios() {
+		try {
+			List<Veterinario> list = vetdao.getAll();
+			List<VeterinarioDTO> listDTO = new ArrayList<>();
+			for (Veterinario veterinario : list) {
+				VeterinarioDTO vetDTO = new VeterinarioDTO(veterinario.getNombre(), veterinario.getApellido(), veterinario.getEmail(),
+										null, veterinario.getTelefono(), veterinario.getNomClinica(), veterinario.getDirClinica(),
+										veterinario.getNroMatricula());
+				listDTO.add(vetDTO);
+			}
+			return listDTO;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 }

@@ -31,6 +31,7 @@ implements MascotaDAO{
 		return (List<Mascota>) em.createQuery("SELECT m FROM Mascota m WHERE m.veterinario.id= ?1").setParameter(1, id).getResultList();
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Mascota> ultimasMascotas(){
 		EntityManager em = getEntityManager();
 		return (List<Mascota>) em.createQuery("SELECT m FROM Mascota m").getResultList();
