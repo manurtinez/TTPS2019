@@ -33,7 +33,7 @@ implements MascotaDAO{
 	
 	public List<Mascota> ultimasMascotas(){
 		EntityManager em = getEntityManager();
-		return (List<Mascota>) em.createQuery("SELECT m FROM Mascota m").getResultList();
+		return (List<Mascota>) em.createQuery("SELECT m FROM Mascota m ORDER BY id DESC").setMaxResults(5).getResultList();
 	}
 
 }
