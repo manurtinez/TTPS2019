@@ -69,4 +69,15 @@ public class EventoController {
 		}
 		return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
 	}
+	
+	@PostMapping("/dueno/mascota/{id}/editar-evento/{fecha}")
+	public ResponseEntity<StringResponse> editarEventos (@PathVariable("fecha") String fecha ,
+											    @PathVariable("id") int idMascota,
+												@RequestBody EventoDTO eventoDTO ) {
+		if(eventoservice.editarEvento(fecha, eventoDTO, idMascota)) {
+			StringResponse sr = new StringResponse("Evento editado correctamente");
+			return new ResponseEntity<StringResponse>(sr, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+	}
 }

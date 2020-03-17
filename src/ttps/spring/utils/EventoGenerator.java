@@ -1,6 +1,5 @@
 package ttps.spring.utils;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,26 +18,26 @@ import ttps.spring.model.Visita;
 @Component
 public class EventoGenerator {
 
-	public Evento nuevoEvento (LocalDate fecha, EventoDTO eventoDTO, Mascota mascota) {
+	public Evento nuevoEvento (EventoDTO eventoDTO, Mascota mascota) {
 		Evento ev = null;
 		switch (eventoDTO.getTipo_evento()) {
 		case "Desparasitacion": 
-			ev = new Desparasitacion(fecha, mascota, eventoDTO.getDroga(), eventoDTO.getResultado());
+			ev = new Desparasitacion(eventoDTO.getFecha(), mascota, eventoDTO.getDroga(), eventoDTO.getResultado());
 			break;
 		case "Enfermedad":
-			ev = new Enfermedad(fecha, mascota, eventoDTO.getDescripcion());
+			ev = new Enfermedad(eventoDTO.getFecha(), mascota, eventoDTO.getDescripcion());
 			break;		
 		case "HistorialReproductivo":
-			ev = new HistorialReproductivo(fecha, mascota, eventoDTO.getNro_nacidos());
+			ev = new HistorialReproductivo(eventoDTO.getFecha(), mascota, eventoDTO.getNro_nacidos());
 			break;
 		case "Intervencion":
-			ev = new Intervencion(fecha, mascota, eventoDTO.getDescripcion());
+			ev = new Intervencion(eventoDTO.getFecha(), mascota, eventoDTO.getDescripcion());
 			break;
 		case "Vacunacion":
-			ev = new Vacunacion(fecha, mascota, eventoDTO.getDescripcion());
+			ev = new Vacunacion(eventoDTO.getFecha(), mascota, eventoDTO.getDescripcion());
 			break;
 		case "Visita":
-			ev = new Visita(fecha, mascota, eventoDTO.getPeso(), eventoDTO.getMotivo(), eventoDTO.getDescripcion(), eventoDTO.getIndicaciones());
+			ev = new Visita(eventoDTO.getFecha(), mascota, eventoDTO.getPeso(), eventoDTO.getMotivo(), eventoDTO.getDescripcion(), eventoDTO.getIndicaciones());
 			break;
 		}
 		return ev;
@@ -78,5 +77,35 @@ public class EventoGenerator {
 			}
 		}
 		return resultado;
+	}
+	
+	public Evento editarEvento(Evento evento, EventoDTO eventoDTO, Mascota mascota) {
+		evento.setFecha(eventoDTO.getFecha());
+		evento.setMascota(mascota);
+		switch (eventoDTO.getTipo_evento()) {
+			case "Desparasitacion": 
+				((Desparasitacion) evento).setDroga(eventoDTO.getDroga());
+				((Desparasitacion) evento).setResultado(eventoDTO.getResultado());			
+				break;
+			case "Enfermedad":
+				((Enfermedad) evento).setDescripcion(eventoDTO.getDescripcion());
+				break;		
+			case "HistorialReproductivo":
+				((HistorialReproductivo) evento).setNroNacidos(eventoDTO.getNro_nacidos());
+				break;
+			case "Intervencion":
+				((Intervencion) evento).setDescripcion(eventoDTO.getDescripcion());
+				break;
+			case "Vacunacion":
+				((Vacunacion) evento).setDescripcion(eventoDTO.getDescripcion());
+				break;
+			case "Visita":
+				((Visita) evento).setPeso(eventoDTO.getPeso());
+				((Visita) evento).setMotivo(eventoDTO.getMotivo());
+				((Visita) evento).setDescripcion(eventoDTO.getDescripcion());
+				((Visita) evento).setIndicaciones(eventoDTO.getIndicaciones());
+				break;
+		}
+		return evento;
 	}
 }

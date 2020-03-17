@@ -33,11 +33,24 @@ public class EventoService {
 		this.mascotaDAO = mascotaDAO;
 	}
 
+	public boolean editarEvento (String fecha, EventoDTO eventoDTO, int idMascota) {
+		try {
+			eventoDTO.setFecha(LocalDate.parse(fecha));
+			Evento ev = eventoDAO.getById(eventoDTO.getId());
+			Mascota mascota =  mascotaDAO.getById(idMascota);
+			eventoDAO.update(this.editarEvento(ev, eventoDTO, mascota));
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	public boolean altaEvento (String fecha, EventoDTO eventoDTO, int id){
 		try {
-			LocalDate f = LocalDate.parse(fecha);
+			eventoDTO.setFecha(LocalDate.parse(fecha));
 			Mascota mascota = mascotaDAO.getById(id);
-			eventoDAO.save(eventoGenerator.nuevoEvento(f, eventoDTO, mascota));
+			eventoDAO.save(this.nuevoEvento(eventoDTO, mascota));
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -90,5 +103,13 @@ public class EventoService {
 	
 	public List<EventoDTO> listGenerator(List<Evento> lista){
 		return eventoGenerator.listGenerator(lista);
+	}
+	
+	public Evento nuevoEvento (EventoDTO eventoDTO, Mascota mascota) {
+		return eventoGenerator.nuevoEvento(eventoDTO, mascota);
+	}
+	
+	public Evento editarEvento (Evento evento, EventoDTO eventoDTO, Mascota mascota) {
+		return eventoGenerator.editarEvento(evento, eventoDTO, mascota);
 	}
 }
