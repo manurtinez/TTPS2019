@@ -92,4 +92,14 @@ public class MascotaController {
 		}
 		return new ResponseEntity<List<Mascota>>(lista, HttpStatus.OK);
 	}
+	
+	@PostMapping("/mascota/{id}/asignar-veterinario")
+	public ResponseEntity<StringResponse> asignarVeterinario (@PathVariable("id") int mascotaId,
+															@RequestBody IdRequest vetId){
+		if(mascotaService.asignarVet(mascotaId, vetId.getId())) {
+			StringResponse sr = new StringResponse("Se asigno veterinario correctamente");
+			return new ResponseEntity<StringResponse>(sr, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+	}
 }
