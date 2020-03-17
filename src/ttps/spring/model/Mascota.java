@@ -62,7 +62,7 @@ public class Mascota {
 	@OneToMany(mappedBy="mascota", orphanRemoval = true, fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
 	private List<Evento> historial;
 	
-	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
+	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE, CascadeType.PERSIST}, orphanRemoval = true)
 	private ConfigFicha configFicha;
 	
 	public Mascota() {}
