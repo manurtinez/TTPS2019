@@ -50,7 +50,7 @@ public class VeterinarioController {
 		return new ResponseEntity<List<VeterinarioDTO>>(lista, HttpStatus.OK); 	
 	}
 	
-	//todas las mascotas con su dueno de un determinado veterinario
+	//todas las mascotas (aceptadas) con su dueno de un determinado veterinario
 	@GetMapping("veterinario/{id}/mascotas")
 	public ResponseEntity<List<MascotaConDueno>> getAllMascotasDeVeterinario (@PathVariable("id") int vetId){
 		List<MascotaConDueno> lista = vetservice.getAllMascotasDeVeterinario(vetId);
@@ -59,4 +59,33 @@ public class VeterinarioController {
 		}
 		return new ResponseEntity<List<MascotaConDueno>>(lista, HttpStatus.OK); 	
 	}
+	
+	//todas las mascotas (pendientes a aceptar) con su dueno de un determinado veterinario
+	@GetMapping("veterinario/{id}/mascotas-pendientes")
+	public ResponseEntity<List<MascotaConDueno>> getAllMascotasPendientesDeVeterinario (@PathVariable("id") int vetId){
+		List<MascotaConDueno> lista = vetservice.getAllMascotasDeVeterinarioPendientes(vetId);
+		if(lista.isEmpty()) {
+			return new ResponseEntity<List<MascotaConDueno>>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<MascotaConDueno>>(lista, HttpStatus.OK); 	
+	}
+	
+	@GetMapping("veterinario/mascotas/{id}/aceptar-mascota")
+	public ResponseEntity<StringResponse> aceptarMascota (@PathVariable("id") int mascotaId){
+		if(vetservice.aceptarMascota(mascotaId)) {
+			StringResponse sr = new StringResponse("mascota aceptada");
+			return new ResponseEntity<StringResponse>(sr, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+	}
+	
+	@GetMapping("veterinario/mascotas/{id}/rechazar-mascota")
+	public ResponseEntity<StringResponse> rechazarMascota (@PathVariable("id") int mascotaId){
+		if(vetservice.rechazarMascota(mascotaId)) {
+			StringResponse sr = new StringResponse("mascota rechazada");
+			return new ResponseEntity<StringResponse>(sr, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+	}
+	
 }

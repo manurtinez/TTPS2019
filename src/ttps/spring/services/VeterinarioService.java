@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ttps.spring.DAO.MascotaDAO;
 import ttps.spring.DAO.UsuarioDAO;
 import ttps.spring.DAO.VeterinarioDAO;
 import ttps.spring.DTO.DuenoDTO;
@@ -21,6 +22,8 @@ public class VeterinarioService {
 	private UsuarioDAO usuariodao;
 	@Autowired
 	private VeterinarioDAO vetdao;
+	@Autowired
+	private MascotaDAO mascotadao;
 	
 	public boolean existeVet(String email) {
 		Usuario u = usuariodao.getByEmail(email);
@@ -54,36 +57,95 @@ public class VeterinarioService {
 			return null;
 		}
 	}
+	public List<MascotaConDueno> getAllMascotasDeVeterinarioPendientes(int vetId) {
+		try {
+			List<Mascota> list = vetdao.getMascotas(vetId);
+			List<MascotaConDueno> listaResultado = new ArrayList<>();
+			for (Mascota mascota : list) {
+				if (! mascota.isVetStatus()) {
+					MascotaConDueno mascotaConDueno = new MascotaConDueno();
+					DuenoDTO duenoDTO = new DuenoDTO();
+					
+					duenoDTO.setApellido(mascota.getDueno().getApellido());
+					duenoDTO.setEmail(mascota.getDueno().getEmail());
+					duenoDTO.setNombre(mascota.getDueno().getNombre());
+					duenoDTO.setTelefono(mascota.getDueno().getTelefono());;
+					
+					mascotaConDueno.setDueno(duenoDTO);
+					mascotaConDueno.setColor(mascota.getColor());
+					mascotaConDueno.setConfigFichaId(mascota.getConfigFicha());
+					mascotaConDueno.setEspecie(mascota.getEspecie());
+					mascotaConDueno.setFotos(mascota.getFotos());
+					mascotaConDueno.setNombre(mascota.getNombre());
+					mascotaConDueno.setRaza(mascota.getRaza());
+					mascotaConDueno.setSexo(mascota.getSexo());
+					mascotaConDueno.setSenas(mascota.getSenas());
+					mascotaConDueno.setNacimiento(mascota.getNacimiento());
+					listaResultado.add(mascotaConDueno);
+				}
+			}
+			return listaResultado;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 	public List<MascotaConDueno> getAllMascotasDeVeterinario(int vetId) {
 		try {
 			List<Mascota> list = vetdao.getMascotas(vetId);
 			List<MascotaConDueno> listaResultado = new ArrayList<>();
 			for (Mascota mascota : list) {
-				MascotaConDueno mascotaConDueno = new MascotaConDueno();
-				DuenoDTO duenoDTO = new DuenoDTO();
-				
-				duenoDTO.setApellido(mascota.getDueno().getApellido());
-				duenoDTO.setEmail(mascota.getDueno().getEmail());
-				duenoDTO.setNombre(mascota.getDueno().getNombre());
-				duenoDTO.setTelefono(mascota.getDueno().getTelefono());;
-				
-				mascotaConDueno.setDueno(duenoDTO);
-				mascotaConDueno.setColor(mascota.getColor());
-				mascotaConDueno.setConfigFichaId(mascota.getConfigFicha());
-				mascotaConDueno.setEspecie(mascota.getEspecie());
-				mascotaConDueno.setFotos(mascota.getFotos());
-				mascotaConDueno.setNombre(mascota.getNombre());
-				mascotaConDueno.setRaza(mascota.getRaza());
-				mascotaConDueno.setSexo(mascota.getSexo());
-				mascotaConDueno.setSenas(mascota.getSenas());
-				mascotaConDueno.setNacimiento(mascota.getNacimiento());
-				listaResultado.add(mascotaConDueno);
+				if (mascota.isVetStatus()) {
+					MascotaConDueno mascotaConDueno = new MascotaConDueno();
+					DuenoDTO duenoDTO = new DuenoDTO();
+					
+					duenoDTO.setApellido(mascota.getDueno().getApellido());
+					duenoDTO.setEmail(mascota.getDueno().getEmail());
+					duenoDTO.setNombre(mascota.getDueno().getNombre());
+					duenoDTO.setTelefono(mascota.getDueno().getTelefono());;
+					
+					mascotaConDueno.setDueno(duenoDTO);
+					mascotaConDueno.setColor(mascota.getColor());
+					mascotaConDueno.setConfigFichaId(mascota.getConfigFicha());
+					mascotaConDueno.setEspecie(mascota.getEspecie());
+					mascotaConDueno.setFotos(mascota.getFotos());
+					mascotaConDueno.setNombre(mascota.getNombre());
+					mascotaConDueno.setRaza(mascota.getRaza());
+					mascotaConDueno.setSexo(mascota.getSexo());
+					mascotaConDueno.setSenas(mascota.getSenas());
+					mascotaConDueno.setNacimiento(mascota.getNacimiento());
+					listaResultado.add(mascotaConDueno);
+				}
 			}
 			return listaResultado;
 		}catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+
+	public boolean aceptarMascota(int mascotaId) {
+		try {
+			Mascota mascota = mascotadao.getById(mascotaId);
+			mascota.aceptarMascota();
+			mascotadao.update(mascota);
+			return true;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public boolean rechazarMascota(int mascotaId) {
+		try {
+			Mascota mascota = mascotadao.getById(mascotaId);
+			mascota.cancelarMascota();
+			mascotadao.update(mascota);
+			return true;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return false;
 		}
 	}
 

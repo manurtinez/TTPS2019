@@ -65,6 +65,9 @@ public class Mascota {
 	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE, CascadeType.PERSIST}, orphanRemoval = true)
 	private ConfigFicha configFicha;
 	
+	@Column(nullable = false)
+	private boolean vetStatus;
+	
 	public Mascota() {}
 	
 	public Mascota(String nombre, String especie, String raza, String sexo, String color, String senas,
@@ -79,10 +82,10 @@ public class Mascota {
 		this.nacimiento = nacimiento;
 		this.fotos = fotos;
 		this.veterinario = null;
+		this.vetStatus = false;
 		setDueno(dueno);
 		this.configFicha = config;
 		this.historial = new ArrayList<Evento>();
-		
 	}
 	
 	public Veterinario getVeterinario() {
@@ -95,6 +98,15 @@ public class Mascota {
 	public void nullVeterinario(Veterinario veterinario) {
 		veterinario.borrarMascota(this);
 		this.veterinario = null;
+ 	}
+	
+	public void aceptarMascota () {
+		this.setVetStatus(true);
+	}
+	
+	public void cancelarMascota() {
+		this.setVetStatus(false);
+		this.nullVeterinario(this.getVeterinario());
 	}
 
 	public String getNombre() {
@@ -184,6 +196,15 @@ public class Mascota {
 	public Dueno getDueno() {
 		return this.dueno;
 	}
+	
+	public boolean isVetStatus() {
+		return vetStatus;
+	}
+
+	public void setVetStatus(boolean vetStatus) {
+		this.vetStatus = vetStatus;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) return true;
