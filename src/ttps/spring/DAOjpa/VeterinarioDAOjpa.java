@@ -18,9 +18,9 @@ public class VeterinarioDAOjpa extends GenericDAOjpa<Veterinario> implements Vet
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Mascota> getMascotas(Veterinario vet) {
+	public List<Mascota> getMascotas(int id) {
 		EntityManager em = getEntityManager();
-		return (List<Mascota>) em.createQuery("SELECT m FROM Mascota m WHERE m.veterinario_id=:vet.veterinario_id").getResultList();
+		return (List<Mascota>) em.createQuery("SELECT m FROM Mascota m WHERE m.veterinario.id=?1").setParameter(1, id).getResultList();
 	}
 
 	@SuppressWarnings("unchecked")

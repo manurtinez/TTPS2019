@@ -26,21 +26,43 @@ public class EventoController {
 	@Autowired
 	private EventoService eventoservice;
 	
-	//retorna eventos posteriores a la fecha (inclusive) enviada como parametro
-	@GetMapping("/dueno/{id}/mascotas/eventos-posteriores/{fecha}")//ejemplo fecha: 2020-02-12
-	public ResponseEntity<List<EventoDTO>> TodosLosEventosDeTodasLasMascotasDeUnDuenoPostFecha (@PathVariable("fecha") String fecha ,
+	//para veterinarios retorna eventos anteriores a la fecha enviada como parametro. (Historial)
+	@GetMapping("/veterinario/{id}/mascotas/eventos-anteriores/{fecha}")//ejemplo fecha: 2020-02-12
+	public ResponseEntity<List<EventoDTO>> TodosLosEventosDeTodasLasMascotasDeUnVeterinarioAntesFecha (@PathVariable("fecha") String fecha ,
 																					@PathVariable("id") int id) {
-		List<EventoDTO> lista = eventoservice.getAllEventosFuturos(id, fecha);
+		List<EventoDTO> lista = eventoservice.getAllEventosPasadosVeterinario(id, fecha);
 		if(lista.isEmpty()) {
 			return new ResponseEntity<List<EventoDTO>>(HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<List<EventoDTO>>(lista, HttpStatus.OK); 
 	}
-	//retorna eventos anteriores a la fecha enviada como parametro. (Historial)
+	
+	//para veterinarios retorna eventos posteriores a la fecha (inclusive) enviada como parametro
+	@GetMapping("/veterinario/{id}/mascotas/eventos-posteriores/{fecha}")//ejemplo fecha: 2020-02-12
+	public ResponseEntity<List<EventoDTO>> TodosLosEventosDeTodasLasMascotasDeUnVeterinarioPostFecha (@PathVariable("fecha") String fecha ,
+																					@PathVariable("id") int id) {
+		List<EventoDTO> lista = eventoservice.getAllEventosFuturosVeterinario(id, fecha);
+		if(lista.isEmpty()) {
+			return new ResponseEntity<List<EventoDTO>>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<EventoDTO>>(lista, HttpStatus.OK); 
+	}
+	
+	//para Duenos retorna eventos posteriores a la fecha (inclusive) enviada como parametro
+	@GetMapping("/dueno/{id}/mascotas/eventos-posteriores/{fecha}")//ejemplo fecha: 2020-02-12
+	public ResponseEntity<List<EventoDTO>> TodosLosEventosDeTodasLasMascotasDeUnDuenoPostFecha (@PathVariable("fecha") String fecha ,
+																					@PathVariable("id") int id) {
+		List<EventoDTO> lista = eventoservice.getAllEventosFuturosDueno(id, fecha);
+		if(lista.isEmpty()) {
+			return new ResponseEntity<List<EventoDTO>>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<EventoDTO>>(lista, HttpStatus.OK); 
+	}
+	//para Duenos retorna eventos anteriores a la fecha enviada como parametro. (Historial)
 	@GetMapping("/dueno/{id}/mascotas/eventos-anteriores/{fecha}")//ejemplo fecha: 2020-02-12
 	public ResponseEntity<List<EventoDTO>> TodosLosEventosDeTodasLasMascotasDeUnDuenoAntesFecha (@PathVariable("fecha") String fecha ,
 																					@PathVariable("id") int id) {
-		List<EventoDTO> lista = eventoservice.getAllEventosPasados(id, fecha);
+		List<EventoDTO> lista = eventoservice.getAllEventosPasadosDueno(id, fecha);
 		if(lista.isEmpty()) {
 			return new ResponseEntity<List<EventoDTO>>(HttpStatus.NO_CONTENT);
 		}
