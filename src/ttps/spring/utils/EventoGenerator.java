@@ -50,28 +50,28 @@ public class EventoGenerator {
 			switch (clase) {
 				case "Desparasitacion": 
 					eventoDTO = new EventoDTO(clase, e.getId(), e.getFecha(),
-							((Desparasitacion) e).getDroga(), ((Desparasitacion) e).getResultado());
+							((Desparasitacion) e).getDroga(), ((Desparasitacion) e).getResultado(), e.getMascota().getId());
 					resultado.add(eventoDTO);
 					break;
 				case "Enfermedad":
-					eventoDTO = new EventoDTO(clase, e.getId(), e.getFecha(), ( (Enfermedad) e ).getDescripcion());
+					eventoDTO = new EventoDTO(clase, e.getId(), e.getFecha(), ( (Enfermedad) e ).getDescripcion(), e.getMascota().getId());
 					resultado.add(eventoDTO);
 					break;		
 				case "HistorialReproductivo":
-					eventoDTO = new EventoDTO(clase, e.getId(), e.getFecha(), ((HistorialReproductivo) e).getNroNacidos());
+					eventoDTO = new EventoDTO(clase, e.getId(), e.getFecha(), ((HistorialReproductivo) e).getNroNacidos(), e.getMascota().getId());
 					resultado.add(eventoDTO);
 					break;
 				case "Intervencion":
-					eventoDTO = new EventoDTO(clase, e.getId(), e.getFecha(), ((Intervencion)e).getDescripcion());
+					eventoDTO = new EventoDTO(clase, e.getId(), e.getFecha(), ((Intervencion)e).getDescripcion(), e.getMascota().getId());
 					resultado.add(eventoDTO);
 					break;
 				case "Vacunacion":
-					eventoDTO = new EventoDTO(clase, e.getId(), e.getFecha(), ((Vacunacion)e).getDescripcion());
+					eventoDTO = new EventoDTO(clase, e.getId(), e.getFecha(), ((Vacunacion)e).getDescripcion(), e.getMascota().getId());
 					resultado.add(eventoDTO);
 					break;
 				case "Visita":
 					eventoDTO = new EventoDTO(clase, e.getId(), e.getFecha(), ((Visita) e).getDescripcion(),
-							((Visita) e).getIndicaciones(), ((Visita) e).getMotivo(), ((Visita) e).getPeso());
+							((Visita) e).getIndicaciones(), ((Visita) e).getMotivo(), ((Visita) e).getPeso(), e.getMascota().getId());
 					resultado.add(eventoDTO);
 					break;
 			}

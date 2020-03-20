@@ -5,6 +5,7 @@ import java.time.LocalDate;
 public class EventoDTO {
 	private String tipo_evento;
 	private int id;
+	private int mascotaId;
 	private LocalDate fecha;
 	private String droga;	
 	private String resultado;	
@@ -17,7 +18,7 @@ public class EventoDTO {
 	public EventoDTO () {}
 	
 	public EventoDTO(String tipo_evento, int id, LocalDate fecha, String descripcion, 
-			String indicaciones, String motivo, float peso) {
+			String indicaciones, String motivo, float peso, int mascotaId) {
 		//visita
 		this.tipo_evento = tipo_evento;
 		this.id = id;
@@ -26,30 +27,34 @@ public class EventoDTO {
 		this.indicaciones = indicaciones;
 		this.motivo = motivo;
 		this.peso = peso;
+		this.mascotaId = mascotaId;
 	}
 	
-	public EventoDTO(String tipo_evento, int id, LocalDate fecha, String descripcion) {
+	public EventoDTO(String tipo_evento, int id, LocalDate fecha, String descripcion, int mascotaId) {
 		//vacunacion, enfermedad, intervencion
 		this.tipo_evento = tipo_evento;
 		this.id = id;
 		this.fecha = fecha;
 		this.descripcion = descripcion;
+		this.mascotaId = mascotaId;
 	}
-	public EventoDTO(String tipo_evento, int id, LocalDate fecha, int nro_nacidos) {
+	public EventoDTO(String tipo_evento, int id, LocalDate fecha, int nro_nacidos, int mascotaId) {
 		//historial reproductivo
 		this.tipo_evento = tipo_evento;
 		this.id = id;
 		this.fecha = fecha;
 		this.nro_nacidos = nro_nacidos;
+		this.mascotaId = mascotaId;
 	}
 	
-	public EventoDTO (String tipo_evento, int id, LocalDate fecha, String droga, String resultado) {
+	public EventoDTO (String tipo_evento, int id, LocalDate fecha, String droga, String resultado, int mascotaId) {
 		//desparasitacion
 		this.tipo_evento = tipo_evento;
 		this.id = id;
 		this.fecha = fecha;
 		this.droga = droga;
 		this.resultado = resultado;
+		this.mascotaId = mascotaId;
 	}
 	
 	public int getId() {
@@ -113,6 +118,14 @@ public class EventoDTO {
 
 	public void setTipo_evento(String tipo_evento) {
 		this.tipo_evento = tipo_evento;
+	}
+
+	public int getMascotaId() {
+		return mascotaId;
+	}
+
+	public void setMascotaId(int mascotaId) {
+		this.mascotaId = mascotaId;
 	}
 	
 }

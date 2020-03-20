@@ -146,6 +146,28 @@ public class EventoService {
 		return eventoGenerator.editarEvento(evento, eventoDTO, mascota);
 	}
 
+	public List<EventoDTO> getAllEventosPasadosMascota(int id, String fecha) {
+		try {
+			LocalDate f = LocalDate.parse(fecha);
+			List<Evento> listaEventos = eventoDAO.getBeforeDate(f, id);
+			return this.listGenerator(listaEventos);	
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public List<EventoDTO> getAllEventosFuturosMascota(int id, String fecha) {
+		try {
+			LocalDate f = LocalDate.parse(fecha);
+			List<Evento> listaEventos = eventoDAO.getAfterDate(f, id);
+			return this.listGenerator(listaEventos);	
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 	
 
 }

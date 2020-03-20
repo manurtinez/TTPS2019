@@ -52,6 +52,10 @@ public abstract class Evento {
 	public int getId() {
 		return id;
 	}
+	
+	public Mascota getMascota() {
+		return this.mascota;
+	}
 
 	public void setId(int id) {
 		this.id = id;
