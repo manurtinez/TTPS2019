@@ -40,7 +40,7 @@ public class GenericDAOjpa<T> implements GenericDAO<T> {
 
 	@Override
 	public T save(T t) {
-		this.entityManager.persist(t);
+		this.entityManager.merge(t);
 		return t;
 	}
 

@@ -30,12 +30,13 @@ public class MascotaService {
 	}
 	public MascotaService() {}
 	
-	public boolean altaMascota(MascotaDTO mascota, int id){
+	public boolean altaMascota(MascotaDTO mascota, int iddue, int idvet){
 		try {
-			Dueno dueno = duenoDAO.getById(id);
+			Dueno dueno = duenoDAO.getById(iddue);
+			Veterinario vet = vetDAO.getById(idvet);
 			Mascota mascotaSave = new Mascota(mascota.getNombre(), mascota.getEspecie(), mascota.getRaza()
 					, mascota.getSexo(), mascota.getColor(), mascota.getSenas(), mascota.getNacimiento()
-					, mascota.getFotos(), dueno, mascota.getConfigFicha());
+					, mascota.getFotos(), dueno, vet, mascota.getConfigFicha());
 			mascotaDAO.save(mascotaSave);
 			return true;
 		}catch (Exception e) {
