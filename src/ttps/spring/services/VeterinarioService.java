@@ -105,6 +105,7 @@ public class VeterinarioService {
 					duenoDTO.setNombre(mascota.getDueno().getNombre());
 					duenoDTO.setTelefono(mascota.getDueno().getTelefono());;
 					
+					mascotaConDueno.setId(mascota.getId());
 					mascotaConDueno.setDueno(duenoDTO);
 					mascotaConDueno.setColor(mascota.getColor());
 					mascotaConDueno.setConfigFichaId(mascota.getConfigFicha());
