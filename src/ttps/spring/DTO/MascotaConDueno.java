@@ -6,6 +6,7 @@ import ttps.spring.model.ConfigFicha;
 
 public class MascotaConDueno {
 
+	private int id;
 	private String nombre;
 	private String especie;
 	private String raza;
@@ -93,5 +94,13 @@ public class MascotaConDueno {
 
 	public void setDueno(DuenoDTO dueno) {
 		this.dueno = dueno;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

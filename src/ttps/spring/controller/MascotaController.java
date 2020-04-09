@@ -35,10 +35,11 @@ public class MascotaController {
 	}
 	public MascotaController() {}
 
-	@PostMapping("/dueno/{id}/nuevaMascota")
-	public ResponseEntity<StringResponse> altaMascota (@PathVariable("id") int id,
+	@PostMapping("/dueno/{iddue}/nuevaMascota/{idvet}")
+	public ResponseEntity<StringResponse> altaMascota (@PathVariable("iddue") int iddue,
+			@PathVariable("idvet") int idvet,
 												@RequestBody MascotaDTO mascota ) {
-		if(mascotaService.altaMascota(mascota, id)) {
+		if(mascotaService.altaMascota(mascota, iddue, idvet)) {
 			StringResponse sr = new StringResponse("mascota creada correctamente");
 			return new ResponseEntity<StringResponse>(sr, HttpStatus.CREATED);
 		}

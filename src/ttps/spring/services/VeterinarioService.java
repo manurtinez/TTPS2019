@@ -46,7 +46,7 @@ public class VeterinarioService {
 			List<Veterinario> list = vetdao.getAll();
 			List<VeterinarioDTO> listDTO = new ArrayList<>();
 			for (Veterinario veterinario : list) {
-				VeterinarioDTO vetDTO = new VeterinarioDTO(veterinario.getNombre(), veterinario.getApellido(), veterinario.getEmail(),
+				VeterinarioDTO vetDTO = new VeterinarioDTO(veterinario.getId(), veterinario.getNombre(), veterinario.getApellido(), veterinario.getEmail(),
 										null, veterinario.getTelefono(), veterinario.getNomClinica(), veterinario.getDirClinica(),
 										veterinario.getNroMatricula());
 				listDTO.add(vetDTO);
@@ -105,6 +105,7 @@ public class VeterinarioService {
 					duenoDTO.setNombre(mascota.getDueno().getNombre());
 					duenoDTO.setTelefono(mascota.getDueno().getTelefono());;
 					
+					mascotaConDueno.setId(mascota.getId());
 					mascotaConDueno.setDueno(duenoDTO);
 					mascotaConDueno.setColor(mascota.getColor());
 					mascotaConDueno.setConfigFichaId(mascota.getConfigFicha());

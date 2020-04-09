@@ -6,6 +6,7 @@ import java.util.Date;
 import ttps.spring.model.ConfigFicha;
 
 public class MascotaDTO {
+	private int id;
 	private String nombre;
 	private String especie;
 	private String raza;
@@ -30,6 +31,12 @@ public class MascotaDTO {
 		this.nacimiento = nacimiento;
 		this.configFicha = configFicha;
 		this.fotos = fotos;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getId() {
+		return id;
 	}
 	public String getNombre() {
 		return nombre;

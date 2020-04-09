@@ -13,17 +13,6 @@ public class VeterinarioDTO {
 	
 	public VeterinarioDTO() {}
 	
-	public VeterinarioDTO(String nombre, String apellido, String email, String password, long telefono,
-			String nomClinica, String dirClinica, int nroMatricula) {
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.email = email;
-		this.password = password;
-		this.telefono = telefono;
-		this.nomClinica = nomClinica;
-		this.dirClinica = dirClinica;
-		this.nroMatricula = nroMatricula;
-	}
 	
 	public VeterinarioDTO(int id, String nombre, String apellido, String email, String password, long telefono,
 			String nomClinica, String dirClinica, int nroMatricula) {
@@ -94,7 +83,5 @@ public class VeterinarioDTO {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	
 	
 }
