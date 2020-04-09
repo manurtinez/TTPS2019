@@ -36,10 +36,13 @@ public class AdminController {
 	}
 	
 	@PostMapping("/admin/habilitarVeterinario")
-	public ResponseEntity<StringResponse> habilitarVeterinario (@RequestBody IdRequest id ) {
+	public ResponseEntity<List<VeterinarioDTO>> habilitarVeterinario (@RequestBody IdRequest id ) {
 		if(adminservice.habilitarVeterinario(id.getId())) {
-			StringResponse sr = new StringResponse("veterinario habilitado correctamente");
-			return new ResponseEntity<StringResponse>(sr, HttpStatus.OK);
+			List<VeterinarioDTO> lista = adminservice.getAllVeterinariosInhabilitados();
+			if(lista.isEmpty()) {
+				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			}
+			return new ResponseEntity<List<VeterinarioDTO>>(lista, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
 	}

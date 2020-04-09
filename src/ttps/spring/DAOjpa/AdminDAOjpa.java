@@ -27,6 +27,7 @@ public class AdminDAOjpa extends GenericDAOjpa<Admin> implements AdminDAO{
 	@Override
 	public Veterinario habilitarVeterinario(Veterinario vet) {
 		try {
+			System.out.println(vet.getId());
 			EntityManager em = getEntityManager();
 			vet.setHabilitado(true);
 			return em.merge(vet);	

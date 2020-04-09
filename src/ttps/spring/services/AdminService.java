@@ -26,7 +26,7 @@ public class AdminService {
 			
 			List<Veterinario> listaModel = adminDAO.getAllVeterinarioInhabilitados();
 			for (Veterinario vet : listaModel) {
-				VeterinarioDTO vetDTO = new VeterinarioDTO(vet.getNombre(), vet.getApellido(), vet.getEmail(), 
+				VeterinarioDTO vetDTO = new VeterinarioDTO(vet.getId(), vet.getNombre(), vet.getApellido(), vet.getEmail(), 
 						vet.getPassword(), vet.getTelefono(), vet.getNomClinica(),vet.getDirClinica(), vet.getNroMatricula());
 				listaDTO.add(vetDTO);				
 			}
@@ -40,6 +40,7 @@ public class AdminService {
 	
 	public boolean habilitarVeterinario (int id) {
 		try {
+			System.out.println(id);
 			Veterinario vet = vetDAO.getById(id);
 			if (adminDAO.habilitarVeterinario(vet) != null) {
 				return true;

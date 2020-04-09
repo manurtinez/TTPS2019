@@ -1,6 +1,7 @@
 package ttps.spring.DTO;
 
 public class VeterinarioDTO {
+	private int id;
 	private String nombre;
 	private String apellido;
 	private String email;
@@ -22,6 +23,19 @@ public class VeterinarioDTO {
 		this.nomClinica = nomClinica;
 		this.dirClinica = dirClinica;
 		this.nroMatricula = nroMatricula;
+	}
+	
+	public VeterinarioDTO(int id, String nombre, String apellido, String email, String password, long telefono,
+			String nomClinica, String dirClinica, int nroMatricula) {
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = email;
+		this.password = password;
+		this.telefono = telefono;
+		this.nomClinica = nomClinica;
+		this.dirClinica = dirClinica;
+		this.nroMatricula = nroMatricula;
+		this.id = id;
 	}
 
 	public String getNombre() {
@@ -72,5 +86,15 @@ public class VeterinarioDTO {
 	public void setNroMatricula(int nroMatricula) {
 		this.nroMatricula = nroMatricula;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	
 	
 }
