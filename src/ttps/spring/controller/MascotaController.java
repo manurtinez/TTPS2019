@@ -96,8 +96,8 @@ public class MascotaController {
 	
 	@PostMapping("/mascota/{id}/asignar-veterinario")
 	public ResponseEntity<StringResponse> asignarVeterinario (@PathVariable("id") int mascotaId,
-															@RequestBody IdRequest vetId){
-		if(mascotaService.asignarVet(mascotaId, vetId.getId())) {
+															@RequestBody int vetId){
+		if(mascotaService.asignarVet(mascotaId, vetId)) {
 			StringResponse sr = new StringResponse("Se asigno veterinario correctamente");
 			return new ResponseEntity<StringResponse>(sr, HttpStatus.OK);
 		}
