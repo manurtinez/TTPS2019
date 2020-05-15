@@ -27,7 +27,7 @@ public class AdminService {
 			List<Veterinario> listaModel = adminDAO.getAllVeterinarioInhabilitados();
 			for (Veterinario vet : listaModel) {
 				VeterinarioDTO vetDTO = new VeterinarioDTO(vet.getId(), vet.getNombre(), vet.getApellido(), vet.getEmail(), 
-						vet.getPassword(), vet.getTelefono(), vet.getNomClinica(),vet.getDirClinica(), vet.getNroMatricula());
+						vet.getPassword(), vet.getTelefono(), vet.getNomClinica(),vet.getDirClinica(), vet.getNroMatricula(), vet.isHabilitado() ? 1 : 0);
 				listaDTO.add(vetDTO);				
 			}
 			
