@@ -1,7 +1,10 @@
 package ttps.spring.services;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +39,8 @@ public class EventoService {
 		this.vetDAO = vetDAO;
 	}
 
-	public boolean editarEvento (String fecha, EventoDTO eventoDTO, int idMascota) {
+	public boolean editarEvento (EventoDTO eventoDTO, int idMascota) {
 		try {
-			eventoDTO.setFecha(LocalDate.parse(fecha));
 			Evento ev = eventoDAO.getById(eventoDTO.getId());
 			Mascota mascota =  mascotaDAO.getById(idMascota);
 			eventoDAO.update(this.editarEvento(ev, eventoDTO, mascota));
@@ -49,9 +51,8 @@ public class EventoService {
 		}
 	}
 	
-	public boolean altaEvento (String fecha, EventoDTO eventoDTO, int id){
+	public boolean altaEvento (EventoDTO eventoDTO, int id){
 		try {
-			eventoDTO.setFecha(LocalDate.parse(fecha));
 			Mascota mascota = mascotaDAO.getById(id);
 			eventoDAO.save(this.nuevoEvento(eventoDTO, mascota));
 			return true;
@@ -76,7 +77,7 @@ public class EventoService {
 	
 	public List<EventoDTO> getAllEventosPasadosDueno(int id, String fecha){
 		try {
-			LocalDate f = LocalDate.parse(fecha);
+			Date f = new Date();
 			List<Mascota> listaMascota = duenoDAO.getAllMascotas(id);
 			List<Evento> listaEventos = new ArrayList<>(); 
 			for (Mascota m : listaMascota) {
@@ -91,7 +92,7 @@ public class EventoService {
 	
 	public List<EventoDTO> getAllEventosFuturosDueno(int id, String fecha) {
 		try {
-			LocalDate f = LocalDate.parse(fecha);
+			Date f = new Date();
 			List<Mascota> listaMascota = duenoDAO.getAllMascotas(id);
 			List<Evento> listaEventos = new ArrayList<>(); 
 			for (Mascota m : listaMascota) {
@@ -106,7 +107,7 @@ public class EventoService {
 	
 	public List<EventoDTO> getAllEventosFuturosVeterinario(int id, String fecha) {
 		try {
-			LocalDate f = LocalDate.parse(fecha);
+			Date f = new Date();
 			List<Mascota> listaMascota = vetDAO.getMascotas(id);
 			List<Evento> listaEventos = new ArrayList<>(); 
 			for (Mascota m : listaMascota) {
@@ -121,7 +122,7 @@ public class EventoService {
 	
 	public List<EventoDTO> getAllEventosPasadosVeterinario(int id, String fecha) {
 		try {
-			LocalDate f = LocalDate.parse(fecha);
+			Date f = new Date();
 			List<Mascota> listaMascota = vetDAO.getMascotas(id);
 			List<Evento> listaEventos = new ArrayList<>(); 
 			for (Mascota m : listaMascota) {
@@ -148,7 +149,7 @@ public class EventoService {
 
 	public List<EventoDTO> getAllEventosPasadosMascota(int id, String fecha) {
 		try {
-			LocalDate f = LocalDate.parse(fecha);
+			Date f = new Date();
 			List<Evento> listaEventos = eventoDAO.getBeforeDate(f, id);
 			return this.listGenerator(listaEventos);	
 		} catch (Exception e) {
@@ -159,7 +160,7 @@ public class EventoService {
 
 	public List<EventoDTO> getAllEventosFuturosMascota(int id, String fecha) {
 		try {
-			LocalDate f = LocalDate.parse(fecha);
+			Date f = new Date();
 			List<Evento> listaEventos = eventoDAO.getAfterDate(f, id);
 			return this.listGenerator(listaEventos);	
 		} catch (Exception e) {

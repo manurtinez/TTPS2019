@@ -1,6 +1,8 @@
 package ttps.spring.model;
 
 import java.time.LocalDate;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -14,8 +16,8 @@ public class Intervencion extends Evento {
 	
 	public Intervencion() {}
 	
-	public Intervencion(LocalDate fecha, Mascota mascota, String descripcion) {
-		super(fecha, mascota);
+	public Intervencion(Date date, Mascota mascota, String descripcion) {
+		super(date, mascota);
 		this.descripcion = descripcion;
 	}
 
