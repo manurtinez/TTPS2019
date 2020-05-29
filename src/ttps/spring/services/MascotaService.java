@@ -75,7 +75,7 @@ public class MascotaService {
 			mascotaEditar.setSexo(mascota.getSexo());
 			mascotaEditar.setSenas(mascota.getSenas());
 			mascotaEditar.setNacimiento(mascota.getNacimiento());
-			
+			mascotaEditar.setConfigFicha(mascota.getConfigFicha());
 			mascotaDAO.update(mascotaEditar);
 			return true;
 		} catch (Exception e) {
