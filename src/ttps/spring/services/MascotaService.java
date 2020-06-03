@@ -90,6 +90,7 @@ public class MascotaService {
 			MascotaDTO mascotaDTO = new MascotaDTO();
 			
 			mascotaDTO.setId(id);
+			mascotaDTO.setVeterinario(mascota.getVeterinario());
 			mascotaDTO.setColor(mascota.getColor());
 			mascotaDTO.setConfigFichaId(mascota.getConfigFicha());
 			mascotaDTO.setEspecie(mascota.getEspecie());

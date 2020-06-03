@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.util.Date;
 
 import ttps.spring.model.ConfigFicha;
+import ttps.spring.model.Veterinario;
 
 public class MascotaDTO {
 	private int id;
@@ -13,6 +14,7 @@ public class MascotaDTO {
 	private String sexo;
 	private String color;
 	private String senas;
+	private Veterinario veterinario;
 	private Date nacimiento;
 	private ConfigFicha configFicha;
 	private BufferedImage[] fotos;
@@ -20,8 +22,9 @@ public class MascotaDTO {
 	public MascotaDTO() {}
 	
 	public MascotaDTO(String nombre, String especie, String raza, String sexo, String color, String senas,
-			Date nacimiento, ConfigFicha configFicha, BufferedImage[] fotos) {
+			Date nacimiento, ConfigFicha configFicha, BufferedImage[] fotos, Veterinario veterinario) {
 		super();
+		this.setVeterinario(veterinario);
 		this.nombre = nombre;
 		this.especie = especie;
 		this.raza = raza;
@@ -91,6 +94,14 @@ public class MascotaDTO {
 	}
 	public void setFotos(BufferedImage[] fotos) {
 		this.fotos = fotos;
+	}
+
+	public Veterinario getVeterinario() {
+		return veterinario;
+	}
+
+	public void setVeterinario(Veterinario veterinario) {
+		this.veterinario = veterinario;
 	}
 	
 	
