@@ -15,6 +15,9 @@ public class ConfigFicha {
 	@Column(name="id")
 	private int id;
 	
+	public int getId() {
+		return id;
+	}
 	@Column(name="nombre", nullable = false)
 	private boolean nombre;
 	
