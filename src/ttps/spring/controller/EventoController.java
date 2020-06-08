@@ -91,12 +91,12 @@ public class EventoController {
 		return new ResponseEntity<List<EventoDTO>>(lista, HttpStatus.OK); 
 	}
 	
-	@PostMapping("/dueno/mascota/{id}/nuevo-evento/{fecha}")
-	public ResponseEntity<StringResponse> altaEventos (@PathVariable("fecha") String fecha ,
+	@PostMapping("/dueno/mascota/{id}/nuevo-evento/")
+	public ResponseEntity<StringResponse> altaEventos (
 											    @PathVariable("id") int idMascota,
 												@RequestBody EventoDTO eventoDTO ) {
 		
-		if(eventoservice.altaEvento(fecha, eventoDTO, idMascota)) {
+		if(eventoservice.altaEvento(eventoDTO, idMascota)) {
 			StringResponse sr = new StringResponse("Evento creada correctamente");
 			return new ResponseEntity<StringResponse>(sr, HttpStatus.CREATED);
 		}
@@ -114,11 +114,11 @@ public class EventoController {
 		return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
 	}
 	
-	@PostMapping("/dueno/mascota/{id}/editar-evento/{fecha}")
-	public ResponseEntity<StringResponse> editarEventos (@PathVariable("fecha") String fecha ,
+	@PostMapping("/dueno/mascota/{id}/editar-evento/")
+	public ResponseEntity<StringResponse> editarEventos (
 											    @PathVariable("id") int idMascota,
 												@RequestBody EventoDTO eventoDTO ) {
-		if(eventoservice.editarEvento(fecha, eventoDTO, idMascota)) {
+		if(eventoservice.editarEvento(eventoDTO, idMascota)) {
 			StringResponse sr = new StringResponse("Evento editado correctamente");
 			return new ResponseEntity<StringResponse>(sr, HttpStatus.OK);
 		}

@@ -1,6 +1,8 @@
 package ttps.spring.model;
 
 import java.time.LocalDate;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +25,7 @@ public abstract class Evento {
 	private int id;
 	
 	@Column(name="fecha", nullable = false)
-	private LocalDate fecha;
+	private Date fecha;
 	
 	@ManyToOne(optional = false)
 	@JoinColumn(name="mascota_id")
@@ -31,16 +33,16 @@ public abstract class Evento {
 	
 	public Evento() {}
 	
-	public Evento(LocalDate fecha, Mascota mascota) {
-		this.fecha = fecha;
+	public Evento(Date date, Mascota mascota) {
+		this.fecha = date;
 		setMascota(mascota);
 	}
 
-	public LocalDate getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(LocalDate fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 

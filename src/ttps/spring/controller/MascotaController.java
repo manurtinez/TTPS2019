@@ -35,10 +35,11 @@ public class MascotaController {
 	}
 	public MascotaController() {}
 
-	@PostMapping("/dueno/{id}/nuevaMascota")
-	public ResponseEntity<StringResponse> altaMascota (@PathVariable("id") int id,
+	@PostMapping("/dueno/{iddue}/nuevaMascota/{idvet}")
+	public ResponseEntity<StringResponse> altaMascota (@PathVariable("iddue") int iddue,
+			@PathVariable("idvet") int idvet,
 												@RequestBody MascotaDTO mascota ) {
-		if(mascotaService.altaMascota(mascota, id)) {
+		if(mascotaService.altaMascota(mascota, iddue, idvet)) {
 			StringResponse sr = new StringResponse("mascota creada correctamente");
 			return new ResponseEntity<StringResponse>(sr, HttpStatus.CREATED);
 		}
@@ -95,8 +96,8 @@ public class MascotaController {
 	
 	@PostMapping("/mascota/{id}/asignar-veterinario")
 	public ResponseEntity<StringResponse> asignarVeterinario (@PathVariable("id") int mascotaId,
-															@RequestBody IdRequest vetId){
-		if(mascotaService.asignarVet(mascotaId, vetId.getId())) {
+															@RequestBody int vetId){
+		if(mascotaService.asignarVet(mascotaId, vetId)) {
 			StringResponse sr = new StringResponse("Se asigno veterinario correctamente");
 			return new ResponseEntity<StringResponse>(sr, HttpStatus.OK);
 		}

@@ -10,6 +10,7 @@ public class Credentials {
 	private String apellido;
 	private long telefono;
 	private String email;
+	private int habilitado;
 
     public String getRol() {
 		return rol;
@@ -96,5 +97,13 @@ public class Credentials {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public int getHabilitado() {
+		return habilitado;
+	}
+
+	public void setHabilitado(int habilitado) {
+		this.habilitado = habilitado;
 	}   
 }

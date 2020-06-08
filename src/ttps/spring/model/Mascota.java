@@ -62,7 +62,7 @@ public class Mascota {
 	@OneToMany(mappedBy="mascota", orphanRemoval = true, fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
 	private List<Evento> historial;
 	
-	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE, CascadeType.PERSIST}, orphanRemoval = true)
+	@OneToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, orphanRemoval = true)
 	private ConfigFicha configFicha;
 	
 	@Column(nullable = false)
@@ -71,7 +71,7 @@ public class Mascota {
 	public Mascota() {}
 	
 	public Mascota(String nombre, String especie, String raza, String sexo, String color, String senas,
-			Date nacimiento, BufferedImage[] fotos,Dueno dueno, ConfigFicha config ) {
+			Date nacimiento, BufferedImage[] fotos,Dueno dueno, Veterinario vet, ConfigFicha config ) {
 		super();
 		this.nombre = nombre;
 		this.especie = especie;
@@ -81,9 +81,13 @@ public class Mascota {
 		this.senas = senas;
 		this.nacimiento = nacimiento;
 		this.fotos = fotos;
-		this.veterinario = null;
 		this.vetStatus = false;
 		setDueno(dueno);
+		if(vet != null) {
+			this.veterinario = vet;
+		} else {
+			this.veterinario = null;
+		}
 		this.configFicha = config;
 		this.historial = new ArrayList<Evento>();
 	}

@@ -1,12 +1,13 @@
 package ttps.spring.DTO;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class EventoDTO {
 	private String tipo_evento;
 	private int id;
 	private int mascotaId;
-	private LocalDate fecha;
+	private Date fecha;
 	private String droga;	
 	private String resultado;	
 	private String descripcion;	
@@ -17,7 +18,7 @@ public class EventoDTO {
 	
 	public EventoDTO () {}
 	
-	public EventoDTO(String tipo_evento, int id, LocalDate fecha, String descripcion, 
+	public EventoDTO(String tipo_evento, int id, Date fecha, String descripcion, 
 			String indicaciones, String motivo, float peso, int mascotaId) {
 		//visita
 		this.tipo_evento = tipo_evento;
@@ -30,7 +31,7 @@ public class EventoDTO {
 		this.mascotaId = mascotaId;
 	}
 	
-	public EventoDTO(String tipo_evento, int id, LocalDate fecha, String descripcion, int mascotaId) {
+	public EventoDTO(String tipo_evento, int id, Date fecha, String descripcion, int mascotaId) {
 		//vacunacion, enfermedad, intervencion
 		this.tipo_evento = tipo_evento;
 		this.id = id;
@@ -38,7 +39,7 @@ public class EventoDTO {
 		this.descripcion = descripcion;
 		this.mascotaId = mascotaId;
 	}
-	public EventoDTO(String tipo_evento, int id, LocalDate fecha, int nro_nacidos, int mascotaId) {
+	public EventoDTO(String tipo_evento, int id, Date fecha, int nro_nacidos, int mascotaId) {
 		//historial reproductivo
 		this.tipo_evento = tipo_evento;
 		this.id = id;
@@ -47,7 +48,7 @@ public class EventoDTO {
 		this.mascotaId = mascotaId;
 	}
 	
-	public EventoDTO (String tipo_evento, int id, LocalDate fecha, String droga, String resultado, int mascotaId) {
+	public EventoDTO (String tipo_evento, int id, Date fecha, String droga, String resultado, int mascotaId) {
 		//desparasitacion
 		this.tipo_evento = tipo_evento;
 		this.id = id;
@@ -63,10 +64,10 @@ public class EventoDTO {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public LocalDate getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
-	public void setFecha(LocalDate fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 	public String getDroga() {

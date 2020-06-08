@@ -46,9 +46,9 @@ public class VeterinarioService {
 			List<Veterinario> list = vetdao.getAll();
 			List<VeterinarioDTO> listDTO = new ArrayList<>();
 			for (Veterinario veterinario : list) {
-				VeterinarioDTO vetDTO = new VeterinarioDTO(veterinario.getNombre(), veterinario.getApellido(), veterinario.getEmail(),
+				VeterinarioDTO vetDTO = new VeterinarioDTO(veterinario.getId(), veterinario.getNombre(), veterinario.getApellido(), veterinario.getEmail(),
 										null, veterinario.getTelefono(), veterinario.getNomClinica(), veterinario.getDirClinica(),
-										veterinario.getNroMatricula());
+										veterinario.getNroMatricula(), veterinario.isHabilitado() ? 1 : 0);
 				listDTO.add(vetDTO);
 			}
 			return listDTO;
@@ -57,6 +57,24 @@ public class VeterinarioService {
 			return null;
 		}
 	}
+	
+//	public int buscarHabilitado(int id) {
+//		try {
+//			List<Veterinario> list = vetdao.getAll();
+//			System.out.println(list.toString());
+//			for (Veterinario v : list) {
+//				if (v.getId() == id) {
+//					return v.isHabilitado() ? 1 : 0;
+//				}
+//			}
+//			return 0;
+//		}
+//		catch (Exception e) {
+//			e.printStackTrace();
+//			return -1;
+//		}
+//	}
+	
 	public List<MascotaConDueno> getAllMascotasDeVeterinarioPendientes(int vetId) {
 		try {
 			List<Mascota> list = vetdao.getMascotas(vetId);
@@ -72,6 +90,7 @@ public class VeterinarioService {
 					duenoDTO.setTelefono(mascota.getDueno().getTelefono());;
 					
 					mascotaConDueno.setDueno(duenoDTO);
+					mascotaConDueno.setId(mascota.getId());
 					mascotaConDueno.setColor(mascota.getColor());
 					mascotaConDueno.setConfigFichaId(mascota.getConfigFicha());
 					mascotaConDueno.setEspecie(mascota.getEspecie());
@@ -105,6 +124,7 @@ public class VeterinarioService {
 					duenoDTO.setNombre(mascota.getDueno().getNombre());
 					duenoDTO.setTelefono(mascota.getDueno().getTelefono());;
 					
+					mascotaConDueno.setId(mascota.getId());
 					mascotaConDueno.setDueno(duenoDTO);
 					mascotaConDueno.setColor(mascota.getColor());
 					mascotaConDueno.setConfigFichaId(mascota.getConfigFicha());

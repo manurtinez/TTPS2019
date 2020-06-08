@@ -41,7 +41,7 @@ public class JWTAuthenticationFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
-
+		/*
 		// El login del usuarios es publico
 		if ("/HistoriaClinicaMascotas/autenticacion".equals(req.getRequestURI())
 				|| HttpMethod.OPTIONS.matches(req.getMethod())
@@ -71,7 +71,7 @@ public class JWTAuthenticationFilter implements Filter {
 			res.setStatus(HttpStatus.FORBIDDEN.value());
 			return;
 		}
-
+		*/
 		chain.doFilter(request, response);
 	}
 

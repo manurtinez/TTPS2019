@@ -1,6 +1,8 @@
 package ttps.spring.model;
 
 import java.time.LocalDate;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -16,8 +18,8 @@ public class Desparasitacion extends Evento {
 	
 	public Desparasitacion() {}
 
-	public Desparasitacion(LocalDate fecha, Mascota mascota, String droga, String resultado) {
-		super(fecha, mascota);
+	public Desparasitacion(Date date, Mascota mascota, String droga, String resultado) {
+		super(date, mascota);
 		this.droga = droga;
 		this.resultado = resultado;
 	}
