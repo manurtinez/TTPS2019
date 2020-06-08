@@ -25,7 +25,7 @@ public class LoginController {
 	private LoginService loginservice;
 	private AdminService adminservice;
 	
-	private final int EXPIRATION_IN_SEC = 1800;
+	private final int EXPIRATION_IN_SEC = 60*60;
 	  
 	@PostMapping("/autenticacion")
 	public ResponseEntity<?> autenticateUser(@RequestBody LoginDTO login){
