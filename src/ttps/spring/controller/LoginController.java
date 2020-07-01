@@ -34,13 +34,19 @@ public class LoginController {
 		    String token = loginservice.generateToken(login.getUsuario(), EXPIRATION_IN_SEC);
 		    Credentials c = new Credentials(token, EXPIRATION_IN_SEC, login.getUsuario(), u.getId(), u.getClass().getSimpleName(),
 		    		u.getNombre(), u.getApellido(),u.getTelefono(), u.getEmail());
+		    System.out.println(u.getClass().getSimpleName());
 		    if (u.getClass().getSimpleName() == "Veterinario") {
 		    	List<VeterinarioDTO> list = adminservice.getAllVeterinariosInhabilitados();
+		    	System.out.println(list);
 		    	for (VeterinarioDTO v : list) {
+		    		System.out.println("id actual " + v.getId());
 		    		if (v.getId() == u.getId()) {
+		    			System.out.println("encontre vet" + v);
 		    			c.setHabilitado(v.getHabilitado());
 		    		}
 		    	}
+		    } else {
+		    	c.setHabilitado(1);
 		    }
             return new ResponseEntity<Credentials>(c, HttpStatus.OK);
         } else {
